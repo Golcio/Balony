@@ -19,7 +19,7 @@ public class Plansza extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLayout(new BorderLayout());
 		
-		lNapis = new JLabel("Elo kurwa tu bêdzie gra tiger", SwingConstants.CENTER);
+		lNapis = new JLabel("Elo kurwa tu bêdzie gra tigerek", SwingConstants.CENTER);
 		lNapis.setBounds(20,20,400,200);
 		lNapis.setFont(new Font("SanSerif",Font.BOLD,30));
 		add(lNapis);
