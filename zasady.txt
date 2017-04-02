@@ -1,0 +1,23 @@
+	    
+	    Zasady Gry "Balony"
+            Celem gry jest zbijanie balonów z planszy zdobywaj¹c 
+            przy tym jak najwiêksz¹ iloœæ punktów. Aby pozbywaæ 
+            siê balonów nale¿y trafiaæ balonem w grupy o tym samym 
+            kolorze tworz¹c przy tym grupy stworzone z co najmniej 
+            3 balonów. Jeœli nie uda Ci siê pozbyæ balonów przez 
+            3 strza³y, na górze planszy pojawia siê nowy rz¹d balonów. 
+            Im wiêcej balonów zbijesz, tym wiêcej punktów dostaniesz 
+            obliczonych wg specjalnego algorytmu. 
+        
+            W grze dostêpne s¹ 3 bonusy:
+        
+            -Balon bomba: po dostawieniu niszczy s¹siaduj¹ce balony 
+            niezale¿nie od ich koloru. Pojawia siê do dyspozycji 
+            gracza po zbiciu 5 balonów jednego koloru na raz.
+        
+            -Balon têczowy- reaguje z ka¿dym balonem i pozwala na 
+            zbicie wielu kolorów na raz.
+        
+            -Pechowy czarny balon- nie mo¿na go zniszczyæ. Pojawia 
+            siê w “rêce” gracza w sposób losowy z doœæ ma³ym 
+            prawdopodobieñstwem.
