@@ -7,14 +7,12 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
-import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
 
@@ -43,7 +41,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
 				{
-				e.getWindow().dispose();//System.exit(0);
+				e.getWindow().dispose();
 				}
 				else if(x == JOptionPane.NO_OPTION)
 				{
@@ -84,6 +82,8 @@ public class MenuGlowne extends JFrame implements ActionListener
 		menuGra.add(mRozpocznijGre);
 		menuGra.add(mPoziomTrudnosci);
 		menuGra.add(mListaWynikow);
+		mListaWynikow.addActionListener(this);
+		
 		menuGra.addSeparator();
 		menuGra.add(mWyjdz);
 		
@@ -123,16 +123,23 @@ public class MenuGlowne extends JFrame implements ActionListener
 				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
-		if(z==menuZasadyGry)
+		
+		else if(z==menuZasadyGry)
 		{
 			dispose();
 			Zasady zasady = new Zasady();
 		}
 	
 		
-		if(z==mRozpocznijGre)
+		else if(z==mRozpocznijGre)
 		{
 			Plansza plansza = new Plansza();
+		}
+		
+		else if(z==mListaWynikow)
+		{
+			dispose();
+			ListaWynikow wyniki = new ListaWynikow();
 		}
 		
 	}

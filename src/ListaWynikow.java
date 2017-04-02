@@ -1,0 +1,85 @@
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class ListaWynikow extends JFrame implements ActionListener
+{
+	private JTextArea tWyniki;
+	private JButton bPowrot;
+	private Scanner wczytaj;
+	
+	public ListaWynikow()
+	{
+		setTitle("Lista Wyników");
+		setSize(250,250);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter()
+		{
+
+			@Override
+			public void windowClosing(WindowEvent e) 
+			{
+				dispose();
+				MenuGlowne okienko = new MenuGlowne();
+				okienko.setVisible(true);
+			}
+			
+		});
+		setLayout(new BorderLayout());
+		
+		tWyniki = new JTextArea();
+		JScrollPane suwak = new JScrollPane(tWyniki);
+		tWyniki.setEditable(false);
+		add(suwak, BorderLayout.CENTER);
+		
+		try 
+		{
+			wczytaj = new Scanner(new File("wyniki.txt"));
+			while (wczytaj.hasNext())
+				tWyniki.append(wczytaj.nextLine() + "\n");
+		} 
+		catch (FileNotFoundException e1) 
+		{
+			e1.printStackTrace();
+		}
+		tWyniki.setFont(new Font("ArialBlack", Font.BOLD,20));
+		
+		
+		bPowrot = new JButton("Powrót");
+		add(bPowrot, BorderLayout.PAGE_END);
+		bPowrot.addActionListener(this);
+		
+	}
+	
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		Object zrodlo = e.getSource();
+		if(zrodlo==bPowrot)
+		{
+			dispose();
+			MenuGlowne okienko = new MenuGlowne();
+		}
+	}
+
+	public static void main(String[] args)
+	{
+		
+	}
+}
