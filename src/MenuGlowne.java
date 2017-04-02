@@ -6,19 +6,25 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
 
 public class MenuGlowne extends JFrame implements ActionListener
 {
 	private JMenuBar menuBar;
-	private JMenu menuGra;
-	private JMenuItem mRozpocznijGre, mPoziomTrudnosci, mListaWynikow, mWyjdz, menuZasadyGry;
+	private JMenu menuGra, mPoziomTrudnosci;
+	private JMenuItem mRozpocznijGre, mListaWynikow, mWyjdz, menuZasadyGry;
+	private JRadioButtonMenuItem mLatwy, mSredni, mTrudny;
+	private ButtonGroup bgPoziom;
 	private JLabel lNazwa;
 	
 	public MenuGlowne()
@@ -59,7 +65,19 @@ public class MenuGlowne extends JFrame implements ActionListener
 		mRozpocznijGre = new JMenuItem("Rozpocznij Grê");
 		mRozpocznijGre.addActionListener(this);
 		
-		mPoziomTrudnosci = new JMenuItem("Poziom Trudnoœci");
+		mPoziomTrudnosci = new JMenu("Poziom Trudnoœci");
+		bgPoziom = new ButtonGroup();
+		mLatwy = new JRadioButtonMenuItem("£atwy");
+		mSredni = new JRadioButtonMenuItem("Œredni");
+		mTrudny = new JRadioButtonMenuItem("Trudny");
+		bgPoziom.add(mLatwy);
+		bgPoziom.add(mSredni);
+		bgPoziom.add(mTrudny);
+		mPoziomTrudnosci.add(mLatwy);
+		mPoziomTrudnosci.add(mSredni);
+		mPoziomTrudnosci.add(mTrudny);
+		mLatwy.setSelected(true);
+		
 		mListaWynikow = new JMenuItem("Lista Wyników");
 		mWyjdz = new JMenuItem("Wyjœcie");
 		
