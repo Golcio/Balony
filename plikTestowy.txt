@@ -1,0 +1,26 @@
+#1PLIK TESTOWY
+#2
+#3 tego nie wczytujemy bo to
+#4 komentarze
+WYMIARY 6 6
+#5
+#6
+#7
+BALONY
+#8
+#9 tego tez nie
+#10
+#11   X       Y     Kod Koloru
+    1      1      4
+    2      1      2
+    1      2      1
+    2      2      88
+    1      1      4
+        3      5      88
+        3     4      3
+        2      2      3
+        2      6      4
+            5      3      1
+            6      2      3
+            2     5      69
+# nalezy pamietać zeby nie zostawic na dole pustych linijek

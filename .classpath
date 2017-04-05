@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<accessrules>
+			<accessrule kind="accessible" pattern="javafx/stage/**"/>
+			<accessrule kind="accessible" pattern="javafx/application/**"/>
+			<accessrule kind="accessible" pattern="com/sun/deploy/util/**"/>
+			<accessrule kind="accessible" pattern="sun/swing/**"/>
+			<accessrule kind="accessible" pattern="com/sun/org/apache/xpath/internal/**"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/appache-commons-lang"/>
+	<classpathentry kind="lib" path="C:/Users/Michał/workspace/Balony/commons-lang3-3.5/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michał/workspace/Balony/commons-lang3-3.5/commons-lang3-3.5-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michał/workspace/Balony/maven-shared-utils-0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

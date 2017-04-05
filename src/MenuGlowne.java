@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
@@ -133,7 +135,17 @@ public class MenuGlowne extends JFrame implements ActionListener
 		
 		else if(z==mRozpocznijGre)
 		{
-			Plansza plansza = new Plansza();
+			
+			File plikKofiguracyjny = new File("plikTestowy.txt");
+
+
+			try {
+				Plansza plansza = new Plansza(plikKofiguracyjny);
+			}
+			catch (IOException error)
+			{
+				System.out.println("ERROR: IOException");
+			}
 		}
 		
 		else if(z==mListaWynikow)
