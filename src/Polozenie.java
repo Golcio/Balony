@@ -32,7 +32,7 @@ public class Polozenie {
         if (inny==this) return true;
         if (!(inny instanceof Polozenie)) return  false;
         Polozenie innePo這zenie =(Polozenie)inny;
-        if (innePo這zenie.wsplY==this.getWsplY()&&innePo這zenie.getWsplX()==this.getWsplX())
+        if (innePo這zenie.getWsplY()==this.getWsplY()&&innePo這zenie.getWsplX()==this.getWsplX())
             return true;
         else return false;
     }

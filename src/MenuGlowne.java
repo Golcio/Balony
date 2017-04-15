@@ -31,11 +31,10 @@ public class MenuGlowne extends JFrame implements ActionListener
 	{
 		setTitle("Balony");
 		setSize(300,300);
-		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new WindowAdapter() 
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter() 
 		{
 
 			@Override
@@ -103,6 +102,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 		lNazwa.setBounds(20,20,300,200);
 		lNazwa.setFont(new Font("SanSerif",Font.BOLD,25));
 		add(lNazwa);
+		setVisible(true);
 	}
 
 	@Override
@@ -140,6 +140,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 
 
 			try {
+				dispose();
 				Plansza plansza = new Plansza(plikKofiguracyjny);
 			}
 			catch (IOException error)

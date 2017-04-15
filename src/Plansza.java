@@ -1,4 +1,7 @@
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -33,26 +36,23 @@ public class Plansza extends JFrame implements ActionListener
 
 	public Plansza(File plikStartowy) throws IOException
 	{
+		WczytajWymiary(plikStartowy);
+		WczytajPlansze(plikStartowy);
+		setTitle("Balony");
+		setSize(500, 500);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
 
-		boolean WYSOKOSC = true;
-		boolean SZEROKOSC = true;
-		this.WczytajWymiary(plikStartowy);
-		this.WczytajPlansze(plikStartowy);
-		this.setTitle("Balony");
-		this.setSize(500, 500);
-		this.setVisible(true);
-		this.setLocationRelativeTo((Component)null);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				dispose();
+		this.addWindowListener(new WindowAdapter() 
+		{
+			public void windowClosing(WindowEvent e) 
+			{
+				System.exit(0);
 				MenuGlowne okienko = new MenuGlowne();
-				okienko.setVisible(true);
 			}
 		});
 
-		this.setLayout((LayoutManager)null);
 		this.setLayout(new BorderLayout());
 		this.menuBar = new JMenuBar();
 		this.setJMenuBar(this.menuBar);
@@ -63,15 +63,18 @@ public class Plansza extends JFrame implements ActionListener
 		plansza.setBackground(Color.WHITE);
 		plansza.setVisible(true);
 		plansza.setFocusable(false);
-		this.add(plansza);
+		this.add(plansza, BorderLayout.CENTER);
 		this.menuBar.add(this.wyjdz);
 		this.menuBar.add(Box.createHorizontalGlue());
 		this.menuBar.add(this.pauza);
+		setVisible(true);
 		this.menuBar.setVisible(true);
 		this.wyjdz.setMaximumSize(this.getMaximumSize());
 		this.pauza.setMaximumSize(this.getMaximumSize());
-		plansza.createBufferStrategy(3);
+		plansza.createBufferStrategy(2);
 		plansza.setMaximumSize(this.getMaximumSize());
+		
+		
 
 
 
@@ -112,7 +115,6 @@ public class Plansza extends JFrame implements ActionListener
 
 
 
-
 	}
 
 	/**
@@ -127,7 +129,7 @@ public class Plansza extends JFrame implements ActionListener
 		{
 			String line =br.readLine();
 
-			while (line.contains(("#")))
+			while (line.contains("#"))
 				line = br.readLine();
 
 
@@ -156,13 +158,14 @@ public class Plansza extends JFrame implements ActionListener
 		{
 			String line =br.readLine();
 
-			while (line.contains(("#")))
+			while (line.contains("#"))
 				line = br.readLine();
 
-			if (org.apache.maven.shared.utils.StringUtils.contains(line, "WYMIARY"))
+			if (line.contains("WYMIARY"))
 			{
 
-				String[] wymiaryString = org.apache.maven.shared.utils.StringUtils.split(line);
+				/*String[] wymiaryString = org.apache.maven.shared.utils.StringUtils.split(line);*/
+				String[] wymiaryString = line.split(" ");
 				 WYSOKOSC =Integer.parseInt(wymiaryString[1]);
 				SZEROKOSC =Integer.parseInt(wymiaryString[2]);
 
@@ -183,13 +186,10 @@ public class Plansza extends JFrame implements ActionListener
 	 * @throws IOException je¿eli nie uda siê odczytaæ kolejnej linijki
 	 */
 	private String WczytajBalony(BufferedReader br, String line) throws IOException {
-		if (!org.apache.maven.shared.utils.StringUtils.contains(line, "BALONY"))
-        {
-            line = br.readLine();
-        }
-        else
-            line = br.readLine();
-		if(line.contains(("#")))
+		
+        line = br.readLine();
+        
+		if(line.contains("#"))
         line = br.readLine();
         else
 		{
@@ -249,10 +249,8 @@ public class Plansza extends JFrame implements ActionListener
 
 			}catch (ArrayIndexOutOfBoundsException e)
 			{}
-
-
-
 	}
+	
 	/**
 	 * Metoda zwraca kolor na podstawie dostarczonego kodu numerycznego.
 	 *
@@ -282,27 +280,6 @@ public class Plansza extends JFrame implements ActionListener
         }
 		return kolor;
 	}
-
-/*	public Plansza()
-	{
-		setTitle("Balony");
-		setSize(500,500);
-		setVisible(true);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setLayout(null);
-
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				dispose();
-				MenuGlowne okienko = new MenuGlowne();
-				okienko.setVisible(true);
-			}
-		});
-	}*/
-
-
-
 
 	/**
 	 * Metoda obs³ugujaca zdarzenie  wcisniecia przycisku.
