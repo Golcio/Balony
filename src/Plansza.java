@@ -36,10 +36,8 @@ public class Plansza extends JFrame implements ActionListener
 
 	public Plansza(File plikStartowy) throws IOException
 	{
-		WczytajWymiary(plikStartowy);
-		WczytajPlansze(plikStartowy);
+		Wczytaj(plikStartowy);
 		setTitle("Balony");
-		setSize(500, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
@@ -118,63 +116,45 @@ public class Plansza extends JFrame implements ActionListener
 	}
 
 	/**
-	 * Metoda wczytuje dane o u³ozeniu balonow na planszy z pliku konfiguracyjnego.
-	 *
-	 * @param plikStartowy plik konfiguracyjny
-	 *
-	 * @throws IOException je¿eli nie uda otworzyc pliku
-	 */
-	private void WczytajPlansze(File plikStartowy) throws IOException {
-		try(BufferedReader br = new BufferedReader(new FileReader(plikStartowy)))
-		{
-			String line =br.readLine();
-
-			while (line.contains("#"))
-				line = br.readLine();
-
-
-				while (line != null )
-				{
-						try {
-							line = WczytajBalony(br, line);
-						}
-						catch (NullPointerException e)
-						{
-							break;
-						}
-				}
-
-		}
-	}
-	/**
-	 * Metoda wczytuje wymiary planszy z pliku konfiguracyjnego
+	 * Metoda wczytuje wymiary planszy oraz informacje o balonach z pliku konfiguracyjnego
 	 *
 	 * @param plikStartowy bie¿¹ca linijka
 	 * @throws IOException je¿eli nie uda siê otworzyc pliku
 	 */
-	private void WczytajWymiary(File plikStartowy) throws IOException {
+	private void Wczytaj(File plikStartowy) throws IOException {
 		int WYSOKOSC =3; int SZEROKOSC = 3 ;
 		try(BufferedReader br = new BufferedReader(new FileReader(plikStartowy)))
 		{
 			String line =br.readLine();
-
-			while (line.contains("#"))
-				line = br.readLine();
-
+			while (line != null)
+			{
+				
+				System.out.println(line);
 			if (line.contains("WYMIARY"))
 			{
-
-				/*String[] wymiaryString = org.apache.maven.shared.utils.StringUtils.split(line);*/
 				String[] wymiaryString = line.split(" ");
 				 WYSOKOSC =Integer.parseInt(wymiaryString[1]);
 				SZEROKOSC =Integer.parseInt(wymiaryString[2]);
-
-
+				
+				setSize(SZEROKOSC*30 + 80, WYSOKOSC*30 + 300);
+				StwórzPustaPlansze(WYSOKOSC, SZEROKOSC);
+				line =br.readLine();
 			}
+			else
+			{
+				try {
+					line = WczytajBalony(br, line);
+				}
+				catch (NullPointerException e)
+				{
+					break;
+				}
+			}
+			
+			}
+			
 		}
-
-
-		StwórzPustaPlansze(WYSOKOSC, SZEROKOSC);
+	
 	}
 
 	/**
@@ -187,13 +167,14 @@ public class Plansza extends JFrame implements ActionListener
 	 */
 	private String WczytajBalony(BufferedReader br, String line) throws IOException {
 		
-        line = br.readLine();
+        /*line = br.readLine();*/
         
 		if(line.contains("#"))
         line = br.readLine();
         else
 		{
 			WczytajPole(line);
+			line = br.readLine();
 		}
 
 		return line;
