@@ -22,7 +22,7 @@ public class Balon {
      */
 
     public Balon() {
-        kolor=Kolor.brak;
+        kolor=Kolor.TECZOWY;
         czyIstnieje=false;
 
     }
