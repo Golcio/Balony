@@ -128,11 +128,9 @@ public class Plansza extends JFrame implements ActionListener
 			String line =br.readLine();
 			while (line != null)
 			{
-				
-				System.out.println(line);
 			if (line.contains("WYMIARY"))
 			{
-				String[] wymiaryString = line.split(" ");
+				String[] wymiaryString = line.split("\\s+");
 				 WYSOKOSC =Integer.parseInt(wymiaryString[1]);
 				SZEROKOSC =Integer.parseInt(wymiaryString[2]);
 				
