@@ -166,8 +166,6 @@ public class Plansza extends JFrame implements ActionListener
 	 * @throws IOException je¿eli nie uda siê odczytaæ kolejnej linijki
 	 */
 	private String WczytajBalony(BufferedReader br, String line) throws IOException {
-		
-        /*line = br.readLine();*/
         
 		if(line.contains("#"))
         line = br.readLine();
@@ -209,10 +207,7 @@ public class Plansza extends JFrame implements ActionListener
 	private void WczytajPole(String line)
 	{
 
-
-
-			String[] balonString = org.apache.maven.shared.utils.StringUtils.split(line);
-
+			String[] balonString = line.split("\\s+");
 			try {
 				int wsplX = Integer.parseInt(balonString[0]);
 				int wsplY = Integer.parseInt(balonString[1]);

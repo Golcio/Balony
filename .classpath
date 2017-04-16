@@ -11,8 +11,5 @@
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/appache-commons-lang"/>
-	<classpathentry kind="lib" path="C:/Users/magda/workspace/Balony/commons-lang3-3.5/commons-lang3-3.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/magda/workspace/Balony/commons-lang3-3.5/commons-lang3-3.5-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/magda/workspace/Balony/maven-shared-utils-0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
