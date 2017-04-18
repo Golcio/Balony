@@ -1,5 +1,5 @@
 /**
- * przechowuje wsp³rzedne pola gry
+ * przechowuje wspï¿½rzedne pola gry
  */
 public class Polozenie {
     private int wsplX;
@@ -31,8 +31,8 @@ public class Polozenie {
         if (inny==null) return false;
         if (inny==this) return true;
         if (!(inny instanceof Polozenie)) return  false;
-        Polozenie innePo³ozenie =(Polozenie)inny;
-        if (innePo³ozenie.getWsplY()==this.getWsplY()&&innePo³ozenie.getWsplX()==this.getWsplX())
+        Polozenie innePolozenie =(Polozenie)inny;
+        if (innePolozenie.getWsplY()==this.getWsplY()&&innePolozenie.getWsplX()==this.getWsplX())
             return true;
         else return false;
     }

@@ -28,10 +28,10 @@ public class Plansza extends JFrame implements ActionListener
 	private Properties pola = new Properties();
 	private Vector<Polozenie> polozenia= new Vector<>();
 	/**
-	 * Konstruktor wczytuj¹cy dane planszy gry z pliku konfiguracyjnego.
+	 * Konstruktor wczytujï¿½cy dane planszy gry z pliku konfiguracyjnego.
 	 *
 	 * @param plikStartowy plik tekstowy (.txt) z parametrami konfiguracyjnymi w ustalonym formacie
-	 * @throws IOException je¿eli nie bêdzie mo¿na nawi¹zaæ po³¹czenia
+	 * @throws IOException jeï¿½eli nie bï¿½dzie moï¿½na nawiï¿½zaï¿½ poï¿½ï¿½czenia
 	 */
 
 	public Plansza(File plikStartowy) throws IOException
@@ -118,8 +118,8 @@ public class Plansza extends JFrame implements ActionListener
 	/**
 	 * Metoda wczytuje wymiary planszy oraz informacje o balonach z pliku konfiguracyjnego
 	 *
-	 * @param plikStartowy bie¿¹ca linijka
-	 * @throws IOException je¿eli nie uda siê otworzyc pliku
+	 * @param plikStartowy bieï¿½ï¿½ca linijka
+	 * @throws IOException jeï¿½eli nie uda siï¿½ otworzyc pliku
 	 */
 	private void Wczytaj(File plikStartowy) throws IOException {
 		int WYSOKOSC =3; int SZEROKOSC = 3 ;
@@ -135,7 +135,7 @@ public class Plansza extends JFrame implements ActionListener
 				SZEROKOSC =Integer.parseInt(wymiaryString[2]);
 				
 				setSize(SZEROKOSC*30 + 80, WYSOKOSC*30 + 300);
-				StwórzPustaPlansze(WYSOKOSC, SZEROKOSC);
+				StworzPustaPlansze(WYSOKOSC, SZEROKOSC);
 				line =br.readLine();
 			}
 			else
@@ -156,12 +156,12 @@ public class Plansza extends JFrame implements ActionListener
 	}
 
 	/**
-	 * Metoda wczytuje po³ozenie balonów  z pliku kofiguracyjnego.
+	 * Metoda wczytuje poï¿½ozenie balonï¿½w  z pliku kofiguracyjnego.
 	 *
-	 * @param line bie¿¹ca linijka
+	 * @param line bieï¿½ï¿½ca linijka
 	 * @param br   bufor czytnika
 	 * @return bierzaca linie
-	 * @throws IOException je¿eli nie uda siê odczytaæ kolejnej linijki
+	 * @throws IOException jeï¿½eli nie uda siï¿½ odczytaï¿½ kolejnej linijki
 	 */
 	private String WczytajBalony(BufferedReader br, String line) throws IOException {
         
@@ -178,11 +178,11 @@ public class Plansza extends JFrame implements ActionListener
 	/**
 	 * Metoda tworzy pusta plansze o podanych wymiarach.
 	 *
-	 * @param WYSOKOSC planszy w ilosci rzedów balonów
-	 * @param SZEROKOSC   planszy w ilosci rzedów balonów
+	 * @param WYSOKOSC planszy w ilosci rzedï¿½w balonï¿½w
+	 * @param SZEROKOSC   planszy w ilosci rzedï¿½w balonï¿½w
 	 */
 
-	private void StwórzPustaPlansze(int WYSOKOSC, int SZEROKOSC) {
+	private void StworzPustaPlansze(int WYSOKOSC, int SZEROKOSC) {
 		for (int i=1;i<WYSOKOSC + 1;i++)
 		{
 			for (int j=1;j<SZEROKOSC + 1;j++)
@@ -195,9 +195,9 @@ public class Plansza extends JFrame implements ActionListener
 		}
 	}
 	/**
-	 * Metoda wczytuje z odczytanej lini pliku po³ozenie i kolor balona a obiektu klasy Plansza.
+	 * Metoda wczytuje z odczytanej lini pliku poï¿½ozenie i kolor balona a obiektu klasy Plansza.
 	 *
-	 * @param line bie¿¹ca linijka pliku nad ktora pracuje metoda
+	 * @param line bieï¿½ï¿½ca linijka pliku nad ktora pracuje metoda
 	 *
 	 */
 
@@ -256,7 +256,7 @@ public class Plansza extends JFrame implements ActionListener
 	}
 
 	/**
-	 * Metoda obs³ugujaca zdarzenie  wcisniecia przycisku.
+	 * Metoda obsï¿½ugujaca zdarzenie  wcisniecia przycisku.
 	 *@param e przycisniecie przycisku
 	 */
 	@Override
@@ -265,13 +265,13 @@ public class Plansza extends JFrame implements ActionListener
 
 		Object z = e.getSource();
 		if(z == this.wyjdz) {
-			int plikKofiguracyjny = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjœæ?", "Hola hola!", 0);
+			int plikKofiguracyjny = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjï¿½ï¿½?", "Hola hola!", 0);
 			if(plikKofiguracyjny == 0) {
 				System.exit(0);
 			} else if(plikKofiguracyjny == 1) {
 				JOptionPane.showMessageDialog(this, "Dobra decyzja!", "Brawo!", 1);
 			} else if(plikKofiguracyjny == -1) {
-				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!", "Nie³adnie!", 2);
+				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!", "Nieï¿½adnie!", 2);
 			}
 		}
 		
