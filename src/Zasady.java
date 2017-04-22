@@ -3,9 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +14,7 @@ public class Zasady extends JFrame implements ActionListener
 {
 	private JTextArea tZasady;
 	private JButton bPowrot;
-	private Scanner wczytaj;
+	private BufferedReader buffReader;
 	
 	public Zasady()
 	{
@@ -44,19 +42,21 @@ public class Zasady extends JFrame implements ActionListener
 		JScrollPane suwak = new JScrollPane(tZasady);
 		tZasady.setEditable(false);
 		add(suwak, BorderLayout.CENTER);
-		
-		try 
-		{
-			wczytaj = new Scanner(new File("zasady.txt"));
-			while (wczytaj.hasNext())
-				tZasady.append(wczytaj.nextLine() + "\n");
+
+		try {
+			File file = new File("zasady.txt");
+			FileReader fileReader = new FileReader(file);
+			buffReader = new BufferedReader(fileReader);
+			tZasady.read(buffReader, null);
 		} 
 		catch (FileNotFoundException e1) 
 		{
 			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		
+
+
 		bPowrot = new JButton("Powrót");
 		add(bPowrot, BorderLayout.PAGE_END);
 		bPowrot.addActionListener(this);

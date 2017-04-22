@@ -1,7 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -15,12 +12,16 @@ import java.io.IOException;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.Timer;
+
 /**
  * Klasa okna planszy gry
  *
  */
 public class Plansza extends JFrame implements ActionListener
 {
+	private Timer tm = new Timer(5, this);
+	int x = 0, velX = 2;
 	private JMenuBar menuBar;
 	private JMenuItem wyjdz;
 	private JMenuItem pauza;
@@ -104,6 +105,10 @@ public class Plansza extends JFrame implements ActionListener
 				graphics.fillOval(p.getWsplX()*30,p.getWsplY()*30,30,30);
 
 			}
+			Rectangle r = getBounds();
+			graphics.setColor(Color.BLUE);
+			graphics.fillOval(x, 0, 30, 30 );
+			tm.start();
 
 
 			bufferStrategy.show();
@@ -134,7 +139,7 @@ public class Plansza extends JFrame implements ActionListener
 				 WYSOKOSC =Integer.parseInt(wymiaryString[1]);
 				SZEROKOSC =Integer.parseInt(wymiaryString[2]);
 				
-				setSize(SZEROKOSC*30 + 80, WYSOKOSC*30 + 300);
+				setSize(SZEROKOSC*30 + 80, WYSOKOSC*30 + 80);
 				StworzPustaPlansze(WYSOKOSC, SZEROKOSC);
 				line =br.readLine();
 			}
@@ -262,8 +267,9 @@ public class Plansza extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		x = x + velX;
 
-		Object z = e.getSource();
+		/*Object z = e.getSource();
 		if(z == this.wyjdz) {
 			int plikKofiguracyjny = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyj��?", "Hola hola!", 0);
 			if(plikKofiguracyjny == 0) {
@@ -273,7 +279,7 @@ public class Plansza extends JFrame implements ActionListener
 			} else if(plikKofiguracyjny == -1) {
 				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!", "Nie�adnie!", 2);
 			}
-		}
+		}*/
 		
 	}
 

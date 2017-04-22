@@ -1,4 +1,4 @@
-	    
+
 	    Zasady Gry "Balony"
             Celem gry jest zbijanie balonów z planszy zdobywaj¹c 
             przy tym jak najwiêksz¹ iloœæ punktów. Aby pozbywaæ 
