@@ -268,6 +268,7 @@ public class Plansza extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{
 		x = x + velX;
+		repaint();
 
 		/*Object z = e.getSource();
 		if(z == this.wyjdz) {
