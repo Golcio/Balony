@@ -1,9 +1,5 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -27,8 +23,8 @@ public class Plansza extends JFrame implements ActionListener
 {
 	private int WYSOKOSC, SZEROKOSC;
 	private Timer tm = new Timer(5, this);
-	int x = 1, velX = 3;
-	int y = 1, velY = 2;
+	int wspolczynnikKierunku;
+	Polozenie polozenieNaboju = new Polozenie( SZEROKOSC/2, WYSOKOSC );
 	private JMenuBar menuBar;
 	private JMenuItem wyjdz;
 	private JMenuItem pauza;
@@ -48,6 +44,7 @@ public class Plansza extends JFrame implements ActionListener
 		setTitle("Balony");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
 		
 
 		this.addWindowListener(new WindowAdapter() 
@@ -57,68 +54,35 @@ public class Plansza extends JFrame implements ActionListener
 				dispose();
 				MenuGlowne okienko = new MenuGlowne();
 			}
+
+
+
+
+			
 		});
+		this.addMouseListener(new MouseAdapter() {
+			/**
+			 * {@inheritDoc}
+			 *
+			 * @param e
+			 */
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				System.out.println(e.getPoint());
+				Polozenie gdzieKliknieto = new Polozenie(e.getX(),e.getY());
+				Polozenie polozenieWyrzutni= new Polozenie(getHeight(),(int) getWidth()/2);
 
-		/*setLayout(new BorderLayout());
-		menuBar = new JMenuBar();
-		setJMenuBar(this.menuBar);
-		wyjdz = new JMenuItem("wyjdz");
-		wyjdz.addActionListener(this);
-		pauza = new JMenuItem("pauza");
-		plansza = new JPanel();
-		plansza.setSize(this.getSize());
-		plansza.setBackground(Color.WHITE);
-		plansza.setVisible(true);
-		plansza.setFocusable(false);
-		add(plansza, BorderLayout.CENTER);
-		menuBar.add(wyjdz);
-		menuBar.add(Box.createHorizontalGlue());
-		menuBar.add(pauza);
-		add(menuBar, BorderLayout.PAGE_START);*/
-		setVisible(true);
-		//menuBar.setVisible(true);
-		//plansza.createBufferStrategy(3);
-		//plansza.setMaximumSize(this.getMaximumSize());
-		
-
-		/*boolean running = true;
-
-		BufferStrategy bufferStrategy;
-		Graphics graphics;
-
-		while (running) 
-		{
-			bufferStrategy = plansza.getBufferStrategy();
-			graphics = bufferStrategy.getDrawGraphics();
-			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-
-			for (Polozenie p :polozenia)
-			{
-				Balon balon = (Balon)pola.get(p);
-				switch (balon.getKolor())
-				{
-					case ZOLTY:graphics.setColor(Color.YELLOW); break;
-					case CZERWONY:graphics.setColor(Color.RED); break;
-					case ZIELONY:graphics.setColor(Color.GREEN); break;
-					case NIEBIESKI:graphics.setColor(Color.BLUE); break;
-					case CZARNY:graphics.setColor(Color.BLACK); break;
-					case TECZOWY:graphics.setColor(Color.PINK); break;
-					default:graphics.setColor(Color.WHITE);
-
-				}
-
-				graphics.fillOval(p.getWsplX()*30,p.getWsplY()*30,30,30);
+				int przesuniecieWPoziomie = gdzieKliknieto.getWsplX()-polozenieWyrzutni.getWsplX();
+				int przesuniecieWPionie = gdzieKliknieto.getWsplX()-polozenieWyrzutni.getWsplX();
+				 wspolczynnikKierunku = (int) przesuniecieWPionie/przesuniecieWPoziomie;
 
 			}
-			Rectangle r = getBounds();
-			graphics.setColor(Color.BLUE);
-			graphics.fillOval(x*30, 0, 30, 30 );
-			tm.start();
+		});
 
 
-			bufferStrategy.show();
-			graphics.dispose();
-		}*/
+		setVisible(true);
+		setResizable(false);
 
 
 
@@ -128,6 +92,7 @@ public class Plansza extends JFrame implements ActionListener
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponents(g);
+
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, SZEROKOSC*60, WYSOKOSC*60);
 		g.setColor(Color.GRAY);
@@ -152,8 +117,12 @@ public class Plansza extends JFrame implements ActionListener
 			if(g.getColor()!=Color.WHITE)
 			g.fillOval(p.getWsplX()*60,p.getWsplY()*60,60,60);
 		}
-			g.setColor(Color.BLUE);
-			g.fillOval((int)Math.ceil(SZEROKOSC/2)*60, WYSOKOSC*60 - 120, 60, 60);
+
+			g.setColor(Color.black);
+
+		g.fillOval((int)Math.ceil(SZEROKOSC/2)*60, WYSOKOSC*60 - 120, 60, 60);
+		// g.fillOval(polozenieNaboju.getWsplX()*60, polozenieNaboju.getWsplY()*60-120, 60, 60);
+		// to zakomentowane czemus nie dziaÅ‚a
 		tm.start();
 		
 		g.dispose();
@@ -296,7 +265,7 @@ public class Plansza extends JFrame implements ActionListener
 		{
 			Random rand = new Random();
 			kolorInt=rand.nextInt(4)+1;
-			System.out.println(kolorInt);
+
 		}
 		switch (kolorInt)
         {
@@ -338,7 +307,7 @@ public class Plansza extends JFrame implements ActionListener
 		Object z = e.getSource();
 		if(z == this.wyjdz) 
 		{
-			int odp = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
+			int odp = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjï¿½ï¿½?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 			if(odp == JOptionPane.YES_OPTION)
 			{
 			dispose();
@@ -350,14 +319,11 @@ public class Plansza extends JFrame implements ActionListener
 			}
 			else if(odp == JOptionPane.CLOSED_OPTION)
 			{
-				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!","Nieï¿½adnie!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}
 	
 
-	public static void main(String[] args)
-	{
-		
-	}
+
 }

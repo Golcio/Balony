@@ -30,9 +30,9 @@ public class MenuGlowne extends JFrame implements ActionListener
 	public MenuGlowne()
 	{
 		setTitle("Balony");
-		setSize(300,300);
+		setSize(700,500);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		setResizable(true);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() 
 		{
@@ -50,6 +50,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 				}
 				else if(x == JOptionPane.CLOSED_OPTION)
 				{
+					
 					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
 				}
 				}
@@ -108,6 +109,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+	
 		Object z = e.getSource();
 		if(z==mWyjdz)
 		{
