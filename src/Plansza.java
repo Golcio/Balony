@@ -24,7 +24,7 @@ public class Plansza extends JFrame implements ActionListener
 	private int WYSOKOSC, SZEROKOSC;
 	private Timer tm = new Timer(5, this);
 	int wspolczynnikKierunku;
-	Polozenie polozenieNaboju = new Polozenie( SZEROKOSC/2, WYSOKOSC );
+	Polozenie polozenieNaboju;
 	private JMenuBar menuBar;
 	private JMenuItem wyjdz;
 	private JMenuItem pauza;
@@ -44,6 +44,7 @@ public class Plansza extends JFrame implements ActionListener
 		setTitle("Balony");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		boolean running = false;
 
 		
 
@@ -71,18 +72,26 @@ public class Plansza extends JFrame implements ActionListener
 				super.mouseClicked(e);
 				System.out.println(e.getPoint());
 				Polozenie gdzieKliknieto = new Polozenie(e.getX(),e.getY());
-				Polozenie polozenieWyrzutni= new Polozenie(getHeight(),(int) getWidth()/2);
+				Polozenie polozenieWyrzutni=new Polozenie(polozenieNaboju.getWsplX(),polozenieNaboju.getWsplY()) ;
 
 				int przesuniecieWPoziomie = gdzieKliknieto.getWsplX()-polozenieWyrzutni.getWsplX();
 				int przesuniecieWPionie = gdzieKliknieto.getWsplX()-polozenieWyrzutni.getWsplX();
 				 wspolczynnikKierunku = (int) przesuniecieWPionie/przesuniecieWPoziomie;
+				boolean running = true;
+				while (running)
+				{
+					polozenieNaboju
+				}
 
 			}
 		});
 
 
 		setVisible(true);
-		setResizable(false);
+		setResizable(true);
+		//setMinimumSize(new Dimension(500,500));
+		//setMaximumSize(new Dimension(800,800));
+
 
 
 
@@ -120,9 +129,8 @@ public class Plansza extends JFrame implements ActionListener
 
 			g.setColor(Color.black);
 
-		g.fillOval((int)Math.ceil(SZEROKOSC/2)*60, WYSOKOSC*60 - 120, 60, 60);
-		// g.fillOval(polozenieNaboju.getWsplX()*60, polozenieNaboju.getWsplY()*60-120, 60, 60);
-		// to zakomentowane czemus nie działa
+		polozenieNaboju= new Polozenie((int)Math.ceil(SZEROKOSC/2)*60,WYSOKOSC*60 - 120);
+		g.fillOval( polozenieNaboju.getWsplX(),polozenieNaboju.getWsplY() , 60, 60);
 		tm.start();
 		
 		g.dispose();
