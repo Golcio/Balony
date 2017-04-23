@@ -1,9 +1,12 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,6 +16,8 @@ import java.util.*;
 
 import javax.swing.*;
 import javax.swing.Timer;
+import javax.swing.border.Border;
+
 
 /**
  * Klasa okna planszy gry
@@ -20,12 +25,14 @@ import javax.swing.Timer;
  */
 public class Plansza extends JFrame implements ActionListener
 {
+	private int WYSOKOSC, SZEROKOSC;
 	private Timer tm = new Timer(5, this);
-	int x = 0, velX = 2;
+	int x = 1, velX = 3;
+	int y = 1, velY = 2;
 	private JMenuBar menuBar;
 	private JMenuItem wyjdz;
 	private JMenuItem pauza;
-	private Canvas plansza;
+	private JPanel plansza;
 	private Properties pola = new Properties();
 	private Vector<Polozenie> polozenia= new Vector<>();
 	/**
@@ -40,49 +47,47 @@ public class Plansza extends JFrame implements ActionListener
 		Wczytaj(plikStartowy);
 		setTitle("Balony");
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		
 
 		this.addWindowListener(new WindowAdapter() 
 		{
 			public void windowClosing(WindowEvent e) 
 			{
-				System.exit(0);
+				dispose();
 				MenuGlowne okienko = new MenuGlowne();
 			}
 		});
 
-		this.setLayout(new BorderLayout());
-		this.menuBar = new JMenuBar();
-		this.setJMenuBar(this.menuBar);
-		this.wyjdz = new JMenuItem("wyjdz");
-		this.pauza = new JMenuItem("pauza");
-		this.plansza = new Canvas();
+		/*setLayout(new BorderLayout());
+		menuBar = new JMenuBar();
+		setJMenuBar(this.menuBar);
+		wyjdz = new JMenuItem("wyjdz");
+		wyjdz.addActionListener(this);
+		pauza = new JMenuItem("pauza");
+		plansza = new JPanel();
 		plansza.setSize(this.getSize());
 		plansza.setBackground(Color.WHITE);
 		plansza.setVisible(true);
 		plansza.setFocusable(false);
-		this.add(plansza, BorderLayout.CENTER);
-		this.menuBar.add(this.wyjdz);
-		this.menuBar.add(Box.createHorizontalGlue());
-		this.menuBar.add(this.pauza);
+		add(plansza, BorderLayout.CENTER);
+		menuBar.add(wyjdz);
+		menuBar.add(Box.createHorizontalGlue());
+		menuBar.add(pauza);
+		add(menuBar, BorderLayout.PAGE_START);*/
 		setVisible(true);
-		this.menuBar.setVisible(true);
-		this.wyjdz.setMaximumSize(this.getMaximumSize());
-		this.pauza.setMaximumSize(this.getMaximumSize());
-		plansza.createBufferStrategy(2);
-		plansza.setMaximumSize(this.getMaximumSize());
-		
+		//menuBar.setVisible(true);
+		//plansza.createBufferStrategy(3);
+		//plansza.setMaximumSize(this.getMaximumSize());
 		
 
-
-
-		boolean running = true;
+		/*boolean running = true;
 
 		BufferStrategy bufferStrategy;
 		Graphics graphics;
 
-		while (running) {
+		while (running) 
+		{
 			bufferStrategy = plansza.getBufferStrategy();
 			graphics = bufferStrategy.getDrawGraphics();
 			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
@@ -107,19 +112,67 @@ public class Plansza extends JFrame implements ActionListener
 			}
 			Rectangle r = getBounds();
 			graphics.setColor(Color.BLUE);
-			graphics.fillOval(x, 0, 30, 30 );
+			graphics.fillOval(x*30, 0, 30, 30 );
 			tm.start();
 
 
 			bufferStrategy.show();
 			graphics.dispose();
-		}
+		}*/
 
 
 
 
 	}
 
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponents(g);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, SZEROKOSC*60, WYSOKOSC*60);
+		g.setColor(Color.GRAY);
+		g.fillRect(0, 0, SZEROKOSC*60, 60);
+		g.fillRect(0, 0, 60, WYSOKOSC*60);
+		g.fillRect(SZEROKOSC*60-60, 0, 60, WYSOKOSC*60);
+		g.fillRect(0, WYSOKOSC*60-60, SZEROKOSC*60, 60);
+		for (Polozenie p :polozenia)
+		{
+			Balon balon = (Balon)pola.get(p);
+			switch (balon.getKolor())
+			{
+				case ZOLTY:g.setColor(Color.YELLOW); break;
+				case CZERWONY:g.setColor(Color.RED); break;
+				case ZIELONY:g.setColor(Color.GREEN); break;
+				case NIEBIESKI:g.setColor(Color.BLUE); break;
+				case CZARNY:g.setColor(Color.BLACK); break;
+				case TECZOWY:g.setColor(Color.PINK); break;
+				default:g.setColor(Color.WHITE);
+
+			}
+			if(g.getColor()!=Color.WHITE)
+			g.fillOval(p.getWsplX()*60,p.getWsplY()*60,60,60);
+		}
+			g.setColor(Color.BLUE);
+			g.fillOval((int)Math.ceil(SZEROKOSC/2)*60, WYSOKOSC*60 - 120, 60, 60);
+		tm.start();
+		
+		g.dispose();
+        setFocusable(true);
+		
+	}
+	
+	public void paint(Graphics g)
+	{
+		BufferedImage dbImage = new BufferedImage(SZEROKOSC*60, WYSOKOSC*60, BufferedImage.TYPE_INT_ARGB);
+		Graphics dbg = dbImage.getGraphics();
+		paintComponent(dbg);
+		
+		BufferedImage scaled = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D gg = scaled.createGraphics();
+		gg.drawImage(dbImage, 0, 0, getWidth(), getHeight(), null);
+		g.drawImage(scaled, 0, 0, this);
+	}
+	
 	/**
 	 * Metoda wczytuje wymiary planszy oraz informacje o balonach z pliku konfiguracyjnego
 	 *
@@ -127,7 +180,6 @@ public class Plansza extends JFrame implements ActionListener
 	 * @throws IOException jeï¿½eli nie uda siï¿½ otworzyc pliku
 	 */
 	private void Wczytaj(File plikStartowy) throws IOException {
-		int WYSOKOSC =3; int SZEROKOSC = 3 ;
 		try(BufferedReader br = new BufferedReader(new FileReader(plikStartowy)))
 		{
 			String line =br.readLine();
@@ -136,11 +188,11 @@ public class Plansza extends JFrame implements ActionListener
 			if (line.contains("WYMIARY"))
 			{
 				String[] wymiaryString = line.split("\\s+");
-				 WYSOKOSC =Integer.parseInt(wymiaryString[1]);
-				SZEROKOSC =Integer.parseInt(wymiaryString[2]);
+				SZEROKOSC =Integer.parseInt(wymiaryString[1]);
+				WYSOKOSC =Integer.parseInt(wymiaryString[2]);
 				
-				setSize(SZEROKOSC*30 + 80, WYSOKOSC*30 + 80);
-				StworzPustaPlansze(WYSOKOSC, SZEROKOSC);
+				setSize(SZEROKOSC*60, WYSOKOSC*60);
+				StworzPustaPlansze(SZEROKOSC, WYSOKOSC);
 				line =br.readLine();
 			}
 			else
@@ -188,9 +240,9 @@ public class Plansza extends JFrame implements ActionListener
 	 */
 
 	private void StworzPustaPlansze(int WYSOKOSC, int SZEROKOSC) {
-		for (int i=1;i<WYSOKOSC + 1;i++)
+		for (int i=0;i<WYSOKOSC;i++)
 		{
-			for (int j=1;j<SZEROKOSC + 1;j++)
+			for (int j=0;j<SZEROKOSC;j++)
 			{
 
 				Polozenie wspolrzedne = new Polozenie(j,i);
@@ -240,6 +292,12 @@ public class Plansza extends JFrame implements ActionListener
 
 	private Kolor getKolor(int kolorInt) {
 		Kolor kolor;
+		if(kolorInt == 99)
+		{
+			Random rand = new Random();
+			kolorInt=rand.nextInt(4)+1;
+			System.out.println(kolorInt);
+		}
 		switch (kolorInt)
         {
             case 1: kolor=Kolor.ZIELONY;
@@ -267,22 +325,36 @@ public class Plansza extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		x = x + velX;
-		repaint();
-
-		/*Object z = e.getSource();
-		if(z == this.wyjdz) {
-			int plikKofiguracyjny = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjï¿½ï¿½?", "Hola hola!", 0);
-			if(plikKofiguracyjny == 0) {
-				System.exit(0);
-			} else if(plikKofiguracyjny == 1) {
-				JOptionPane.showMessageDialog(this, "Dobra decyzja!", "Brawo!", 1);
-			} else if(plikKofiguracyjny == -1) {
-				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!", "Nieï¿½adnie!", 2);
-			}
-		}*/
+		/*if(x<0 || x>270)
+		velX=-velX;
 		
+		if(y<0 || y>270)
+		velY=-velY;
+			
+		x = x + velX;
+		y = y + velY;
+		repaint();*/
+
+		Object z = e.getSource();
+		if(z == this.wyjdz) 
+		{
+			int odp = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
+			if(odp == JOptionPane.YES_OPTION)
+			{
+			dispose();
+			MenuGlowne okienko = new MenuGlowne();
+			}
+			else if(odp == JOptionPane.NO_OPTION)
+			{
+				JOptionPane.showMessageDialog(this, "Dobra decyzja!", "Brawo!", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else if(odp == JOptionPane.CLOSED_OPTION)
+			{
+				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
+			}
+		}
 	}
+	
 
 	public static void main(String[] args)
 	{
