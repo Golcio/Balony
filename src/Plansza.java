@@ -24,7 +24,7 @@ public class Plansza extends JFrame implements ActionListener
 	private int WYSOKOSC, SZEROKOSC;
 	private Timer tm = new Timer(5, this);
 	int wspolczynnikKierunku;
-	Polozenie polozenieNaboju;
+	Polozenie polozenieNaboju= new Polozenie((int)Math.ceil(SZEROKOSC/2)*60,WYSOKOSC*60 - 120);;
 	private JMenuBar menuBar;
 	private JMenuItem wyjdz;
 	private JMenuItem pauza;
@@ -45,6 +45,15 @@ public class Plansza extends JFrame implements ActionListener
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		boolean running = false;
+/**
+ * Ukryty bufor.
+ */
+		Image bufor = null;
+
+		/**
+		 * Kontekst graficzny bufora.
+		 */
+		Graphics kontekstBufora = null;
 
 		
 
@@ -73,6 +82,7 @@ public class Plansza extends JFrame implements ActionListener
 				System.out.println(e.getPoint());
 				Polozenie gdzieKliknieto = new Polozenie(e.getX(),e.getY());
 				Polozenie polozenieWyrzutni=new Polozenie(polozenieNaboju.getWsplX(),polozenieNaboju.getWsplY()) ;
+				int PRZESUNIECIE = 10;
 
 				int przesuniecieWPoziomie = gdzieKliknieto.getWsplX()-polozenieWyrzutni.getWsplX();
 				int przesuniecieWPionie = gdzieKliknieto.getWsplX()-polozenieWyrzutni.getWsplX();
@@ -80,9 +90,28 @@ public class Plansza extends JFrame implements ActionListener
 				boolean running = true;
 				while (running)
 				{
-					polozenieNaboju
+					addNotify();
+					kontekstBufora.clearRect(0, 0, getWidth(), getHeight());
+					int i = 0;
+
+					modyfikacjaPolozenia(przesuniecieWPoziomie, PRZESUNIECIE);
+					paintComponent(getGraphics());
+					Sleeeep();
+					i++;
+						if(i>100)
+							break;
+
+
+
+
 				}
 
+			}
+
+			public void addNotify() {
+				JPanel.super.addNotify();
+				bufor = createImage(getPreferredSize().width,getPreferredSize().height);
+				kontekstBufora = bufor.getDrawGraphics();
 			}
 		});
 
@@ -96,6 +125,24 @@ public class Plansza extends JFrame implements ActionListener
 
 
 
+	}
+
+	private void Sleeeep() {
+		try {
+            Thread.sleep(50);
+        }catch (InterruptedException e1)
+        {
+            System.out.println("InterruptedException");
+        }
+	}
+
+	private void modyfikacjaPolozenia(int przesuniecieWPoziomie, int PRZESUNIECIE) {
+		if (przesuniecieWPoziomie<0)
+            polozenieNaboju.setWsplX(polozenieNaboju.getWsplX()-PRZESUNIECIE);
+		if (przesuniecieWPoziomie>0)
+            polozenieNaboju.setWsplX(polozenieNaboju.getWsplX()-PRZESUNIECIE);
+
+		polozenieNaboju.setWsplY(polozenieNaboju.getWsplY()+wspolczynnikKierunku*PRZESUNIECIE);
 	}
 
 	public void paintComponent(Graphics g)
@@ -129,7 +176,7 @@ public class Plansza extends JFrame implements ActionListener
 
 			g.setColor(Color.black);
 
-		polozenieNaboju= new Polozenie((int)Math.ceil(SZEROKOSC/2)*60,WYSOKOSC*60 - 120);
+
 		g.fillOval( polozenieNaboju.getWsplX(),polozenieNaboju.getWsplY() , 60, 60);
 		tm.start();
 		
