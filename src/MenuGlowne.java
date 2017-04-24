@@ -1,5 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -144,11 +143,18 @@ public class MenuGlowne extends JFrame implements ActionListener
 			try {
 				dispose();
 				Plansza plansza = new Plansza(plikKofiguracyjny);
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						plansza.setVisible(true);
+					}
+				});
+				new Thread(plansza).start();
 			}
 			catch (IOException error)
 			{
 				System.out.println("ERROR: IOException");
 			}
+
 		}
 		
 		else if(z==mListaWynikow)
