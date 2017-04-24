@@ -148,7 +148,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 						plansza.setVisible(true);
 					}
 				});
-				new Thread(plansza).start();
+
 			}
 			catch (IOException error)
 			{

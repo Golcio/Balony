@@ -22,8 +22,8 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
     private int WYSOKOSC, SZEROKOSC;
     private Timer tm = new Timer(5, this);
     int wspolczynnikKierunku;
-    Polozenie polozenieNaboju = new Polozenie((int) Math.ceil(SZEROKOSC / 2) * 60, WYSOKOSC * 60 - 200);
-    ;
+    Polozenie polozenieNaboju;
+
     private JMenuBar menuBar;
     private JMenuItem wyjdz;
     private JMenuItem pauza;
@@ -34,7 +34,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     private JPanel plansza;
     private Properties pola = new Properties();
-    int PRZESUNIECIE = 10;
+    int PRZESUNIECIE = 5;
     private Vector<Polozenie> polozenia = new Vector<>();
     int przesuniecieWPoziomie;
     int przesuniecieWPionie;
@@ -51,6 +51,8 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         setTitle("Balony");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        polozenieNaboju = new Polozenie(getWidth()/2, getHeight()-100);
+        System.out.println("w konstruktorze x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
         tm.start();
 
         this.addWindowListener(new WindowAdapter() {
@@ -71,8 +73,9 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             public void mouseClicked(MouseEvent e) {
 
                 super.mouseClicked(e);
-                boolean running = true;
                 System.out.println(e.getPoint());
+                new Thread(Plansza.this::run).start();
+
                 Polozenie gdzieKliknieto = new Polozenie(e.getX(), e.getY());
                 Polozenie polozenieWyrzutni = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
                 przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
@@ -91,23 +94,32 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     private void Sleeeep() {
         try {
-            Thread.sleep(5);
+            Thread.sleep(20);
         } catch (InterruptedException e1) {
             System.out.println("InterruptedException");
         }
     }
 
     private void modyfikacjaPolozenia() {
-        if (przesuniecieWPoziomie < 0&&(polozenieNaboju.getWsplX() - PRZESUNIECIE) >0)
+
+        System.out.println(" W modyf x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
+        /*if (przesuniecieWPoziomie < 0 && (polozenieNaboju.getWsplX() - PRZESUNIECIE) > 0)
             polozenieNaboju.setWsplX(polozenieNaboju.getWsplX() - PRZESUNIECIE);
         else
-            polozenieNaboju.setWsplX(SZEROKOSC);
-        if (przesuniecieWPoziomie > 0 && (polozenieNaboju.getWsplX() + PRZESUNIECIE) >SZEROKOSC)
+            polozenieNaboju.setWsplX(0);
+        if (przesuniecieWPoziomie > 0 && (polozenieNaboju.getWsplX() + PRZESUNIECIE) < getWidth())
             polozenieNaboju.setWsplX(polozenieNaboju.getWsplX() + PRZESUNIECIE);
         else
-            polozenieNaboju.setWsplX(SZEROKOSC);
+            polozenieNaboju.setWsplX(getWidth());
 
-        polozenieNaboju.setWsplY(polozenieNaboju.getWsplY() + wspolczynnikKierunku * PRZESUNIECIE);
+        if (polozenieNaboju.getWsplY() < getHeight())
+            polozenieNaboju.setWsplY(polozenieNaboju.getWsplY() + wspolczynnikKierunku * PRZESUNIECIE);
+*/
+        if (polozenieNaboju.getWsplX()>0)
+        polozenieNaboju.setWsplX(polozenieNaboju.getWsplX()-PRZESUNIECIE);
+        if (polozenieNaboju.getWsplY()>0)
+            polozenieNaboju.setWsplY(polozenieNaboju.getWsplY()-PRZESUNIECIE);
+
     }
 
     public void paintComponent(Graphics g) {
@@ -151,7 +163,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
         g.setColor(Color.black);
 
-        g.fillOval(polozenieNaboju.getWsplX()*1, polozenieNaboju.getWsplY()*1, 60, 60);
+        g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
 
 
         g.dispose();
@@ -354,8 +366,17 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
      */
     @Override
     public void run() {
-        modyfikacjaPolozenia();
-        repaint();
-        Sleeeep();
+        while (true) {
+            Polozenie temp = new Polozenie(polozenieNaboju.getWsplX(),polozenieNaboju.getWsplY());
+            modyfikacjaPolozenia();
+            if (polozenieNaboju != temp)
+            {
+                repaint();
+                Sleeeep();
+            }
+            else
+                break;
+
+        }
     }
 }
