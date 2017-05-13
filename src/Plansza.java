@@ -20,8 +20,11 @@ import javax.swing.border.Border;
  */
 public class Plansza extends JFrame implements ActionListener, Runnable {
     private int WYSOKOSC, SZEROKOSC;
-    private Timer tm = new Timer(5, this);
-    double wspolczynnikKierunku;
+    int czas = 5;
+    private Timer tm = new Timer(czas, this);
+    double proporcjaX;
+    double proporcjaY;
+    double droga;
     Polozenie polozenieNaboju;
 
     private JMenuBar menuBar;
@@ -34,7 +37,9 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     private JPanel plansza;
     private Properties pola = new Properties();
-    double PRZESUNIECIE = 20;
+    double PRZESUNIECIE=10;
+    double PRZESUNIECIEX;
+    double PRZESUNIECIEY;
     private Vector<Polozenie> polozenia = new Vector<>();
     int przesuniecieWPoziomie;
     int przesuniecieWPionie;
@@ -82,8 +87,12 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
                 Polozenie polozenieWyrzutni = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
                 przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
                 przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
-                wspolczynnikKierunku = przesuniecieWPionie / przesuniecieWPoziomie;
-
+                droga= Math.sqrt(przesuniecieWPionie*przesuniecieWPionie + przesuniecieWPoziomie*przesuniecieWPoziomie);
+                System.out.println("droga przesuniecieX przesuniecieY " + droga + przesuniecieWPoziomie + przesuniecieWPionie);
+                proporcjaX = przesuniecieWPoziomie/droga;
+                proporcjaY = przesuniecieWPionie/droga;
+                PRZESUNIECIEX=Math.abs(PRZESUNIECIE*proporcjaX);
+                PRZESUNIECIEY=Math.abs(PRZESUNIECIE*proporcjaY);
             }
 
 
@@ -94,7 +103,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     }
     /**
-     *usypia watek na 30 ms
+     *usypia watek na n ms
 
      */
 
@@ -114,23 +123,75 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         System.out.println(" W modyf x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
 
         if (polozenieNaboju.getWsplX() > 60 && polozenieNaboju.getWsplX() < (getWidth() - 120)) {
-            if (wspolczynnikKierunku < 0) {
-                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIE));
+            if (przesuniecieWPoziomie < 0) {
+                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
             }
-            if (wspolczynnikKierunku > 0) {
-                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIE));
+            if (przesuniecieWPoziomie > 0) {
+                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIEX));
             }
+            
 
         }
+        if(polozenieNaboju.getWsplX() < 60)
+        	polozenieNaboju.setWsplX(60);
+        	
+        if(polozenieNaboju.getWsplX() > getHeight() - 120)
+        	polozenieNaboju.setWsplX(getHeight() - 120);
+        
+      //tutaj próbowa³em zrobiæ odbijanie dla X
+        /*else if (polozenieNaboju.getWsplX() < 60 || polozenieNaboju.getWsplX() > (getWidth() - 120))
+        {
+        	PRZESUNIECIEX=-PRZESUNIECIEX;
+        	if (przesuniecieWPoziomie < 0) {
+                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
+            }
+            if (przesuniecieWPoziomie > 0) {
+                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIEX));
+            }
+        }*/
 
         if (polozenieNaboju.getWsplY() > 60 && polozenieNaboju.getWsplY() < getHeight() - 60) {
-            if (przesuniecieWPoziomie != 0)
-                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - Math.abs(wspolczynnikKierunku * PRZESUNIECIE)));
-            else
-                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIE));
-
-
+            if (przesuniecieWPionie < 0)
+            {
+                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
+                if(polozenieNaboju.getWsplY() < 60)
+                System.out.println("chuj " + (PRZESUNIECIE) + " " + (proporcjaX) + " " + (proporcjaY) + " " +  PRZESUNIECIEY);
+                }
+            if (przesuniecieWPionie > 0)
+            {
+                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
+            }
+  
         }
+        if(polozenieNaboju.getWsplY() < 60)
+        	polozenieNaboju.setWsplY(60);
+        	
+        if(polozenieNaboju.getWsplY() > getHeight() - 60)
+        	polozenieNaboju.setWsplY(getHeight() - 60);
+        
+        
+        //tym chcia³em zamkn¹æ w¹tek ale nie dzia³a
+        /*if (polozenieNaboju.getWsplX() < 60 || polozenieNaboju.getWsplX() > (getWidth() - 120))
+        	tm.stop();
+        
+        if (polozenieNaboju.getWsplY() < 60 || polozenieNaboju.getWsplY() > getHeight() - 60)
+        	tm.stop();*/
+        
+        //tutaj próbowa³em zrobiæ odbijanie dla Y
+        /*else if (polozenieNaboju.getWsplY() < 60 || polozenieNaboju.getWsplY() > getHeight() - 60)
+        {
+        	PRZESUNIECIEY=-PRZESUNIECIEY;
+        	if (przesuniecieWPionie < 0)
+            {
+                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
+                System.out.println("chuj " + (PRZESUNIECIE) + " " + (proporcjaX) + " " + (proporcjaY) + " " +  PRZESUNIECIEY);
+                }
+            if (przesuniecieWPionie > 0)
+            {
+                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
+            }
+        }*/
+        
     }
     /**
      * maluje komponent planszy gry
@@ -346,15 +407,6 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*if(x<0 || x>270)
-        velX=-velX;
-		
-		if(y<0 || y>270)
-		velY=-velY;
-			
-		x = x + velX;
-		y = y + velY;
-		repaint();*/
 
         Object z = e.getSource();
         if (z == this.wyjdz) {
