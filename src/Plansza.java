@@ -21,7 +21,7 @@ import javax.swing.border.Border;
 public class Plansza extends JFrame implements ActionListener, Runnable {
     private int WYSOKOSC, SZEROKOSC;
     private Timer tm = new Timer(5, this);
-    int wspolczynnikKierunku;
+    double wspolczynnikKierunku;
     Polozenie polozenieNaboju;
 
     private JMenuBar menuBar;
@@ -34,7 +34,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     private JPanel plansza;
     private Properties pola = new Properties();
-    int PRZESUNIECIE = 5;
+    double PRZESUNIECIE = 20;
     private Vector<Polozenie> polozenia = new Vector<>();
     int przesuniecieWPoziomie;
     int przesuniecieWPionie;
@@ -51,7 +51,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         setTitle("Balony");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        polozenieNaboju = new Polozenie(getWidth()/2, getHeight()-100);
+        polozenieNaboju = new Polozenie(getWidth() / 2, getHeight() - 120);
         System.out.println("w konstruktorze x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
         tm.start();
 
@@ -59,6 +59,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             public void windowClosing(WindowEvent e) {
                 dispose();
                 MenuGlowne okienko = new MenuGlowne();
+
             }
 
 
@@ -66,7 +67,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         this.addMouseListener(new MouseAdapter() {
             /**
              * {@inheritDoc}
-             *
+             *słuchacz myszki
              * @param e
              */
             @Override
@@ -74,13 +75,14 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
                 super.mouseClicked(e);
                 System.out.println(e.getPoint());
-                new Thread(Plansza.this::run).start();
+                Thread th = new Thread(Plansza.this::run);
+                th.start();
 
                 Polozenie gdzieKliknieto = new Polozenie(e.getX(), e.getY());
                 Polozenie polozenieWyrzutni = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
                 przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
-                przesuniecieWPionie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
-                wspolczynnikKierunku = (int) przesuniecieWPionie / przesuniecieWPoziomie;
+                przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
+                wspolczynnikKierunku = przesuniecieWPionie / przesuniecieWPoziomie;
 
             }
 
@@ -91,36 +93,52 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
 
     }
+    /**
+     *usypia watek na 30 ms
 
-    private void Sleeeep() {
+     */
+
+    private void Sleeeep(int n) {
         try {
-            Thread.sleep(20);
+            Thread.sleep(n);
         } catch (InterruptedException e1) {
             System.out.println("InterruptedException");
-        }
-    }
+        }}
+    /**
+     * modyfikuje połozenie balonu-pocisku
+
+     */
 
     private void modyfikacjaPolozenia() {
 
         System.out.println(" W modyf x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
-        /*if (przesuniecieWPoziomie < 0 && (polozenieNaboju.getWsplX() - PRZESUNIECIE) > 0)
-            polozenieNaboju.setWsplX(polozenieNaboju.getWsplX() - PRZESUNIECIE);
-        else
-            polozenieNaboju.setWsplX(0);
-        if (przesuniecieWPoziomie > 0 && (polozenieNaboju.getWsplX() + PRZESUNIECIE) < getWidth())
-            polozenieNaboju.setWsplX(polozenieNaboju.getWsplX() + PRZESUNIECIE);
-        else
-            polozenieNaboju.setWsplX(getWidth());
 
-        if (polozenieNaboju.getWsplY() < getHeight())
-            polozenieNaboju.setWsplY(polozenieNaboju.getWsplY() + wspolczynnikKierunku * PRZESUNIECIE);
-*/
-        if (polozenieNaboju.getWsplX()>0)
-        polozenieNaboju.setWsplX(polozenieNaboju.getWsplX()-PRZESUNIECIE);
-        if (polozenieNaboju.getWsplY()>0)
-            polozenieNaboju.setWsplY(polozenieNaboju.getWsplY()-PRZESUNIECIE);
+        if (polozenieNaboju.getWsplX() > 60 && polozenieNaboju.getWsplX() < (getWidth() - 120)) {
+            if (wspolczynnikKierunku < 0) {
+                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIE));
+            }
+            if (wspolczynnikKierunku > 0) {
+                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIE));
+            }
 
+        }
+
+        if (polozenieNaboju.getWsplY() > 60 && polozenieNaboju.getWsplY() < getHeight() - 60) {
+            if (przesuniecieWPoziomie != 0)
+                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - Math.abs(wspolczynnikKierunku * PRZESUNIECIE)));
+            else
+                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIE));
+
+
+        }
     }
+    /**
+     * maluje komponent planszy gry
+     *
+     * @param g kontekst graficzny
+
+     */
+
 
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
@@ -354,6 +372,10 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
 
     /**
+     * Glowna petla animacji balonow
+     *
+     *
+     *
      * When an object implementing interface <code>Runnable</code> is used
      * to create a thread, starting the thread causes the object's
      * <code>run</code> method to be called in that separately executing
@@ -366,16 +388,16 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
      */
     @Override
     public void run() {
+
         while (true) {
-            Polozenie temp = new Polozenie(polozenieNaboju.getWsplX(),polozenieNaboju.getWsplY());
+            Polozenie temp = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
             modyfikacjaPolozenia();
-            if (polozenieNaboju != temp)
-            {
+            if (polozenieNaboju != temp) {
                 repaint();
-                Sleeeep();
-            }
-            else
+                Sleeeep(30);
+            } else
                 break;
+
 
         }
     }

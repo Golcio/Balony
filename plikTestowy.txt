@@ -2,7 +2,7 @@
 #2
 #3 tego nie wczytujemy bo to
 #4 komentarze
-WYMIARY 15 12
+WYMIARY 13 15
 #5
 #6
 #7
@@ -12,6 +12,7 @@ WYMIARY 15 12
 #11 X  Y     Kod Koloru
 1	1	99
 3	1	99
+2	1	99
 4	1	99
 5	1	99
 6	1	99
