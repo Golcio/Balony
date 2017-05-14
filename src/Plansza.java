@@ -60,7 +60,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         polozenieNaboju = new Polozenie((getWidth()/2)-30, getHeight() - 120);
-        System.out.println("w konstruktorze x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
+        //System.out.println("w konstruktorze x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
         tm.start();
 
         this.addWindowListener(new WindowAdapter() {
@@ -91,7 +91,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
                 przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
                 przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
                 droga= Math.sqrt(przesuniecieWPionie*przesuniecieWPionie + przesuniecieWPoziomie*przesuniecieWPoziomie);
-                System.out.println("droga przesuniecieX przesuniecieY " + droga + przesuniecieWPoziomie + przesuniecieWPionie);
+               // System.out.println("droga przesuniecieX przesuniecieY " + droga + przesuniecieWPoziomie + przesuniecieWPionie);
                 proporcjaX = przesuniecieWPoziomie/droga;
                 proporcjaY = przesuniecieWPionie/droga;
                 PRZESUNIECIEX=Math.abs(PRZESUNIECIE*proporcjaX);
@@ -125,7 +125,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
         System.out.println(" W modyf x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
 
-        if (polozenieNaboju.getWsplX() > 60 && polozenieNaboju.getWsplX() < (getWidth() - 120)) {
+        if (polozenieNaboju.getWsplX() >= 60 && polozenieNaboju.getWsplX() <= (getWidth() - 120)) {
             if (przesuniecieWPoziomie < 0) {
                 polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
             }
@@ -135,13 +135,19 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             
 
         }
-        if(polozenieNaboju.getWsplX() < 60)
-        	polozenieNaboju.setWsplX(60);
+        if(polozenieNaboju.getWsplX() <= 60)
+        {
+            polozenieNaboju.setWsplX(60);
+            PRZESUNIECIEX=-1*PRZESUNIECIEX;
+        }
+
         	
-        if(polozenieNaboju.getWsplX() > getWidth() - 120)
-        	polozenieNaboju.setWsplX(getWidth() - 120);
+        if(polozenieNaboju.getWsplX() >= getWidth() - 120) {
+            polozenieNaboju.setWsplX(getWidth() - 120);
+            PRZESUNIECIEX=-1*PRZESUNIECIEX;
+        }
         
-      //tutaj próbowa³em zrobiæ odbijanie dla X
+      //tutaj prï¿½bowaï¿½em zrobiï¿½ odbijanie dla X
         /*else if (polozenieNaboju.getWsplX() < 60 || polozenieNaboju.getWsplX() > (getWidth() - 120))
         {
         	PRZESUNIECIEX=-PRZESUNIECIEX;
@@ -153,34 +159,42 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             }
         }*/
 
-        if (polozenieNaboju.getWsplY() > 60 && polozenieNaboju.getWsplY() < getHeight() - 60) {
+        if (polozenieNaboju.getWsplY() >= 60 && polozenieNaboju.getWsplY() <= getHeight() - 60) {
             if (przesuniecieWPionie < 0)
             {
                 polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
-                if(polozenieNaboju.getWsplY() < 60)
-                System.out.println("chuj " + (PRZESUNIECIE) + " " + (proporcjaX) + " " + (proporcjaY) + " " +  PRZESUNIECIEY);
-                }
+                //if(polozenieNaboju.getWsplY() < 60)
+                //System.out.println("chuj " + (PRZESUNIECIE) + " " + (proporcjaX) + " " + (proporcjaY) + " " +  PRZESUNIECIEY);
+                //}
             if (przesuniecieWPionie > 0)
             {
                 polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
             }
   
         }
-        if(polozenieNaboju.getWsplY() < 60)
-        	polozenieNaboju.setWsplY(60);
+        if(polozenieNaboju.getWsplY() <= 60)
+        {
+            polozenieNaboju.setWsplY(60);
+            PRZESUNIECIEY=-1*PRZESUNIECIEY;
+        }
+
+
+
         	
-        if(polozenieNaboju.getWsplY() > getHeight() - 60)
-        	polozenieNaboju.setWsplY(getHeight() - 60);
+        if(polozenieNaboju.getWsplY() >= getHeight() - 60)
+        {
+            polozenieNaboju.setWsplY(getHeight() - 60);
+            PRZESUNIECIEY=-1*PRZESUNIECIEY;
+        }
         
-        
-        //tym chcia³em zamkn¹æ w¹tek ale nie dzia³a
+        //tym chciaï¿½em zamknï¿½ï¿½ wï¿½tek ale nie dziaï¿½a
         /*if (polozenieNaboju.getWsplX() < 60 || polozenieNaboju.getWsplX() > (getWidth() - 120))
         	tm.stop();
         
         if (polozenieNaboju.getWsplY() < 60 || polozenieNaboju.getWsplY() > getHeight() - 60)
         	tm.stop();*/
         
-        //tutaj próbowa³em zrobiæ odbijanie dla Y
+        //tutaj prï¿½bowaï¿½em zrobiï¿½ odbijanie dla Y
         /*else if (polozenieNaboju.getWsplY() < 60 || polozenieNaboju.getWsplY() > getHeight() - 60)
         {
         	PRZESUNIECIEY=-PRZESUNIECIEY;
@@ -195,6 +209,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             }
         }*/
         
+    }
     }
     /**
      * maluje komponent planszy gry
@@ -462,7 +477,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             modyfikacjaPolozenia();
             if (polozenieNaboju != temp) {
                 repaint();
-                Sleeeep(30);
+                Sleeeep(25);
             } else
                 break;
 
