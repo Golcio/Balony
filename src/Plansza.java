@@ -20,8 +20,8 @@ import javax.swing.border.Border;
  * Klasa okna planszy gry
  */
 public class Plansza extends JFrame implements ActionListener, Runnable {
-	private ImageIcon img;
-	private Image balonik;
+    private ImageIcon img;
+    private Image balonik;
     private int WYSOKOSC, SZEROKOSC;
     int czas = 5;
     private Timer tm = new Timer(czas, this);
@@ -40,7 +40,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     private JPanel plansza;
     private Properties pola = new Properties();
-    double PRZESUNIECIE=10;
+    double PRZESUNIECIE = 10;
     double PRZESUNIECIEX;
     double PRZESUNIECIEY;
     private Vector<Polozenie> polozenia = new Vector<>();
@@ -59,7 +59,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         setTitle("Balony");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        polozenieNaboju = new Polozenie((getWidth()/2)-30, getHeight() - 120);
+        polozenieNaboju = new Polozenie((getWidth() / 2) - 30, getHeight() - 120);
         //System.out.println("w konstruktorze x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
         tm.start();
 
@@ -90,12 +90,12 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
                 Polozenie polozenieWyrzutni = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
                 przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
                 przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
-                droga= Math.sqrt(przesuniecieWPionie*przesuniecieWPionie + przesuniecieWPoziomie*przesuniecieWPoziomie);
-               // System.out.println("droga przesuniecieX przesuniecieY " + droga + przesuniecieWPoziomie + przesuniecieWPionie);
-                proporcjaX = przesuniecieWPoziomie/droga;
-                proporcjaY = przesuniecieWPionie/droga;
-                PRZESUNIECIEX=Math.abs(PRZESUNIECIE*proporcjaX);
-                PRZESUNIECIEY=Math.abs(PRZESUNIECIE*proporcjaY);
+                droga = Math.sqrt(przesuniecieWPionie * przesuniecieWPionie + przesuniecieWPoziomie * przesuniecieWPoziomie);
+                // System.out.println("droga przesuniecieX przesuniecieY " + droga + przesuniecieWPoziomie + przesuniecieWPionie);
+                proporcjaX = przesuniecieWPoziomie / droga;
+                proporcjaY = przesuniecieWPionie / droga;
+                PRZESUNIECIEX = Math.abs(PRZESUNIECIE * proporcjaX);
+                PRZESUNIECIEY = Math.abs(PRZESUNIECIE * proporcjaY);
             }
 
 
@@ -105,9 +105,9 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
 
     }
-    /**
-     *usypia watek na n ms
 
+    /**
+     * usypia watek na n ms
      */
 
     private void Sleeeep(int n) {
@@ -115,113 +115,81 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             Thread.sleep(n);
         } catch (InterruptedException e1) {
             System.out.println("InterruptedException");
-        }}
+        }
+    }
+
     /**
      * modyfikuje połozenie balonu-pocisku
-
      */
 
     private void modyfikacjaPolozenia() {
 
-        System.out.println(" W modyf x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
+        Polozenie nowePolozenie = polozenieNaboju;
+        boolean czyDrogaWolna=false;
 
         if (polozenieNaboju.getWsplX() >= 60 && polozenieNaboju.getWsplX() <= (getWidth() - 120)) {
             if (przesuniecieWPoziomie < 0) {
-                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
+                nowePolozenie.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
+
             }
             if (przesuniecieWPoziomie > 0) {
-                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIEX));
-            }
-            
+                nowePolozenie.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIEX));
 
+            }
         }
-        if(polozenieNaboju.getWsplX() <= 60)
-        {
-            polozenieNaboju.setWsplX(60);
-            PRZESUNIECIEX=-1*PRZESUNIECIEX;
+        if (polozenieNaboju.getWsplX() <= 60) {
+            nowePolozenie.setWsplX(60);
+            PRZESUNIECIEX = -1 * PRZESUNIECIEX;
         }
 
-        	
-        if(polozenieNaboju.getWsplX() >= getWidth() - 120) {
-            polozenieNaboju.setWsplX(getWidth() - 120);
-            PRZESUNIECIEX=-1*PRZESUNIECIEX;
+
+        if (polozenieNaboju.getWsplX() >= getWidth() - 120) {
+            nowePolozenie.setWsplX(getWidth() - 120);
+            PRZESUNIECIEX = -1 * PRZESUNIECIEX;
         }
-        
-      //tutaj pr�bowa�em zrobi� odbijanie dla X
-        /*else if (polozenieNaboju.getWsplX() < 60 || polozenieNaboju.getWsplX() > (getWidth() - 120))
-        {
-        	PRZESUNIECIEX=-PRZESUNIECIEX;
-        	if (przesuniecieWPoziomie < 0) {
-                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
-            }
-            if (przesuniecieWPoziomie > 0) {
-                polozenieNaboju.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIEX));
-            }
-        }*/
+
 
         if (polozenieNaboju.getWsplY() >= 60 && polozenieNaboju.getWsplY() <= getHeight() - 60) {
-            if (przesuniecieWPionie < 0)
-            {
-                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
-                //if(polozenieNaboju.getWsplY() < 60)
-                //System.out.println("chuj " + (PRZESUNIECIE) + " " + (proporcjaX) + " " + (proporcjaY) + " " +  PRZESUNIECIEY);
-                //}
-            if (przesuniecieWPionie > 0)
-            {
-                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
+            if (przesuniecieWPionie < 0) {
+                nowePolozenie.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
             }
-  
-        }
-        if(polozenieNaboju.getWsplY() <= 60)
-        {
-            polozenieNaboju.setWsplY(60);
-            PRZESUNIECIEY=-1*PRZESUNIECIEY;
-        }
+            if (przesuniecieWPionie > 0) {
+                nowePolozenie.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
+            }
+            if (polozenieNaboju.getWsplY() <= 60) {
+                nowePolozenie.setWsplY(60);
+                PRZESUNIECIEY = -1 * PRZESUNIECIEY;
+            }
 
+            if (polozenieNaboju.getWsplY() >= getHeight() - 60) {
+                nowePolozenie.setWsplY(getHeight() - 60);
+                PRZESUNIECIEY = -1 * PRZESUNIECIEY;
+            }
 
-
-        	
-        if(polozenieNaboju.getWsplY() >= getHeight() - 60)
-        {
-            polozenieNaboju.setWsplY(getHeight() - 60);
-            PRZESUNIECIEY=-1*PRZESUNIECIEY;
         }
-        
-        //tym chcia�em zamkn�� w�tek ale nie dzia�a
-        /*if (polozenieNaboju.getWsplX() < 60 || polozenieNaboju.getWsplX() > (getWidth() - 120))
-        	tm.stop();
-        
-        if (polozenieNaboju.getWsplY() < 60 || polozenieNaboju.getWsplY() > getHeight() - 60)
-        	tm.stop();*/
-        
-        //tutaj pr�bowa�em zrobi� odbijanie dla Y
-        /*else if (polozenieNaboju.getWsplY() < 60 || polozenieNaboju.getWsplY() > getHeight() - 60)
-        {
-        	PRZESUNIECIEY=-PRZESUNIECIEY;
-        	if (przesuniecieWPionie < 0)
-            {
-                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
-                System.out.println("chuj " + (PRZESUNIECIE) + " " + (proporcjaX) + " " + (proporcjaY) + " " +  PRZESUNIECIEY);
+            for (Polozenie p : polozenia) {
+                if (p.getWsplX() == (int) (nowePolozenie.getWsplX() / 60)) {
+                    czyDrogaWolna = false;
+                    break;
                 }
-            if (przesuniecieWPionie > 0)
-            {
-                polozenieNaboju.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
             }
-        }*/
-        
+            if (czyDrogaWolna) {
+                //polozenieNaboju = nowePolozenie;
+            }
+
+
     }
-    }
+
     /**
      * maluje komponent planszy gry
      *
      * @param g kontekst graficzny
-
      */
 
 
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
-        
+
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, SZEROKOSC * 60, WYSOKOSC * 60);
         g.setColor(Color.GRAY);
@@ -260,8 +228,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
                     g.setColor(Color.WHITE);
 
             }
-            if (g.getColor() != Color.WHITE)
-            {
+            if (g.getColor() != Color.WHITE) {
                 //g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
                 balonik = img.getImage();
                 g.drawImage(balonik, p.getWsplX() * 60, p.getWsplY() * 60, null);
@@ -273,7 +240,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         //g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
         img = new ImageIcon("czarny.png");
         balonik = img.getImage();
-        g.drawImage(balonik, polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, null);
+        g.drawImage(balonik, polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY(), null);
 
 
         g.dispose();
@@ -456,9 +423,9 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     /**
      * Glowna petla animacji balonow
-     *
-     *
-     *
+     * <p>
+     * <p>
+     * <p>
      * When an object implementing interface <code>Runnable</code> is used
      * to create a thread, starting the thread causes the object's
      * <code>run</code> method to be called in that separately executing
@@ -473,14 +440,9 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
     public void run() {
 
         while (true) {
-            Polozenie temp = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
             modyfikacjaPolozenia();
-            if (polozenieNaboju != temp) {
                 repaint();
                 Sleeeep(25);
-            } else
-                break;
-
 
         }
     }
