@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import java.util.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.Timer;
 import javax.swing.border.Border;
@@ -19,6 +20,8 @@ import javax.swing.border.Border;
  * Klasa okna planszy gry
  */
 public class Plansza extends JFrame implements ActionListener, Runnable {
+	private ImageIcon img;
+	private Image balonik;
     private int WYSOKOSC, SZEROKOSC;
     int czas = 5;
     private Timer tm = new Timer(czas, this);
@@ -56,7 +59,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         setTitle("Balony");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        polozenieNaboju = new Polozenie(getWidth() / 2, getHeight() - 120);
+        polozenieNaboju = new Polozenie((getWidth()/2)-30, getHeight() - 120);
         System.out.println("w konstruktorze x->" + polozenieNaboju.getWsplX() + "y->" + polozenieNaboju.getWsplY());
         tm.start();
 
@@ -135,8 +138,8 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         if(polozenieNaboju.getWsplX() < 60)
         	polozenieNaboju.setWsplX(60);
         	
-        if(polozenieNaboju.getWsplX() > getHeight() - 120)
-        	polozenieNaboju.setWsplX(getHeight() - 120);
+        if(polozenieNaboju.getWsplX() > getWidth() - 120)
+        	polozenieNaboju.setWsplX(getWidth() - 120);
         
       //tutaj próbowa³em zrobiæ odbijanie dla X
         /*else if (polozenieNaboju.getWsplX() < 60 || polozenieNaboju.getWsplX() > (getWidth() - 120))
@@ -203,7 +206,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
-
+        
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, SZEROKOSC * 60, WYSOKOSC * 60);
         g.setColor(Color.GRAY);
@@ -216,33 +219,46 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
             switch (balon.getKolor()) {
                 case ZOLTY:
                     g.setColor(Color.YELLOW);
+                    img = new ImageIcon("zolty.png");
                     break;
                 case CZERWONY:
                     g.setColor(Color.RED);
+                    img = new ImageIcon("czerwony.png");
                     break;
                 case ZIELONY:
                     g.setColor(Color.GREEN);
+                    img = new ImageIcon("zielony.png");
                     break;
                 case NIEBIESKI:
                     g.setColor(Color.BLUE);
+                    img = new ImageIcon("niebieski.png");
                     break;
                 case CZARNY:
                     g.setColor(Color.BLACK);
+                    img = new ImageIcon("czarny.png");
                     break;
                 case TECZOWY:
                     g.setColor(Color.PINK);
+                    img = new ImageIcon("rozowy.png");
                     break;
                 default:
                     g.setColor(Color.WHITE);
 
             }
             if (g.getColor() != Color.WHITE)
-                g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
+            {
+                //g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
+                balonik = img.getImage();
+                g.drawImage(balonik, p.getWsplX() * 60, p.getWsplY() * 60, null);
+            }
         }
 
-        g.setColor(Color.black);
+        //g.setColor(Color.black);
 
-        g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
+        //g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
+        img = new ImageIcon("czarny.png");
+        balonik = img.getImage();
+        g.drawImage(balonik, polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, null);
 
 
         g.dispose();
