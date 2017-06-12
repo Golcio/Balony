@@ -17,8 +17,7 @@ import java.util.Vector;
 /**
  * Created by user on 2017-06-11.
  */
-public class Plansza2 extends JFrame implements ActionListener, Runnable
-{
+public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
     private JToggleButton WyjdzToggleButton;
     private JToggleButton PauzaToggleButton;
@@ -43,12 +42,12 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
     int przesuniecieWPionie;
     int czas = 5;
     private Timer tm = new Timer(czas, this);
+    private Thread th;
 
     /**
      * Create the frame.
      */
-    public Plansza2(File plikStartowy) throws IOException
-    {
+    public Plansza2(File plikStartowy) throws IOException {
 
         Wczytaj(plikStartowy);
         setTitle("Gra Balony");
@@ -70,6 +69,31 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
         PauzaToggleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Pauza dziala");
+                try {
+                    if (th.getState()== Thread.State.RUNNABLE)
+                    {
+                        try {
+                            th.join();
+
+                        } catch (NullPointerException e1) {
+                            System.out.println("NullPointerException - przy naciśnięciu Pauza");
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+
+
+                    } else th.interrupt();
+
+
+
+
+                }catch (NullPointerException e1)
+                {
+                    // nic nie rób
+                }
+
+
+
             }
         });
 
@@ -100,7 +124,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 System.out.println(e.getPoint());
-                Thread th = new Thread(Plansza2.this::run);
+                th = new Thread(Plansza2.this::run);
                 th.start();
 
                 Polozenie gdzieKliknieto = new Polozenie(e.getX(), e.getY());
@@ -149,6 +173,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
         }
 
     }
+
     /**
      * Metoda wczytuje po�ozenie balon�w  z pliku kofiguracyjnego.
      *
@@ -168,6 +193,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
 
         return line;
     }
+
     /**
      * Metoda tworzy pusta plansze o podanych wymiarach.
      *
@@ -185,6 +211,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
             }
         }
     }
+
     /**
      * Metoda wczytuje z odczytanej lini pliku po�ozenie i kolor balona a obiektu klasy Plansza.
      *
@@ -253,6 +280,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
         }
         return kolor;
     }
+
     /**
      * Metoda obs�ugujaca zdarzenie  wcisniecia przycisku.
      *
@@ -282,7 +310,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
     private void modyfikacjaPolozenia() {
 
         Polozenie nowePolozenie = polozenieNaboju;
-        boolean czyDrogaWolna=false;
+        boolean czyDrogaWolna = false;
 
         if (polozenieNaboju.getWsplX() >= 60 && polozenieNaboju.getWsplX() <= (getWidth() - 120)) {
             if (przesuniecieWPoziomie < 0) {
@@ -359,13 +387,13 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
     public void paintComponent(Graphics g) {
         super.paintComponents(g);
 
-       // g.setColor(Color.WHITE);
+        // g.setColor(Color.WHITE);
         //g.fillRect(0, 0, SZEROKOSC * 60, WYSOKOSC * 60);
-       // g.setColor(Color.GRAY);
+        // g.setColor(Color.GRAY);
         //g.fillRect(0, 0, SZEROKOSC * 60, 60);
         //g.fillRect(0, 0, 60, WYSOKOSC * 60);
         //g.fillRect(SZEROKOSC * 60 - 60, 0, 60, WYSOKOSC * 60);
-       // g.fillRect(0, WYSOKOSC * 60 - 60, SZEROKOSC * 60, 60);
+        // g.fillRect(0, WYSOKOSC * 60 - 60, SZEROKOSC * 60, 60);
         for (Polozenie p : polozenia) {
             Balon balon = (Balon) pola.get(p);
             switch (balon.getKolor()) {
@@ -439,10 +467,17 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
      *
      * @see Thread#run()
      */
+    int i = 0;
     @Override
     public void run() {
+
         while (true) {
+            if (Thread.interrupted()) {
+                break;
+            }
             modyfikacjaPolozenia();
+            i ++;
+            System.out.println(i);
             repaint();
             Sleeeep(25);
 
