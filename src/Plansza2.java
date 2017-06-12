@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,41 +20,45 @@ import java.util.Vector;
 public class Plansza2 extends JFrame implements ActionListener, Runnable
 {
 
+    private JToggleButton WyjdzToggleButton;
+    private JToggleButton PauzaToggleButton;
     private JPanel contentPane;
     private ImageIcon img;
     private Image balonik;
     private int WYSOKOSC, SZEROKOSC;
-    int czas = 5;
-    private Timer tm = new Timer(czas, this);
+    private Vector<Polozenie> polozenia = new Vector<>();
+    private Properties pola = new Properties();
+
     double proporcjaX;
     double proporcjaY;
+
     double droga;
     private Polozenie polozenieNaboju;
-    private Properties pola = new Properties();
+
     double PRZESUNIECIE = 10;
     double PRZESUNIECIEX;
     double PRZESUNIECIEY;
-    private Vector<Polozenie> polozenia = new Vector<>();
+
     int przesuniecieWPoziomie;
     int przesuniecieWPionie;
+    int czas = 5;
+    private Timer tm = new Timer(czas, this);
 
     /**
      * Create the frame.
      */
     public Plansza2(File plikStartowy) throws IOException
     {
+
         Wczytaj(plikStartowy);
         setTitle("Gra Balony");
+        polozenieNaboju = new Polozenie((getWidth() / 2) - 30, getHeight() - 120);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, getWidth(), getHeight());
         contentPane = new JPanel();
-        contentPane.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                System.out.println(e.getPoint());
-            }
-        });
+
+        MouseListenerPlansza();
+
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
@@ -64,6 +69,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
         JToggleButton PauzaToggleButton = new JToggleButton("Pauza");
         PauzaToggleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Pauza dziala");
             }
         });
 
@@ -75,8 +81,10 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
         verticalBox.add(separator);
 
         JToggleButton WyjdzToggleButton = new JToggleButton("Wyjdz");
+
         WyjdzToggleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Wyjdz dziala");
             }
         });
 
@@ -84,6 +92,29 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
 
         JSeparator separator_2 = new JSeparator();
         verticalBox.add(separator_2);
+    }
+
+    public void MouseListenerPlansza() {
+        contentPane.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                System.out.println(e.getPoint());
+                Thread th = new Thread(Plansza2.this::run);
+                th.start();
+
+                Polozenie gdzieKliknieto = new Polozenie(e.getX(), e.getY());
+                Polozenie polozenieWyrzutni = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
+                przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
+                przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
+                droga = Math.sqrt(przesuniecieWPionie * przesuniecieWPionie + przesuniecieWPoziomie * przesuniecieWPoziomie);
+                // System.out.println("droga przesuniecieX przesuniecieY " + droga + przesuniecieWPoziomie + przesuniecieWPionie);
+                proporcjaX = przesuniecieWPoziomie / droga;
+                proporcjaY = przesuniecieWPionie / droga;
+                PRZESUNIECIEX = Math.abs(PRZESUNIECIE * proporcjaX);
+                PRZESUNIECIEY = Math.abs(PRZESUNIECIE * proporcjaY);
+            }
+        });
     }
 
 
@@ -222,6 +253,180 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
         }
         return kolor;
     }
+    /**
+     * Metoda obs�ugujaca zdarzenie  wcisniecia przycisku.
+     *
+     * @param e przycisniecie przycisku
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        Object z = e.getSource();
+        if (z == this.WyjdzToggleButton) {
+            int odp = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyj��?", "Hola hola!", JOptionPane.YES_NO_OPTION);
+            if (odp == JOptionPane.YES_OPTION) {
+                dispose();
+                MenuGlowne okienko = new MenuGlowne();
+            } else if (odp == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "Dobra decyzja!", "Brawo!", JOptionPane.INFORMATION_MESSAGE);
+            } else if (odp == JOptionPane.CLOSED_OPTION) {
+                JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!", "Nie�adnie!", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
+
+    /**
+     * modyfikuje połozenie balonu-pocisku
+     */
+
+    private void modyfikacjaPolozenia() {
+
+        Polozenie nowePolozenie = polozenieNaboju;
+        boolean czyDrogaWolna=false;
+
+        if (polozenieNaboju.getWsplX() >= 60 && polozenieNaboju.getWsplX() <= (getWidth() - 120)) {
+            if (przesuniecieWPoziomie < 0) {
+                nowePolozenie.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
+
+            }
+            if (przesuniecieWPoziomie > 0) {
+                nowePolozenie.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIEX));
+
+            }
+        }
+        if (polozenieNaboju.getWsplX() <= 60) {
+            nowePolozenie.setWsplX(60);
+            PRZESUNIECIEX = -1 * PRZESUNIECIEX;
+        }
+
+
+        if (polozenieNaboju.getWsplX() >= getWidth() - 120) {
+            nowePolozenie.setWsplX(getWidth() - 120);
+            PRZESUNIECIEX = -1 * PRZESUNIECIEX;
+        }
+
+
+        if (polozenieNaboju.getWsplY() >= 60 && polozenieNaboju.getWsplY() <= getHeight() - 60) {
+            if (przesuniecieWPionie < 0) {
+                nowePolozenie.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
+            }
+            if (przesuniecieWPionie > 0) {
+                nowePolozenie.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
+            }
+            if (polozenieNaboju.getWsplY() <= 60) {
+                nowePolozenie.setWsplY(60);
+                PRZESUNIECIEY = -1 * PRZESUNIECIEY;
+            }
+
+            if (polozenieNaboju.getWsplY() >= getHeight() - 60) {
+                nowePolozenie.setWsplY(getHeight() - 60);
+                PRZESUNIECIEY = -1 * PRZESUNIECIEY;
+            }
+
+        }
+        for (Polozenie p : polozenia) {
+            if (p.getWsplX() == (int) (nowePolozenie.getWsplX() / 60)) {
+                czyDrogaWolna = false;
+                break;
+            }
+        }
+        if (czyDrogaWolna) {
+            polozenieNaboju = nowePolozenie;
+        }
+
+
+    }
+
+    /**
+     * usypia watek na n ms
+     */
+
+    private void Sleeeep(int n) {
+        try {
+            Thread.sleep(n);
+        } catch (InterruptedException e1) {
+            System.out.println("InterruptedException");
+        }
+    }
+
+    /**
+     * maluje komponent planszy gry
+     *
+     * @param g kontekst graficzny
+     */
+
+
+    public void paintComponent(Graphics g) {
+        super.paintComponents(g);
+
+       // g.setColor(Color.WHITE);
+        //g.fillRect(0, 0, SZEROKOSC * 60, WYSOKOSC * 60);
+       // g.setColor(Color.GRAY);
+        //g.fillRect(0, 0, SZEROKOSC * 60, 60);
+        //g.fillRect(0, 0, 60, WYSOKOSC * 60);
+        //g.fillRect(SZEROKOSC * 60 - 60, 0, 60, WYSOKOSC * 60);
+       // g.fillRect(0, WYSOKOSC * 60 - 60, SZEROKOSC * 60, 60);
+        for (Polozenie p : polozenia) {
+            Balon balon = (Balon) pola.get(p);
+            switch (balon.getKolor()) {
+                case ZOLTY:
+                    g.setColor(Color.YELLOW);
+                    img = new ImageIcon("zolty.png");
+                    break;
+                case CZERWONY:
+                    g.setColor(Color.RED);
+                    img = new ImageIcon("czerwony.png");
+                    break;
+                case ZIELONY:
+                    g.setColor(Color.GREEN);
+                    img = new ImageIcon("zielony.png");
+                    break;
+                case NIEBIESKI:
+                    g.setColor(Color.BLUE);
+                    img = new ImageIcon("niebieski.png");
+                    break;
+                case CZARNY:
+                    g.setColor(Color.BLACK);
+                    img = new ImageIcon("czarny.png");
+                    break;
+                case TECZOWY:
+                    g.setColor(Color.PINK);
+                    img = new ImageIcon("rozowy.png");
+                    break;
+                default:
+                    g.setColor(Color.WHITE);
+
+            }
+            if (g.getColor() != Color.WHITE) {
+                //g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
+                balonik = img.getImage();
+                g.drawImage(balonik, p.getWsplX() * 60, p.getWsplY() * 60, null);
+            }
+        }
+
+        //g.setColor(Color.black);
+
+        //g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
+        img = new ImageIcon("czarny.png");
+        balonik = img.getImage();
+        g.drawImage(balonik, polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY(), null);
+
+
+        g.dispose();
+        setFocusable(true);
+
+    }
+
+    public void paint(Graphics g) {
+        BufferedImage dbImage = new BufferedImage(SZEROKOSC * 60, WYSOKOSC * 60, BufferedImage.TYPE_INT_ARGB);
+        Graphics dbg = dbImage.getGraphics();
+        paintComponent(dbg);
+
+        BufferedImage scaled = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D gg = scaled.createGraphics();
+        gg.drawImage(dbImage, 0, 0, getWidth(), getHeight(), null);
+        g.drawImage(scaled, 0, 0, this);
+    }
 
     /**
      * When an object implementing interface <code>Runnable</code> is used
@@ -236,17 +441,14 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable
      */
     @Override
     public void run() {
+        while (true) {
+            modyfikacjaPolozenia();
+            repaint();
+            Sleeeep(25);
 
-    }
-
-    /**
-     * Invoked when an action occurs.
-     *
-     * @param e
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
+        }
 
     }
 }
+
 
