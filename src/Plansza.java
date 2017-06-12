@@ -28,17 +28,13 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
     double proporcjaX;
     double proporcjaY;
     double droga;
-    Polozenie polozenieNaboju;
+    private Polozenie polozenieNaboju;
 
     private JMenuBar menuBar;
+    private JMenu jmenu;
     private JMenuItem wyjdz;
     private JMenuItem pauza;
 
-    public JPanel getPlansza() {
-        return plansza;
-    }
-
-    private JPanel plansza;
     private Properties pola = new Properties();
     double PRZESUNIECIE = 10;
     double PRZESUNIECIEX;
@@ -57,6 +53,17 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
     public Plansza(File plikStartowy) throws IOException {
         Wczytaj(plikStartowy);
         setTitle("Balony");
+
+        setLayout(new BorderLayout());
+        jmenu= new JMenu("Menu");
+        menuBar= new JMenuBar();
+        pauza= new JMenuItem("Pauza");
+
+
+        jmenu.add(pauza);
+        menuBar.add(jmenu);
+        setJMenuBar(menuBar);
+        menuBar.add(Box.createHorizontalGlue());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         polozenieNaboju = new Polozenie((getWidth() / 2) - 30, getHeight() - 120);
