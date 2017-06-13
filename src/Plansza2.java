@@ -44,6 +44,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
     int przesuniecieWPionie;
     int czas = 5;
     private Timer tm = new Timer(czas, this);
+    boolean stoper;
     private Thread th;
 
     /**
@@ -53,7 +54,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
         Wczytaj(plikStartowy);
         setTitle("Gra Balony");
-        pocisk= new Balon(new Polozenie((getWidth() / 2) - 30, getHeight() - 120));
+        pocisk = new Balon(new Polozenie((getWidth() / 2) - 30, getHeight() - 120));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, getWidth(), getHeight());
         contentPane = new JPanel();
@@ -72,8 +73,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Pauza dziala");
                 try {
-                    if (th.getState()== Thread.State.RUNNABLE)
-                    {
+                    if (th.getState() == Thread.State.RUNNABLE) {
                         try {
                             th.join();
 
@@ -87,13 +87,9 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
                     } else th.interrupt();
 
 
-
-
-                }catch (NullPointerException e1)
-                {
+                } catch (NullPointerException e1) {
                     // nic nie rób
                 }
-
 
 
             }
@@ -231,7 +227,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             Kolor kolor;
             Polozenie wspolrzedneBalona = new Polozenie(wsplX, wsplY);
             kolor = getKolor(kolorInt);
-            Balon balon = new Balon(kolor,wspolrzedneBalona);
+            Balon balon = new Balon(kolor, wspolrzedneBalona);
             balonyNaPlanszy.add(balon);
             for (Polozenie p : polozenia) {
                 if (p.equals(wspolrzedneBalona))
@@ -314,7 +310,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
     private void modyfikacjaPolozenia() {
 
         Polozenie nowePolozenie = pocisk.getAktualnePolozenia();
-        boolean czyDrogaWolna = false;
+
 
         if (pocisk.getAktualnePolozenia().getWsplX() >= 60 && pocisk.getAktualnePolozenia().getWsplX() <= (getWidth() - 120)) {
             if (przesuniecieWPoziomie < 0) {
@@ -356,17 +352,33 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             }
 
         }
+
+
+        boolean czyMoznadalej = CzyDrogaWolna(nowePolozenie, balonyNaPlanszy);
+
+
+        if (czyMoznadalej) {
+            pocisk.setAktualnePolozenia(nowePolozenie);
+        }else
+            {
+                stoper=true;
+            }
+
+
+    }
+
+    private boolean CzyDrogaWolna(Polozenie nowePolozenie, Vector<Balon> balonyNaPlanszy) {
+
+
         for (Balon b : balonyNaPlanszy) {
-            if (b.getAktualnePolozenia().getWsplX() == (int) (nowePolozenie.getWsplX() / 60)) {
-                czyDrogaWolna = false;
-                break;
+
+            if (Math.abs(b.getAktualnePolozenia().getWsplX() * 60 - nowePolozenie.getWsplX()) <= 60) {
+                if (Math.abs(b.getAktualnePolozenia().getWsplY() * 60 - nowePolozenie.getWsplY()) <= 60) {
+                    return false;
+                }
             }
         }
-        if (czyDrogaWolna) {
-            pocisk.setAktualnePolozenia(nowePolozenie);
-        }
-
-
+        return true;
     }
 
     /**
@@ -430,7 +442,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             }
             if (g.getColor() != Color.WHITE) {
                 //g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
-                g.drawImage( b.getObrazekBalonu(), b.getAktualnePolozenia().getWsplX() * 60, b.getAktualnePolozenia().getWsplY() * 60, null);
+                g.drawImage(b.getObrazekBalonu(), b.getAktualnePolozenia().getWsplX() * 60, b.getAktualnePolozenia().getWsplY() * 60, null);
             }
         }
 
@@ -470,15 +482,16 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
      * @see Thread#run()
      */
     int i = 0;
+
     @Override
     public void run() {
 
         while (true) {
-            if (Thread.interrupted()) {
+            if (stoper) {
                 break;
             }
             modyfikacjaPolozenia();
-            i ++;
+            i++;
             System.out.println(i);
             repaint();
             Sleeeep(25);
