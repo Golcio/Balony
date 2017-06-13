@@ -142,7 +142,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 
 			try {
 				dispose();
-				Plansza2 plansza = new Plansza2(plikKofiguracyjny);
+				Plansza plansza = new Plansza(plikKofiguracyjny);
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						plansza.setVisible(true);
