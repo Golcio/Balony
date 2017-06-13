@@ -1,9 +1,33 @@
+import javax.swing.*;
+import java.awt.*;
+
 /**
- * balon g³owny obiekt w grze
+ * balon gï¿½owny obiekt w grze
  */
 public class Balon {
     Kolor kolor;
     boolean czyIstnieje;
+    private Image obrazekBalonu;
+
+    public Polozenie getAktualnePolozenia() {
+        return aktualnePolozenia;
+    }
+
+    public void setAktualnePolozenia(Polozenie aktualnePolozenia) {
+        this.aktualnePolozenia = aktualnePolozenia;
+    }
+
+    Polozenie aktualnePolozenia;
+
+    public Image getObrazekBalonu() {
+        return  obrazekBalonu;
+    }
+
+    public void setObrazekBalonu(Image obrazekBalonu) {
+        this.obrazekBalonu = obrazekBalonu;
+    }
+
+
 
     /**
      * Konstruktor tworzacy balon w okreslonym kolorze .

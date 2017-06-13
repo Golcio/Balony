@@ -22,8 +22,8 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
     private JToggleButton WyjdzToggleButton;
     private JToggleButton PauzaToggleButton;
     private JPanel contentPane;
-    private ImageIcon img;
-    private Image balonik;
+    private Image img;
+
     private int WYSOKOSC, SZEROKOSC;
     private Vector<Polozenie> polozenia = new Vector<>();
     private Properties pola = new Properties();
@@ -32,7 +32,8 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
     double proporcjaY;
 
     double droga;
-    private Polozenie polozenieNaboju;
+    Balon pocisk;
+    
 
     double PRZESUNIECIE = 10;
     double PRZESUNIECIEX;
@@ -51,7 +52,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
         Wczytaj(plikStartowy);
         setTitle("Gra Balony");
-        polozenieNaboju = new Polozenie((getWidth() / 2) - 30, getHeight() - 120);
+        pocisk.setAktualnePolozenia(new Polozenie((getWidth() / 2) - 30, getHeight() - 120));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, getWidth(), getHeight());
         contentPane = new JPanel();
@@ -128,7 +129,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
                 th.start();
 
                 Polozenie gdzieKliknieto = new Polozenie(e.getX(), e.getY());
-                Polozenie polozenieWyrzutni = new Polozenie(polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY());
+                Polozenie polozenieWyrzutni = new Polozenie(pocisk.getAktualnePolozenia().getWsplX(), pocisk.getAktualnePolozenia().getWsplY());
                 przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
                 przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
                 droga = Math.sqrt(przesuniecieWPionie * przesuniecieWPionie + przesuniecieWPoziomie * przesuniecieWPoziomie);
@@ -309,44 +310,44 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
     private void modyfikacjaPolozenia() {
 
-        Polozenie nowePolozenie = polozenieNaboju;
+        Polozenie nowePolozenie = pocisk.getAktualnePolozenia();
         boolean czyDrogaWolna = false;
 
-        if (polozenieNaboju.getWsplX() >= 60 && polozenieNaboju.getWsplX() <= (getWidth() - 120)) {
+        if (pocisk.getAktualnePolozenia().getWsplX() >= 60 && pocisk.getAktualnePolozenia().getWsplX() <= (getWidth() - 120)) {
             if (przesuniecieWPoziomie < 0) {
-                nowePolozenie.setWsplX((int) (polozenieNaboju.getWsplX() - PRZESUNIECIEX));
+                nowePolozenie.setWsplX((int) (pocisk.getAktualnePolozenia().getWsplX() - PRZESUNIECIEX));
 
             }
             if (przesuniecieWPoziomie > 0) {
-                nowePolozenie.setWsplX((int) (polozenieNaboju.getWsplX() + PRZESUNIECIEX));
+                nowePolozenie.setWsplX((int) (pocisk.getAktualnePolozenia().getWsplX() + PRZESUNIECIEX));
 
             }
         }
-        if (polozenieNaboju.getWsplX() <= 60) {
+        if (pocisk.getAktualnePolozenia().getWsplX() <= 60) {
             nowePolozenie.setWsplX(60);
             PRZESUNIECIEX = -1 * PRZESUNIECIEX;
         }
 
 
-        if (polozenieNaboju.getWsplX() >= getWidth() - 120) {
+        if (pocisk.getAktualnePolozenia().getWsplX() >= getWidth() - 120) {
             nowePolozenie.setWsplX(getWidth() - 120);
             PRZESUNIECIEX = -1 * PRZESUNIECIEX;
         }
 
 
-        if (polozenieNaboju.getWsplY() >= 60 && polozenieNaboju.getWsplY() <= getHeight() - 60) {
+        if (pocisk.getAktualnePolozenia().getWsplY() >= 60 && pocisk.getAktualnePolozenia().getWsplY() <= getHeight() - 60) {
             if (przesuniecieWPionie < 0) {
-                nowePolozenie.setWsplY((int) (polozenieNaboju.getWsplY() - PRZESUNIECIEY));
+                nowePolozenie.setWsplY((int) (pocisk.getAktualnePolozenia().getWsplY() - PRZESUNIECIEY));
             }
             if (przesuniecieWPionie > 0) {
-                nowePolozenie.setWsplY((int) (polozenieNaboju.getWsplY() + PRZESUNIECIEY));
+                nowePolozenie.setWsplY((int) (pocisk.getAktualnePolozenia().getWsplY() + PRZESUNIECIEY));
             }
-            if (polozenieNaboju.getWsplY() <= 60) {
+            if (pocisk.getAktualnePolozenia().getWsplY() <= 60) {
                 nowePolozenie.setWsplY(60);
                 PRZESUNIECIEY = -1 * PRZESUNIECIEY;
             }
 
-            if (polozenieNaboju.getWsplY() >= getHeight() - 60) {
+            if (pocisk.getAktualnePolozenia().getWsplY() >= getHeight() - 60) {
                 nowePolozenie.setWsplY(getHeight() - 60);
                 PRZESUNIECIEY = -1 * PRZESUNIECIEY;
             }
@@ -359,7 +360,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             }
         }
         if (czyDrogaWolna) {
-            polozenieNaboju = nowePolozenie;
+            pocisk.setAktualnePolozenia(nowePolozenie);
         }
 
 
@@ -399,27 +400,28 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             switch (balon.getKolor()) {
                 case ZOLTY:
                     g.setColor(Color.YELLOW);
-                    img = new ImageIcon("zolty.png");
+                    balon.setObrazekBalonu(img = new Image("zolty.png") {
+                    });
                     break;
                 case CZERWONY:
                     g.setColor(Color.RED);
-                    img = new ImageIcon("czerwony.png");
+                    balon.setObrazekBalonu(img = new ImageIcon("czerwony.png"));
                     break;
                 case ZIELONY:
                     g.setColor(Color.GREEN);
-                    img = new ImageIcon("zielony.png");
+                    balon.setObrazekBalonu(img = new ImageIcon("zielony.png"));
                     break;
                 case NIEBIESKI:
                     g.setColor(Color.BLUE);
-                    img = new ImageIcon("niebieski.png");
+                    balon.setObrazekBalonu(img = new ImageIcon("niebieski.png"));
                     break;
                 case CZARNY:
                     g.setColor(Color.BLACK);
-                    img = new ImageIcon("czarny.png");
+                    balon.setObrazekBalonu(img = new ImageIcon("czarny.png"));
                     break;
                 case TECZOWY:
                     g.setColor(Color.PINK);
-                    img = new ImageIcon("rozowy.png");
+                    balon.setObrazekBalonu(img = new ImageIcon("rozowy.png"));
                     break;
                 default:
                     g.setColor(Color.WHITE);
@@ -427,8 +429,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             }
             if (g.getColor() != Color.WHITE) {
                 //g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
-                balonik = img.getImage();
-                g.drawImage(balonik, p.getWsplX() * 60, p.getWsplY() * 60, null);
+                g.drawImage( balon.getObrazekBalonu(), p.getWsplX() * 60, p.getWsplY() * 60, null);
             }
         }
 
@@ -436,8 +437,8 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
         //g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
         img = new ImageIcon("czarny.png");
-        balonik = img.getImage();
-        g.drawImage(balonik, polozenieNaboju.getWsplX(), polozenieNaboju.getWsplY(), null);
+        obrazekBalonu = img.getImage();
+        g.drawImage(obrazekBalonu, pocisk.getAktualnePolozenia().getWsplX(), pocisk.getAktualnePolozenia().getWsplY(), null);
 
 
         g.dispose();
