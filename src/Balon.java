@@ -5,9 +5,22 @@ import java.awt.*;
  * balon g�owny obiekt w grze
  */
 public class Balon {
-    Kolor kolor;
-    boolean czyIstnieje;
+    private Kolor kolor;
+    private boolean czyIstnieje;
     private Image obrazekBalonu;
+    private Polozenie aktualnePolozenia;
+
+    public Balon(Polozenie aktualnePolozenia) {
+        this.aktualnePolozenia = aktualnePolozenia;
+        this.czyIstnieje = true;
+    }
+
+
+    public Balon(Kolor kolor, Polozenie aktualnePolozenia) {
+        this.kolor = kolor;
+        this.aktualnePolozenia = aktualnePolozenia;
+        this.czyIstnieje = true;
+    }
 
     public Polozenie getAktualnePolozenia() {
         return aktualnePolozenia;
@@ -17,10 +30,9 @@ public class Balon {
         this.aktualnePolozenia = aktualnePolozenia;
     }
 
-    Polozenie aktualnePolozenia;
 
     public Image getObrazekBalonu() {
-        return  obrazekBalonu;
+        return obrazekBalonu;
     }
 
     public void setObrazekBalonu(Image obrazekBalonu) {
@@ -28,26 +40,23 @@ public class Balon {
     }
 
 
-
     /**
      * Konstruktor tworzacy balon w okreslonym kolorze .
      *
      * @param kolor kolor balonu
-     *
      */
     public Balon(Kolor kolor) {
         this.kolor = kolor;
-        czyIstnieje=true;
+        czyIstnieje = true;
     }
+
     /**
      * Konstruktor domyslny tworzacy "puste" miejsce na planszy.
-     *
-     *
      */
 
     public Balon() {
-        kolor=Kolor.brak;
-        czyIstnieje=false;
+        kolor = Kolor.brak;
+        czyIstnieje = false;
 
     }
 

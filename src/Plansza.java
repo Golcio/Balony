@@ -39,6 +39,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
     double PRZESUNIECIE = 10;
     double PRZESUNIECIEX;
     double PRZESUNIECIEY;
+    private Vector<Balon> balonyNaPlanszy = new Vector<>();
     private Vector<Polozenie> polozenia = new Vector<>();
     int przesuniecieWPoziomie;
     int przesuniecieWPionie;

@@ -26,6 +26,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
     private int WYSOKOSC, SZEROKOSC;
     private Vector<Polozenie> polozenia = new Vector<>();
+    private Vector<Balon> balonyNaPlanszy = new Vector<>();
     private Properties pola = new Properties();
 
     double proporcjaX;
@@ -33,7 +34,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
     double droga;
     Balon pocisk;
-    
+
 
     double PRZESUNIECIE = 10;
     double PRZESUNIECIEX;
@@ -52,7 +53,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
         Wczytaj(plikStartowy);
         setTitle("Gra Balony");
-        pocisk.setAktualnePolozenia(new Polozenie((getWidth() / 2) - 30, getHeight() - 120));
+        pocisk= new Balon(new Polozenie((getWidth() / 2) - 30, getHeight() - 120));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, getWidth(), getHeight());
         contentPane = new JPanel();
@@ -230,7 +231,8 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             Kolor kolor;
             Polozenie wspolrzedneBalona = new Polozenie(wsplX, wsplY);
             kolor = getKolor(kolorInt);
-            Balon balon = new Balon(kolor);
+            Balon balon = new Balon(kolor,wspolrzedneBalona);
+            balonyNaPlanszy.add(balon);
             for (Polozenie p : polozenia) {
                 if (p.equals(wspolrzedneBalona))
                     wspolrzedneBalona = p;
@@ -239,6 +241,7 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
 
 
         } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ERROR = ArrayIndexOutOfBoundsException in Wczytaj Pole");
         }
     }
 
@@ -353,8 +356,8 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             }
 
         }
-        for (Polozenie p : polozenia) {
-            if (p.getWsplX() == (int) (nowePolozenie.getWsplX() / 60)) {
+        for (Balon b : balonyNaPlanszy) {
+            if (b.getAktualnePolozenia().getWsplX() == (int) (nowePolozenie.getWsplX() / 60)) {
                 czyDrogaWolna = false;
                 break;
             }
@@ -395,33 +398,31 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
         //g.fillRect(0, 0, 60, WYSOKOSC * 60);
         //g.fillRect(SZEROKOSC * 60 - 60, 0, 60, WYSOKOSC * 60);
         // g.fillRect(0, WYSOKOSC * 60 - 60, SZEROKOSC * 60, 60);
-        for (Polozenie p : polozenia) {
-            Balon balon = (Balon) pola.get(p);
-            switch (balon.getKolor()) {
+        for (Balon b : balonyNaPlanszy) {
+            switch (b.getKolor()) {
                 case ZOLTY:
                     g.setColor(Color.YELLOW);
-                    balon.setObrazekBalonu(img = new Image("zolty.png") {
-                    });
+                    b.setObrazekBalonu(img = new ImageIcon("zolty.png").getImage());
                     break;
                 case CZERWONY:
                     g.setColor(Color.RED);
-                    balon.setObrazekBalonu(img = new ImageIcon("czerwony.png"));
+                    b.setObrazekBalonu(img = new ImageIcon("czerwony.png").getImage());
                     break;
                 case ZIELONY:
                     g.setColor(Color.GREEN);
-                    balon.setObrazekBalonu(img = new ImageIcon("zielony.png"));
+                    b.setObrazekBalonu(img = new ImageIcon("zielony.png").getImage());
                     break;
                 case NIEBIESKI:
                     g.setColor(Color.BLUE);
-                    balon.setObrazekBalonu(img = new ImageIcon("niebieski.png"));
+                    b.setObrazekBalonu(img = new ImageIcon("niebieski.png").getImage());
                     break;
                 case CZARNY:
                     g.setColor(Color.BLACK);
-                    balon.setObrazekBalonu(img = new ImageIcon("czarny.png"));
+                    b.setObrazekBalonu(img = new ImageIcon("czarny.png").getImage());
                     break;
                 case TECZOWY:
                     g.setColor(Color.PINK);
-                    balon.setObrazekBalonu(img = new ImageIcon("rozowy.png"));
+                    b.setObrazekBalonu(img = new ImageIcon("rozowy.png").getImage());
                     break;
                 default:
                     g.setColor(Color.WHITE);
@@ -429,16 +430,16 @@ public class Plansza2 extends JFrame implements ActionListener, Runnable {
             }
             if (g.getColor() != Color.WHITE) {
                 //g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
-                g.drawImage( balon.getObrazekBalonu(), p.getWsplX() * 60, p.getWsplY() * 60, null);
+                g.drawImage( b.getObrazekBalonu(), b.getAktualnePolozenia().getWsplX() * 60, b.getAktualnePolozenia().getWsplY() * 60, null);
             }
         }
 
         //g.setColor(Color.black);
 
         //g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
-        img = new ImageIcon("czarny.png");
-        obrazekBalonu = img.getImage();
-        g.drawImage(obrazekBalonu, pocisk.getAktualnePolozenia().getWsplX(), pocisk.getAktualnePolozenia().getWsplY(), null);
+        img = new ImageIcon("czarny.png").getImage();
+
+        g.drawImage(img, pocisk.getAktualnePolozenia().getWsplX(), pocisk.getAktualnePolozenia().getWsplY(), null);
 
 
         g.dispose();
