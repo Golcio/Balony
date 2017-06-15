@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,6 +29,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
     private int WYSOKOSC, SZEROKOSC;
     private Vector<Polozenie> polozenia = new Vector<>();
     private Vector<Balon> balonyNaPlanszy = new Vector<>();
+    private Vector<Balon> pociski = new Vector<>();
     private Properties pola = new Properties();
 
     double proporcjaX;
@@ -34,6 +37,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     double droga;
     Balon pocisk;
+    Balon balonik;
 
 
     double PRZESUNIECIE = 10;
@@ -55,12 +59,16 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
         Wczytaj(plikStartowy);
         setTitle("Gra Balony");
-        pocisk = new Balon(new Polozenie((getWidth() / 2) - 30, getHeight() - 120));
+        pocisk = new Balon(getKolor(99), new Polozenie((getWidth() / 2) - 30, getHeight() - 120));
+        pociski.add(pocisk);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, getWidth(), getHeight());
         contentPane = new JPanel();
+        
+        
 
         MouseListenerPlansza();
+        
 
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
@@ -116,6 +124,19 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
         JSeparator separator_2 = new JSeparator();
         verticalBox.add(separator_2);
+        
+        this.addWindowListener(new WindowAdapter()
+		{
+
+			@Override
+			public void windowClosing(WindowEvent e) 
+			{
+				dispose();
+				MenuGlowne okienko = new MenuGlowne();
+				okienko.setVisible(true);
+			}
+			
+		});
     }
 
     public void MouseListenerPlansza() {
@@ -129,7 +150,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
                 th.start();
 
                 Polozenie gdzieKliknieto = new Polozenie(e.getX(), e.getY());
-                Polozenie polozenieWyrzutni = new Polozenie(pocisk.getAktualnePolozenia().getWsplX(), pocisk.getAktualnePolozenia().getWsplY());
+                Polozenie polozenieWyrzutni = new Polozenie(pociski.lastElement().getAktualnePolozenia().getWsplX(), pociski.lastElement().getAktualnePolozenia().getWsplY());
                 przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
                 przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
                 droga = Math.sqrt(przesuniecieWPionie * przesuniecieWPionie + przesuniecieWPoziomie * przesuniecieWPoziomie);
@@ -174,6 +195,24 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         }
 
     }
+    
+    /**
+     * Metoda tworzy pusta plansze o podanych wymiarach.
+     *
+     * @param WYSOKOSC  planszy w ilosci rzed�w balon�w
+     * @param SZEROKOSC planszy w ilosci rzed�w balon�w
+     */
+
+    private void StworzPustaPlansze(int WYSOKOSC, int SZEROKOSC) {
+        for (int i = 0; i < WYSOKOSC; i++) {
+            for (int j = 0; j < SZEROKOSC; j++) {
+
+                Polozenie wspolrzedne = new Polozenie(j, i);
+                polozenia.add(wspolrzedne);
+                pola.put(wspolrzedne, new Balon());
+            }
+        }
+    }
 
     /**
      * Metoda wczytuje po�ozenie balon�w  z pliku kofiguracyjnego.
@@ -195,23 +234,6 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         return line;
     }
 
-    /**
-     * Metoda tworzy pusta plansze o podanych wymiarach.
-     *
-     * @param WYSOKOSC  planszy w ilosci rzed�w balon�w
-     * @param SZEROKOSC planszy w ilosci rzed�w balon�w
-     */
-
-    private void StworzPustaPlansze(int WYSOKOSC, int SZEROKOSC) {
-        for (int i = 0; i < WYSOKOSC; i++) {
-            for (int j = 0; j < SZEROKOSC; j++) {
-
-                Polozenie wspolrzedne = new Polozenie(j, i);
-                polozenia.add(wspolrzedne);
-                pola.put(wspolrzedne, new Balon());
-            }
-        }
-    }
 
     /**
      * Metoda wczytuje z odczytanej lini pliku po�ozenie i kolor balona a obiektu klasy Plansza.
@@ -312,44 +334,44 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
     private void modyfikacjaPolozenia() {
 
-        Polozenie nowePolozenie = pocisk.getAktualnePolozenia();
+        Polozenie nowePolozenie = pociski.lastElement().getAktualnePolozenia();
 
 
-        if (pocisk.getAktualnePolozenia().getWsplX() >= 60 && pocisk.getAktualnePolozenia().getWsplX() <= (getWidth() - 120)) {
+        if (pociski.lastElement().getAktualnePolozenia().getWsplX() >= 60 && pociski.lastElement().getAktualnePolozenia().getWsplX() <= (getWidth() - 120)) {
             if (przesuniecieWPoziomie < 0) {
-                nowePolozenie.setWsplX((int) (pocisk.getAktualnePolozenia().getWsplX() - PRZESUNIECIEX));
+                nowePolozenie.setWsplX((int) (pociski.lastElement().getAktualnePolozenia().getWsplX() - PRZESUNIECIEX));
 
             }
             if (przesuniecieWPoziomie > 0) {
-                nowePolozenie.setWsplX((int) (pocisk.getAktualnePolozenia().getWsplX() + PRZESUNIECIEX));
+                nowePolozenie.setWsplX((int) (pociski.lastElement().getAktualnePolozenia().getWsplX() + PRZESUNIECIEX));
 
             }
         }
-        if (pocisk.getAktualnePolozenia().getWsplX() <= 60) {
+        if (pociski.lastElement().getAktualnePolozenia().getWsplX() <= 60) {
             nowePolozenie.setWsplX(60);
             PRZESUNIECIEX = -1 * PRZESUNIECIEX;
         }
 
 
-        if (pocisk.getAktualnePolozenia().getWsplX() >= getWidth() - 120) {
+        if (pociski.lastElement().getAktualnePolozenia().getWsplX() >= getWidth() - 120) {
             nowePolozenie.setWsplX(getWidth() - 120);
             PRZESUNIECIEX = -1 * PRZESUNIECIEX;
         }
 
 
-        if (pocisk.getAktualnePolozenia().getWsplY() >= 60 && pocisk.getAktualnePolozenia().getWsplY() <= getHeight() - 60) {
+        if (pociski.lastElement().getAktualnePolozenia().getWsplY() >= 60 && pociski.lastElement().getAktualnePolozenia().getWsplY() <= getHeight() - 60) {
             if (przesuniecieWPionie < 0) {
-                nowePolozenie.setWsplY((int) (pocisk.getAktualnePolozenia().getWsplY() - PRZESUNIECIEY));
+                nowePolozenie.setWsplY((int) (pociski.lastElement().getAktualnePolozenia().getWsplY() - PRZESUNIECIEY));
             }
             if (przesuniecieWPionie > 0) {
-                nowePolozenie.setWsplY((int) (pocisk.getAktualnePolozenia().getWsplY() + PRZESUNIECIEY));
+                nowePolozenie.setWsplY((int) (pociski.lastElement().getAktualnePolozenia().getWsplY() + PRZESUNIECIEY));
             }
-            if (pocisk.getAktualnePolozenia().getWsplY() <= 60) {
+            if (pociski.lastElement().getAktualnePolozenia().getWsplY() <= 60) {
                 nowePolozenie.setWsplY(60);
                 PRZESUNIECIEY = -1 * PRZESUNIECIEY;
             }
 
-            if (pocisk.getAktualnePolozenia().getWsplY() >= getHeight() - 60) {
+            if (pociski.lastElement().getAktualnePolozenia().getWsplY() >= getHeight() - 60) {
                 nowePolozenie.setWsplY(getHeight() - 60);
                 PRZESUNIECIEY = -1 * PRZESUNIECIEY;
             }
@@ -361,8 +383,10 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
 
         if (czyMoznadalej) {
-            pocisk.setAktualnePolozenia(nowePolozenie);
+            pociski.lastElement().setAktualnePolozenia(nowePolozenie);
         } else {
+        	pociski.lastElement().setAktualnePolozenia(new Polozenie(balonik.getAktualnePolozenia().getWsplX()*60, balonik.getAktualnePolozenia().getWsplY()*60 + 60));
+        	/*pocisk = new Balon(new Polozenie((getWidth() / 2) - 30, getHeight() - 120));*/
             stoper = true;
         }
 
@@ -376,6 +400,7 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
 
             if (Math.abs(b.getAktualnePolozenia().getWsplX() * 60 - nowePolozenie.getWsplX()) <= 60) {
                 if (Math.abs(b.getAktualnePolozenia().getWsplY() * 60 - nowePolozenie.getWsplY()) <= 60) {
+                	balonik = b;
                     return false;
                 }
             }
@@ -451,9 +476,45 @@ public class Plansza extends JFrame implements ActionListener, Runnable {
         //g.setColor(Color.black);
 
         //g.fillOval(polozenieNaboju.getWsplX() * 1, polozenieNaboju.getWsplY() * 1, 60, 60);
-        img = new ImageIcon("czarny.png").getImage();
+        
+        for (Balon b : pociski) {
+            switch (b.getKolor()) {
+                case ZOLTY:
+                    g.setColor(Color.YELLOW);
+                    b.setObrazekBalonu(img = new ImageIcon("zolty.png").getImage());
+                    break;
+                case CZERWONY:
+                    g.setColor(Color.RED);
+                    b.setObrazekBalonu(img = new ImageIcon("czerwony.png").getImage());
+                    break;
+                case ZIELONY:
+                    g.setColor(Color.GREEN);
+                    b.setObrazekBalonu(img = new ImageIcon("zielony.png").getImage());
+                    break;
+                case NIEBIESKI:
+                    g.setColor(Color.BLUE);
+                    b.setObrazekBalonu(img = new ImageIcon("niebieski.png").getImage());
+                    break;
+                case CZARNY:
+                    g.setColor(Color.BLACK);
+                    b.setObrazekBalonu(img = new ImageIcon("czarny.png").getImage());
+                    break;
+                case TECZOWY:
+                    g.setColor(Color.PINK);
+                    b.setObrazekBalonu(img = new ImageIcon("rozowy.png").getImage());
+                    break;
+                default:
+                    g.setColor(Color.WHITE);
 
-        g.drawImage(img, pocisk.getAktualnePolozenia().getWsplX(), pocisk.getAktualnePolozenia().getWsplY(), null);
+            }
+            if (g.getColor() != Color.WHITE) {
+                //g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
+                g.drawImage(b.getObrazekBalonu(), b.getAktualnePolozenia().getWsplX(), b.getAktualnePolozenia().getWsplY(), null);
+            }
+        }
+        /*img = new ImageIcon("czarny.png").getImage();
+
+        g.drawImage(img, pocisk.getAktualnePolozenia().getWsplX(), pocisk.getAktualnePolozenia().getWsplY(), null);*/
 
 
         g.dispose();
