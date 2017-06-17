@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Properties;
 import java.util.Random;
 import java.util.Vector;
@@ -39,16 +40,18 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	Balon pocisk;
 	Balon balonik;
 
-	double PRZESUNIECIE = 10;
+	double PRZESUNIECIE = 15;
 	double PRZESUNIECIEX;
 	double PRZESUNIECIEY;
 
 	int przesuniecieWPoziomie;
 	int przesuniecieWPionie;
-	int czas = 10;
+	int czas = 15;
 	private Timer tm;
 	boolean stoper = false;
 	boolean active;
+	
+	int ilebalonow=0;
 	/* private Thread th; */
 
 	/**
@@ -133,6 +136,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
 				{
+				tm.stop();
 				dispose();
 				MenuGlowne okienko = new MenuGlowne();
 				okienko.setVisible(true);
@@ -165,6 +169,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
 				{
+				tm.stop();
 				dispose();
 				MenuGlowne okienko = new MenuGlowne();
 				okienko.setVisible(true);
@@ -398,10 +403,6 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			if (przesuniecieWPionie > 0) {
 				nowePolozenie.setWsplY((int) (pociski.lastElement().getAktualnePolozenia().getWsplY() + PRZESUNIECIEY));
 			}
-			if (pociski.lastElement().getAktualnePolozenia().getWsplY() <= 90) {
-				nowePolozenie.setWsplY(90);
-				PRZESUNIECIEY = -1 * PRZESUNIECIEY;
-			}
 
 			if (pociski.lastElement().getAktualnePolozenia().getWsplY() >= getHeight() - 90) {
 				nowePolozenie.setWsplY(getHeight() - 90);
@@ -465,8 +466,25 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				}
 			}
 			
+			if(nowePolozenie.getWsplY() <= 90)
+			{
+				nowePolozenie.setWsplY(90);
+				for(int x = 1; x<= SZEROKOSC-1; x++)
+				{
+					if(nowePolozenie.getWsplX() - (x*60 + 30) >= -30 && nowePolozenie.getWsplX() - (x*60 + 30) < 30)
+					{
+						nowePolozenie.setWsplX(x*60 + 30);
+					}
+				}
+			}
 			stoper = true;
+			
+			ZnikanieBalonów(pociski.lastElement(), balonyNaPlanszy);
+			ilebalonow=0;
+			if(pociski.lastElement().isCzyIstnieje()==true)
+			{
 			balonyNaPlanszy.add(pociski.lastElement());
+			}
 			pociski.clear();
 			pocisk = new Balon(getKolor(99), new Polozenie((getWidth() / 2), getHeight() - 90));
 			pociski.add(pocisk);
@@ -476,6 +494,11 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
 	private boolean CzyDrogaWolna(Polozenie nowePolozenie, Vector<Balon> balonyNaPlanszy) 
 	{
+		
+		if(nowePolozenie.getWsplY() <= 90)
+		{
+			return false;
+		}
 
 		for (Balon b : balonyNaPlanszy) 
 		{
@@ -483,7 +506,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 					* (b.getAktualnePolozenia().getWsplX() - nowePolozenie.getWsplX())
 					+ (b.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY())
 							* (b.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY()));
-			if (odleglosc <= 59) 
+			if (odleglosc <= 50)
 			{
 				balonik = b;
 				return false;
@@ -493,6 +516,59 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		return true;
 
 	}
+	
+	
+	private void ZnikanieBalonów(Balon balon, Vector<Balon> balony) 
+	{
+		for (int x = balony.size() - 1; x >= 0; x--) 
+		{
+			try 
+			{
+				Balon b = balony.elementAt(x);
+				double odleglosc = Math.sqrt((b.getAktualnePolozenia().getWsplX()
+						- balon.getAktualnePolozenia().getWsplX())
+						* (b.getAktualnePolozenia().getWsplX() - balon.getAktualnePolozenia().getWsplX())
+						+ (b.getAktualnePolozenia().getWsplY() - balon.getAktualnePolozenia().getWsplY())
+								* (b.getAktualnePolozenia().getWsplY() - balon.getAktualnePolozenia().getWsplY()));
+
+				if (odleglosc == 60 && b.getKolor() == balon.getKolor()) 
+				{
+					//Balon temp = b;
+					//balony.remove(b);
+					if(balony.elementAt(x).isCzyIstnieje()==true)
+					{
+					balon.setCzyIstnieje(false);
+					balony.elementAt(x).setCzyIstnieje(false);
+					ilebalonow++;
+					ZnikanieBalonów(balony.elementAt(x), balony);
+					}
+				}
+			} 
+			catch (ArrayIndexOutOfBoundsException e) 
+			{
+				//break;
+			}
+		}
+		
+		for (int x = balony.size() - 1; x >= 0; x--)
+		{
+			if(balony.elementAt(x).isCzyIstnieje()==false)
+			{
+				if(ilebalonow>=2)
+				{
+				balony.remove(x);
+				}
+				else
+				{
+					balony.elementAt(x).setCzyIstnieje(true);
+					pociski.lastElement().setCzyIstnieje(true);
+				}
+			}
+			
+		}
+		
+	}
+	
 
 	/**
 	 * usypia watek na n ms
@@ -523,6 +599,8 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		g.fillRect(0, 0, 60, WYSOKOSC * 60 - 45);
 		g.fillRect(SZEROKOSC * 60 - 60, 0, 60, WYSOKOSC * 60 - 45);
 		g.fillRect(0, WYSOKOSC * 60 - 60, SZEROKOSC * 60, 15);
+		g.setColor(Color.RED);
+		g.drawLine(60, WYSOKOSC*60 - 120, SZEROKOSC*60 - 60, WYSOKOSC*60 - 120);
 		for (Balon b : balonyNaPlanszy) {
 			switch (b.getKolor()) {
 			case ZOLTY:
@@ -553,11 +631,11 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				g.setColor(Color.WHITE);
 
 			}
-			if (g.getColor() != Color.WHITE) {
+			/*if (g.getColor() != Color.WHITE) {*/
 				// g.fillOval(p.getWsplX() * 60, p.getWsplY() * 60, 60, 60);
 				g.drawImage(b.getObrazekBalonu(), b.getAktualnePolozenia().getWsplX() - 30,
 						b.getAktualnePolozenia().getWsplY() - 30, null);
-			}
+			//}
 		}
 
 		// g.setColor(Color.black);
@@ -630,19 +708,4 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		
 	}
 
-	/**
-	 * When an object implementing interface <code>Runnable</code> is used to
-	 * create a thread, starting the thread causes the object's <code>run</code>
-	 * method to be called in that separately executing thread.
-	 * <p>
-	 * The general contract of the method <code>run</code> is that it may take
-	 * any action whatsoever.
-	 *
-	 * @see Thread#run()
-	 */
-	/*
-	 * @Override public void run() {
-	 * 
-	 * }
-	 */
 }

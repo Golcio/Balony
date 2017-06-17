@@ -138,6 +138,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 		{
 			
 			File plikKofiguracyjny = new File("plikTestowy.txt");
+			//File plikKofiguracyjny = new File("jedenkolor.txt");
 
 
 			try {
