@@ -22,7 +22,7 @@ public class Zasady extends JFrame implements ActionListener
 		setSize(400,460);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		setResizable(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter()
 		{

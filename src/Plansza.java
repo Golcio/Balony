@@ -22,7 +22,7 @@ import java.util.Vector;
  */
 public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
-	private JToggleButton WyjdzToggleButton;
+	private JButton WyjdzButton;
 	private JToggleButton PauzaToggleButton;
 	private JPanel contentPane;
 	private Image img;
@@ -49,9 +49,11 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	int czas = 15;
 	private Timer tm;
 	boolean stoper = false;
-	boolean active;
+	boolean active = true;
+	boolean klik = true;
 	
 	int ilebalonow=0;
+	int licznikspadania=0;
 	/* private Thread th; */
 
 	/**
@@ -61,18 +63,29 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
 		Wczytaj(plikStartowy);
 		setTitle("Gra Balony");
+		setLocationRelativeTo(null);
 		pocisk = new Balon(getKolor(99), new Polozenie((getWidth() / 2), getHeight() - 90));
 		pociski.add(pocisk);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, getWidth(), getHeight());
+		//setBounds(100, 100, getWidth(), getHeight());
 		contentPane = new JPanel();
 
 		class TimeListener implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(active)
+				{
 				if (!stoper) {
 					modyfikacjaPolozenia();
 					repaint();
+				}
+					if(CzyPrzegrana())
+					{
+						tm.stop();
+						dispose();
+						KoniecGry przegryw = new KoniecGry(false);
+						przegryw.setVisible(true);
+					}
 				}
 
 			}
@@ -92,38 +105,34 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-		Box verticalBox = Box.createVerticalBox();
+		Box verticalBox = Box.createHorizontalBox();
 		contentPane.add(verticalBox, BorderLayout.SOUTH);
 
-		/*
-		 * JToggleButton PauzaToggleButton = new JToggleButton("Pauza");
-		 * PauzaToggleButton.addActionListener(new ActionListener() { public
-		 * void actionPerformed(ActionEvent e) { active=false;
-		 * System.out.println("Pauza dziala"); try { if (th.getState() ==
-		 * Thread.State.RUNNABLE) { try { th.join();
-		 * 
-		 * } catch (NullPointerException e1) {
-		 * System.out.println("NullPointerException - przy naciÅ›niÄ™ciu Pauza"
-		 * ); } catch (InterruptedException e1) { e1.printStackTrace(); }
-		 * 
-		 * 
-		 * } else th.interrupt();
-		 * 
-		 * 
-		 * } catch (NullPointerException e1) { // nic nie rÃ³b }
-		 * 
-		 * 
-		 * } });
-		 */
+		
+		 JToggleButton PauzaToggleButton = new JToggleButton("Pauza");
+		 PauzaToggleButton.addActionListener(new ActionListener() { 
+		 public void actionPerformed(ActionEvent e) { 
+			 if(PauzaToggleButton.isSelected())
+			 {
+				 active=false;
+				 klik=false;
+			 }
+			 else
+			 {
+				 active = true;
+				 klik=true;
+			 }
+		 } });
+		 
 
 		JSeparator separator_1 = new JSeparator();
 		verticalBox.add(separator_1);
-		/* verticalBox.add(PauzaToggleButton); */
+		verticalBox.add(PauzaToggleButton);
 
 		JSeparator separator = new JSeparator();
 		verticalBox.add(separator);
 
-		JButton WyjdzToggleButton = new JButton("Wyjdz");
+		WyjdzButton = new JButton("Wyjdz");
 
 		/**
 		 * Metoda obsï¿½ugujaca zdarzenie wcisniecia przycisku.
@@ -131,7 +140,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		 * @param e
 		 *            przycisniecie przycisku
 		 */
-		WyjdzToggleButton.addActionListener(new ActionListener() {
+		WyjdzButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
@@ -153,7 +162,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 		});
 
-		verticalBox.add(WyjdzToggleButton);
+		verticalBox.add(WyjdzButton);
 
 		JSeparator separator_2 = new JSeparator();
 		verticalBox.add(separator_2);
@@ -192,6 +201,8 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		contentPane.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(klik)
+				{
 				super.mouseClicked(e);
 				System.out.println(e.getPoint());
 
@@ -209,8 +220,9 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				PRZESUNIECIEX = Math.abs(PRZESUNIECIE * proporcjaX);
 				PRZESUNIECIEY = Math.abs(PRZESUNIECIE * proporcjaY);
 
-				active = true;
 				stoper = false;
+				klik=false;
+				}
 			}
 		});
 	}
@@ -410,7 +422,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 
 		}
-
+		
 		boolean czyMoznadalej = CzyDrogaWolna(nowePolozenie, balonyNaPlanszy);
 
 		if (czyMoznadalej) 
@@ -479,12 +491,30 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 			stoper = true;
 			
-			ZnikanieBalonów(pociski.lastElement(), balonyNaPlanszy);
+			ZnikanieBalonów(pociski.lastElement());
 			ilebalonow=0;
 			if(pociski.lastElement().isCzyIstnieje()==true)
 			{
 			balonyNaPlanszy.add(pociski.lastElement());
+			licznikspadania++;
+			System.out.println("ile: " + ilebalonow);
+			
 			}
+			
+			if(licznikspadania==3)
+			{
+				for(int x = balonyNaPlanszy.size()-1; x>= 0; x--)
+				{
+					balonyNaPlanszy.get(x).setAktualnePolozenia(new Polozenie(balonyNaPlanszy.get(x).getAktualnePolozenia().getWsplX(), balonyNaPlanszy.get(x).getAktualnePolozenia().getWsplY()+60));
+				}
+				for(int x = 1; x<= SZEROKOSC - 2; x++)
+				{
+					Balon pomocniczy = new Balon(getKolor(99), new Polozenie(x*60 + 30, 90));
+					balonyNaPlanszy.add(pomocniczy);
+				}
+				licznikspadania=0;
+			}
+			
 			pociski.clear();
 			pocisk = new Balon(getKolor(99), new Polozenie((getWidth() / 2), getHeight() - 90));
 			pociski.add(pocisk);
@@ -508,6 +538,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 							* (b.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY()));
 			if (odleglosc <= 50)
 			{
+				klik=true;
 				balonik = b;
 				return false;
 
@@ -518,29 +549,26 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 	
 	
-	private void ZnikanieBalonów(Balon balon, Vector<Balon> balony) 
+	private void ZnikanieBalonów(Balon balon) 
 	{
-		for (int x = balony.size() - 1; x >= 0; x--) 
+		for (int x = balonyNaPlanszy.size() - 1; x >= 0; x--) 
 		{
 			try 
 			{
-				Balon b = balony.elementAt(x);
-				double odleglosc = Math.sqrt((b.getAktualnePolozenia().getWsplX()
+				double odleglosc = Math.sqrt((balonyNaPlanszy.get(x).getAktualnePolozenia().getWsplX()
 						- balon.getAktualnePolozenia().getWsplX())
-						* (b.getAktualnePolozenia().getWsplX() - balon.getAktualnePolozenia().getWsplX())
-						+ (b.getAktualnePolozenia().getWsplY() - balon.getAktualnePolozenia().getWsplY())
-								* (b.getAktualnePolozenia().getWsplY() - balon.getAktualnePolozenia().getWsplY()));
+						* (balonyNaPlanszy.get(x).getAktualnePolozenia().getWsplX() - balon.getAktualnePolozenia().getWsplX())
+						+ (balonyNaPlanszy.get(x).getAktualnePolozenia().getWsplY() - balon.getAktualnePolozenia().getWsplY())
+								* (balonyNaPlanszy.get(x).getAktualnePolozenia().getWsplY() - balon.getAktualnePolozenia().getWsplY()));
 
-				if (odleglosc == 60 && b.getKolor() == balon.getKolor()) 
+				if (odleglosc == 60 && balonyNaPlanszy.get(x).getKolor() == balon.getKolor()) 
 				{
-					//Balon temp = b;
-					//balony.remove(b);
-					if(balony.elementAt(x).isCzyIstnieje()==true)
+					if(balonyNaPlanszy.elementAt(x).isCzyIstnieje()==true)
 					{
 					balon.setCzyIstnieje(false);
-					balony.elementAt(x).setCzyIstnieje(false);
+					balonyNaPlanszy.elementAt(x).setCzyIstnieje(false);
 					ilebalonow++;
-					ZnikanieBalonów(balony.elementAt(x), balony);
+					ZnikanieBalonów(balonyNaPlanszy.elementAt(x));
 					}
 				}
 			} 
@@ -550,17 +578,17 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 		}
 		
-		for (int x = balony.size() - 1; x >= 0; x--)
+		for (int x = balonyNaPlanszy.size() - 1; x >= 0; x--)
 		{
-			if(balony.elementAt(x).isCzyIstnieje()==false)
+			if(balonyNaPlanszy.elementAt(x).isCzyIstnieje()==false)
 			{
 				if(ilebalonow>=2)
 				{
-				balony.remove(x);
+				balonyNaPlanszy.remove(x);
 				}
 				else
 				{
-					balony.elementAt(x).setCzyIstnieje(true);
+					balonyNaPlanszy.elementAt(x).setCzyIstnieje(true);
 					pociski.lastElement().setCzyIstnieje(true);
 				}
 			}
@@ -570,6 +598,18 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 	
 
+	private boolean CzyPrzegrana()
+	{
+		for(int x = balonyNaPlanszy.size() - 1; x>=0; x--)
+		{
+			if(balonyNaPlanszy.get(x).getAktualnePolozenia().getWsplY() >= getHeight() - 90)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * usypia watek na n ms
 	 */
@@ -679,12 +719,6 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 						b.getAktualnePolozenia().getWsplY() - 30, null);
 			}
 		}
-		/*
-		 * img = new ImageIcon("czarny.png").getImage();
-		 * 
-		 * g.drawImage(img, pocisk.getAktualnePolozenia().getWsplX(),
-		 * pocisk.getAktualnePolozenia().getWsplY(), null);
-		 */
 
 		g.dispose();
 		setFocusable(true);
