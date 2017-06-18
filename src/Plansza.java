@@ -52,8 +52,11 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	boolean active = true;
 	boolean klik = true;
 	
-	int ilebalonow=0;
+	double ilebalonow=0;
 	int licznikspadania=0;
+	int punkty=0;
+	private JLabel lPunkty;
+	private JLabel lPunktyKarne;
 	/* private Thread th; */
 
 	/**
@@ -83,7 +86,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 					{
 						tm.stop();
 						dispose();
-						KoniecGry przegryw = new KoniecGry(false);
+						KoniecGry przegryw = new KoniecGry(false, punkty);
 						przegryw.setVisible(true);
 					}
 				}
@@ -134,6 +137,8 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
 		WyjdzButton = new JButton("Wyjdz");
 
+		
+		
 		/**
 		 * Metoda obsï¿½ugujaca zdarzenie wcisniecia przycisku.
 		 *
@@ -166,6 +171,17 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
 		JSeparator separator_2 = new JSeparator();
 		verticalBox.add(separator_2);
+		
+		lPunkty = new JLabel("Punkty: " + punkty);
+		lPunkty.setFont(new Font("SanSerif",Font.BOLD,15));
+		verticalBox.add(lPunkty);
+		
+		JSeparator separator_3 = new JSeparator();
+		verticalBox.add(separator_3);
+		
+		lPunktyKarne = new JLabel("Punkty Karne: " + licznikspadania);
+		lPunktyKarne.setFont(new Font("SanSerif",Font.BOLD,15));
+		verticalBox.add(lPunktyKarne);
 
 		/**
 		 * Metoda obsï¿½ugujaca zdarzenie wcisniecia przycisku X.
@@ -492,11 +508,24 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			stoper = true;
 			
 			ZnikanieBalonów(pociski.lastElement());
+			System.out.println("ile: " + ilebalonow);
+			if(ilebalonow==2)
+			{
+				System.out.println("if");
+				punkty+=10*(ilebalonow+1);
+			}
+			else if(ilebalonow>=3)
+			{
+				System.out.println("else");
+				punkty+=10*(ilebalonow+1)*(1 + ((ilebalonow+1)/10));
+			}
+			lPunkty.setText("Punkty: " + punkty);
 			ilebalonow=0;
 			if(pociski.lastElement().isCzyIstnieje()==true)
 			{
 			balonyNaPlanszy.add(pociski.lastElement());
 			licznikspadania++;
+			lPunktyKarne.setText("Punkty Karne: " + licznikspadania);
 			System.out.println("ile: " + ilebalonow);
 			
 			}
@@ -513,6 +542,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 					balonyNaPlanszy.add(pomocniczy);
 				}
 				licznikspadania=0;
+				lPunktyKarne.setText("Punkty Karne: " + licznikspadania);
 			}
 			
 			pociski.clear();

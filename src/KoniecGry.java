@@ -11,14 +11,29 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.FlowLayout;
+import javax.swing.JSplitPane;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
 
 public class KoniecGry extends JFrame implements ActionListener
 {
 	private boolean wygrana;
-	private JLabel wiadomosc;
-	private JButton okej;
+	private JLabel lWiadomosc;
+	private JButton bOkej;
+	private int punkty;
+	private JLabel lPunkty;
 	
-	public KoniecGry(boolean wygrana)
+	public KoniecGry(boolean wygrana, int punkty)
 	{
 		if(wygrana == true)
 		{
@@ -32,7 +47,6 @@ public class KoniecGry extends JFrame implements ActionListener
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setLayout(new BoxLayout(this.getContentPane(),BoxLayout.Y_AXIS));
 		
 		addWindowListener(new WindowAdapter() 
 		{
@@ -46,14 +60,24 @@ public class KoniecGry extends JFrame implements ActionListener
 			
 		});
 		
-		wiadomosc = new JLabel("Przegra³eœ!");
-		wiadomosc.setFont(new Font("SanSerif",Font.BOLD,25));
-		add(wiadomosc);
+		bOkej = new JButton("OK");
+		bOkej.setLocation(147, 101);
+		bOkej.setSize(100, 60);
+		getContentPane().setLayout(null);
 		
-		okej = new JButton("OK");
-		okej.setSize(80, 50);
-		add(okej);
-		okej.addActionListener(this);
+		lWiadomosc = new JLabel("Przegra³eœ!");
+		lWiadomosc.setBounds(129, 24, 135, 33);
+		lWiadomosc.setHorizontalAlignment(SwingConstants.CENTER);
+		lWiadomosc.setFont(new Font("SanSerif",Font.BOLD,25));
+		getContentPane().add(lWiadomosc);
+		getContentPane().add(bOkej);
+		
+		lPunkty = new JLabel("Uzyska³eœ " + punkty + " punktów.");
+		lPunkty.setBounds(119, 68, 155, 14);
+		getContentPane().add(lPunkty);
+		bOkej.addActionListener(this);
+		
+		
 		
 		
 
@@ -62,13 +86,12 @@ public class KoniecGry extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object zrodlo = e.getSource();
-		if(zrodlo==okej)
+		if(zrodlo==bOkej)
 		{
 			dispose();
 			MenuGlowne okienko = new MenuGlowne();
 		}
 		
 	}
-
 }
 	
