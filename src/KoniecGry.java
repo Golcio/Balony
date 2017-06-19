@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,33 +8,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Vector;
-
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.FlowLayout;
-import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-import net.miginfocom.swing.MigLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import javax.swing.JPanel;
 /**
  *Okno pojawiajace sie po zakonceniu gry, przegranej lub wygranej .
  *
@@ -97,7 +76,7 @@ public class KoniecGry extends JFrame implements ActionListener
 		getContentPane().add(lWiadomosc);
 		getContentPane().add(bOkej);
 		
-		lPunkty = new JLabel("Twï¿½j wynik: " + punkty + " punktï¿½w.");// wyswietlanie wyniku 
+		lPunkty = new JLabel("Twój wynik: " + punkty + " punktów.");// wyswietlanie wyniku 
 		lPunkty.setBounds(47, 68, 155, 14);
 		getContentPane().add(lPunkty);
 		

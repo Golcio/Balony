@@ -12,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.Random;
 import java.util.Vector;
@@ -531,6 +530,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			stoper = true;
 			
 			ZnikanieBalonow(pociski.firstElement());
+			Usuwanie();
 			Bomba();
 			
 			if(trudnosc==1)
@@ -651,7 +651,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 
 	/**
-	 * metoda odpowiedzialna za znikanie balonow gdy balon pocisk zatrzyma sie prz yskupisku wiecej niz 3 balonow swojego koloru
+	 * metoda odpowiedzialna za oznaczenie balonów do usuniêcia gdy balon pocisk zatrzyma sie przy skupisku wiecej niz 3 balonow swojego koloru
 	 *             @param balon
 	 *            balon-pocisk
 	 */
@@ -697,6 +697,15 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 		}
 		
+		
+	}
+	
+	
+	/**
+	 * metoda odpowiedzialna za usuwanie oznaczonych przez funkcjê ZnikanieBalonow balonów
+	 */
+	private void Usuwanie()
+	{
 		for (int x = balonyNaPlanszy.size() - 1; x >= 0; x--)
 		{
 			if(balonyNaPlanszy.elementAt(x).isCzyIstnieje()==false)
@@ -713,8 +722,9 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 			
 		}
-		
 	}
+	
+	
 	/**
 	 * Metoda implemetujaca specjalny balon-bombe ktory niszczy balony w okolicy  gdy sie kolo nich zarzyma
 	 *

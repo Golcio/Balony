@@ -1,7 +1,7 @@
 /**
-     * klasa przechuwojaca wynik gracza 
+     * klasa przechowujaca wynik gracza 
      * 
-     * @param nick wpisana przez urzytkownika nazwa
+     * @param nick wpisana przez uzytkownika nazwa
      * @param punkty ilosc pkt. jaka zdobyl
      */
 public class HighScore {

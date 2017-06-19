@@ -1,5 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Image;
 
 /**
  * balon glowny obiekt w grze

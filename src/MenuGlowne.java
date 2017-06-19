@@ -16,7 +16,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
-import javax.swing.JButton;
 
 public class MenuGlowne extends JFrame implements ActionListener
 {
