@@ -8,6 +8,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,7 +33,7 @@ public class KoniecGry extends JFrame implements ActionListener
 	private int punkty;
 	private JLabel lPunkty;
 	private JTextField tNick;
-	private Vector<HighScore> wyniki = new Vector<>();
+	private List<HighScore> wyniki = new ArrayList<HighScore>();
 	private JLabel lNick;
 	private String nick;
 	private File plik;
@@ -86,7 +90,7 @@ public class KoniecGry extends JFrame implements ActionListener
 		tNick.setColumns(10);
 		tNick.addActionListener(this);
 		
-		lNick = new JLabel("Podaj swï¿½j nick");
+		lNick = new JLabel("Podaj swój nick");
 		lNick.setBounds(74, 128, 100, 14);
 		getContentPane().add(lNick);
 		
@@ -108,6 +112,11 @@ public class KoniecGry extends JFrame implements ActionListener
 			String line = br.readLine();
 			while (line != null)
 			{
+				if(line=="\\s+")
+				{
+					line = br.readLine();
+					continue;
+				}
 				String[] wyniki = line.split("\\s+");
 				nick = wyniki[0];
 				punkty = Integer.parseInt(wyniki[1]);
@@ -120,7 +129,7 @@ public class KoniecGry extends JFrame implements ActionListener
 		}
 	}
 	/**
-	 * metoda zapisujaca wyniki(wraz z naszym nowo dodanym jesli jest wystarcajaco dobry) do pliku konfiguracyjnego 
+	 * metoda zapisujaca wyniki(wraz z naszym nowo dodanym) do pliku konfiguracyjnego 
 	 * @param plik konfiguracyjny
 	 */
 	private void Zapis(File plik) throws IOException
@@ -140,13 +149,11 @@ public class KoniecGry extends JFrame implements ActionListener
 		if(zrodlo==bOkej || zrodlo==tNick)
 		{
 			String Nick = tNick.getText();
-			System.out.println(Nick);
 			if(Nick.contains(" "))
 			{
 				String[] temp = Nick.split("\\s+");
 				Nick = String.join("", temp);
 			}
-			System.out.println(Nick);
 			if(Nick.contains("-"))
 			{
 				String[] temp = Nick.split("-");
@@ -159,16 +166,20 @@ public class KoniecGry extends JFrame implements ActionListener
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			for(int x=0;x<=wyniki.size()-1;x++)
-			{
-				System.out.println(wyniki.get(x).getNick() + wyniki.get(x).getPunkty());
-			}
+			Collections.sort(wyniki, new Comparator<HighScore>(){
+				public int compare(HighScore w1, HighScore w2)
+				{
+					return Integer.compare(w1.getPunkty(), w2.getPunkty());
+				}
+			});
+			
 			try {
 				Zapis(plik);
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 			dispose();
 			MenuGlowne okienko = new MenuGlowne();
 		}

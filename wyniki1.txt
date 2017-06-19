@@ -1,5 +1,8 @@
-Marcel 455
-Tomcio 245
-Jurek 514
-Golter 20
-Golter 836
+Golter 206
+Golter 312
+Tomcio 459
+Marcel 980
+Pawe³ 1027
+Janek 1054
+Jurek 1359
+Golter 1567

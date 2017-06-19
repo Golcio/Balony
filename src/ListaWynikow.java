@@ -35,7 +35,7 @@ public class ListaWynikow extends JFrame implements ActionListener
 		setSize(250,250);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setResizable(false);
+		setResizable(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.addWindowListener(new WindowAdapter()
 		{
@@ -69,7 +69,7 @@ public class ListaWynikow extends JFrame implements ActionListener
 		tWyniki.setFont(new Font("ArialBlack", Font.BOLD,20));
 		
 		
-		bPowrot = new JButton("Powrï¿½t");
+		bPowrot = new JButton("Powrót");
 		add(bPowrot, BorderLayout.PAGE_END);
 		bPowrot.addActionListener(this);
 		

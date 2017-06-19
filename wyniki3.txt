@@ -1,4 +1,6 @@
-Jurek 5000
-Adam 4560
-Marysia 4400
+Patryk 2302
+Micha³ 3403
 Kondrad 3456
+Marysia 4400
+Adam 4560
+Jurek 5000

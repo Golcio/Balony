@@ -239,7 +239,6 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				if(klik)
 				{
 				super.mouseClicked(e);
-				System.out.println(e.getPoint());
 
 				Polozenie gdzieKliknieto = new Polozenie(e.getX() + 30, e.getY() + 60);
 				Polozenie polozenieWyrzutni = new Polozenie(pociski.firstElement().getAktualnePolozenia().getWsplX(),
@@ -247,9 +246,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				przesuniecieWPoziomie = gdzieKliknieto.getWsplX() - polozenieWyrzutni.getWsplX();
 				przesuniecieWPionie = gdzieKliknieto.getWsplY() - polozenieWyrzutni.getWsplY();
 				droga = Math.sqrt(
-						przesuniecieWPionie * przesuniecieWPionie + przesuniecieWPoziomie * przesuniecieWPoziomie);
-				// System.out.println("droga przesuniecieX przesuniecieY " +
-				// droga + przesuniecieWPoziomie + przesuniecieWPionie);
+				przesuniecieWPionie * przesuniecieWPionie + przesuniecieWPoziomie * przesuniecieWPoziomie);
 				proporcjaX = przesuniecieWPoziomie / droga;
 				proporcjaY = przesuniecieWPionie / droga;
 				PRZESUNIECIEX = Math.abs(PRZESUNIECIE * proporcjaX);
@@ -476,7 +473,6 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			{
 				pociski.firstElement().setAktualnePolozenia(new Polozenie(balonik.getAktualnePolozenia().getWsplX(),
 						balonik.getAktualnePolozenia().getWsplY() + 60));
-						System.out.println("dï¿½");
 			} 
 			else if (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() >= 20 
 					&& balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() <= 60
@@ -485,7 +481,6 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			{
 				pociski.firstElement().setAktualnePolozenia(new Polozenie(balonik.getAktualnePolozenia().getWsplX(),
 						balonik.getAktualnePolozenia().getWsplY() - 60));
-						System.out.println("gï¿½ra");
 			} 
 			else if (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() >= - 43
 					&& balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() <= 43
@@ -494,7 +489,6 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			{
 				pociski.firstElement().setAktualnePolozenia(new Polozenie(balonik.getAktualnePolozenia().getWsplX() + 60,
 						balonik.getAktualnePolozenia().getWsplY()));
-						System.out.println("prawo");
 			} 
 			else if (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() >= - 43 
 					&& balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() <= 43
@@ -503,11 +497,10 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			{
 				pociski.firstElement().setAktualnePolozenia(new Polozenie(balonik.getAktualnePolozenia().getWsplX() - 60,
 						balonik.getAktualnePolozenia().getWsplY()));
-						System.out.println("lewo");
 			}
 			else {
 				{
-					System.out.println("pozostaï¿½e");
+					System.out.println("pozosta³e");
 					System.out.println("Y: " + (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY()));
 					System.out.println("X: " + (balonik.getAktualnePolozenia().getWsplX() - nowePolozenie.getWsplX()));
 					
@@ -548,9 +541,8 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				poIluNowyRzad=2;
 				mnoznik=1.5;
 			}
-			System.out.println("Trudnoï¿½ï¿½: " + trudnosc + " po ilu: " + poIluNowyRzad);
 			
-			if(ilebalonow==2 || ilebalonow==1)
+			if(ilebalonow==2)
 			{
 				punkty+=10*(ilebalonow+1)*mnoznik;
 			}

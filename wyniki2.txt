@@ -1,5 +1,6 @@
+AdamMa³ysz 209
 Micha³ 3131
-Jurek 5000
-Adam 4560
-Marysia 4400
 Kondrad 3456
+Marysia 4400
+Adam 4560
+Jurek 5000
