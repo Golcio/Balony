@@ -18,9 +18,11 @@ public class ListaWynikow extends JFrame implements ActionListener
 	private JTextArea tWyniki;
 	private JButton bPowrot;
 	private Scanner wczytaj;
+	private File wyniki;
 	
-	public ListaWynikow()
+	public ListaWynikow(File wyniki)
 	{
+		this.wyniki = wyniki;
 		setTitle("Lista Wyników");
 		setSize(250,250);
 		setVisible(true);
@@ -48,7 +50,7 @@ public class ListaWynikow extends JFrame implements ActionListener
 		
 		try 
 		{
-			wczytaj = new Scanner(new File("wyniki.txt"));
+			wczytaj = new Scanner(wyniki);
 			while (wczytaj.hasNext())
 				tWyniki.append(wczytaj.nextLine() + "\n");
 		} 

@@ -19,7 +19,7 @@ public class Zasady extends JFrame implements ActionListener
 	public Zasady()
 	{
 		setTitle("Zasady Gry");
-		setSize(400,460);
+		setSize(400,500);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(true);

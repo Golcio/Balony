@@ -16,15 +16,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 public class MenuGlowne extends JFrame implements ActionListener
 {
 	private JMenuBar menuBar;
-	private JMenu menuGra, mPoziomTrudnosci;
-	private JMenuItem mRozpocznijGre, mListaWynikow, mWyjdz, menuZasadyGry;
+	private JMenu menuGra, mPoziomTrudnosci, mRozpocznijGre, mListaWynikow;
+	private JMenuItem mWyjdz, menuZasadyGry, bPoziomPierwszy, bPoziomDrugi, bPoziomTrzeci, bWynik1, bWynik2, bWynik3;
 	private JRadioButtonMenuItem mLatwy, mSredni, mTrudny;
 	private ButtonGroup bgPoziom;
 	private JLabel lNazwa;
+	private int trudnosc=1;
 	
 	public MenuGlowne()
 	{
@@ -55,14 +57,24 @@ public class MenuGlowne extends JFrame implements ActionListener
 				}
 			
 		});
-		setLayout(new BorderLayout());
+		getContentPane().setLayout(new BorderLayout());
 		
 		menuBar = new JMenuBar();
 		menuGra = new JMenu("Gra");
 		menuZasadyGry = new JMenuItem("Zasady Gry");
 		
-		mRozpocznijGre = new JMenuItem("Rozpocznij Grê");
-		mRozpocznijGre.addActionListener(this);
+		mRozpocznijGre = new JMenu("Rozpocznij Grê");
+		menuGra.add(mRozpocznijGre);
+		bPoziomPierwszy = new JMenuItem("Poziom Pierwszy");
+		mRozpocznijGre.add(bPoziomPierwszy);
+		bPoziomDrugi = new JMenuItem("Poziom Drugi");
+		mRozpocznijGre.add(bPoziomDrugi);
+		bPoziomTrzeci = new JMenuItem("Poziom Trzeci");
+		mRozpocznijGre.add(bPoziomTrzeci);
+		bPoziomPierwszy.addActionListener(this);
+		bPoziomDrugi.addActionListener(this);
+		bPoziomTrzeci.addActionListener(this);
+		
 		
 		mPoziomTrudnosci = new JMenu("Poziom Trudnoœci");
 		bgPoziom = new ButtonGroup();
@@ -75,15 +87,29 @@ public class MenuGlowne extends JFrame implements ActionListener
 		mPoziomTrudnosci.add(mLatwy);
 		mPoziomTrudnosci.add(mSredni);
 		mPoziomTrudnosci.add(mTrudny);
+		mLatwy.addActionListener(this);
+		mSredni.addActionListener(this);
+		mTrudny.addActionListener(this);
 		mLatwy.setSelected(true);
 		
-		mListaWynikow = new JMenuItem("Lista Wyników");
+		mListaWynikow = new JMenu("Lista Wyników");
+		bWynik1 = new JMenuItem("Pierwsza Plansza");
+		bWynik2 = new JMenuItem("Druga Plansza");
+		bWynik3 = new JMenuItem("Trzecia Plansza");
+		
+		
 		mWyjdz = new JMenuItem("Wyjœcie");
 		
-		menuGra.add(mRozpocznijGre);
+		
 		menuGra.add(mPoziomTrudnosci);
 		menuGra.add(mListaWynikow);
+		mListaWynikow.add(bWynik1);
+		mListaWynikow.add(bWynik2);
+		mListaWynikow.add(bWynik3);
 		mListaWynikow.addActionListener(this);
+		bWynik1.addActionListener(this);
+		bWynik2.addActionListener(this);
+		bWynik3.addActionListener(this);
 		
 		menuGra.addSeparator();
 		menuGra.add(mWyjdz);
@@ -101,7 +127,7 @@ public class MenuGlowne extends JFrame implements ActionListener
 		lNazwa = new JLabel("Witaj w grze Balony!", SwingConstants.CENTER);
 		lNazwa.setBounds(20,20,300,200);
 		lNazwa.setFont(new Font("SanSerif",Font.BOLD,25));
-		add(lNazwa);
+		getContentPane().add(lNazwa);
 		setVisible(true);
 	}
 
@@ -134,22 +160,16 @@ public class MenuGlowne extends JFrame implements ActionListener
 		}
 	
 		
-		else if(z==mRozpocznijGre)
+		else if(z==bPoziomPierwszy)
 		{
 			
-			File plikKofiguracyjny = new File("plikTestowy.txt");
-			//File plikKofiguracyjny = new File("jedenkolor.txt");
+			File plikKofiguracyjny = new File("Pierwszy.txt");
 
 
 			try {
 				dispose();
-				Plansza plansza = new Plansza(plikKofiguracyjny);
+				Plansza plansza = new Plansza(plikKofiguracyjny, trudnosc);
 				plansza.setVisible(true);
-				/*EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						plansza.setVisible(true);
-					}
-				});*/
 			}
 			catch (IOException error)
 			{
@@ -158,10 +178,70 @@ public class MenuGlowne extends JFrame implements ActionListener
 
 		}
 		
-		else if(z==mListaWynikow)
+		else if(z==bPoziomDrugi)
+		{
+			
+			File plikKofiguracyjny = new File("Drugi.txt");
+
+
+			try {
+				dispose();
+				Plansza plansza = new Plansza(plikKofiguracyjny, trudnosc);
+				plansza.setVisible(true);
+			}
+			catch (IOException error)
+			{
+				System.out.println("ERROR: IOException");
+			}
+
+		}
+		
+		else if(z==bPoziomTrzeci)
+		{
+			
+			File plikKofiguracyjny = new File("Trzeci.txt");
+
+
+			try {
+				dispose();
+				Plansza plansza = new Plansza(plikKofiguracyjny, trudnosc);
+				plansza.setVisible(true);
+			}
+			catch (IOException error)
+			{
+				System.out.println("ERROR: IOException");
+			}
+
+		}
+		
+		else if(z==bWynik1)
 		{
 			dispose();
-			ListaWynikow wyniki = new ListaWynikow();
+			ListaWynikow wyniki = new ListaWynikow(new File("wyniki1.txt"));
+		}
+		else if(z==bWynik2)
+		{
+			dispose();
+			ListaWynikow wyniki = new ListaWynikow(new File("wyniki2.txt"));
+		}
+		else if(z==bWynik3)
+		{
+			dispose();
+			ListaWynikow wyniki = new ListaWynikow(new File("wyniki3.txt"));
+		}
+		
+		
+		if(mLatwy.isSelected())
+		{
+			trudnosc=1;
+		}
+		else if(mSredni.isSelected())
+		{
+			trudnosc=2;
+		}
+		else if(mTrudny.isSelected())
+		{			
+			trudnosc=3;
 		}
 		
 	}
