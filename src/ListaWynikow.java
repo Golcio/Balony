@@ -25,13 +25,13 @@ public class ListaWynikow extends JFrame implements ActionListener
 	/**
      * Konstruktor tworzacy okno na podstawie pliku z wynikami i wypisujacy je w polu tekstowym  .
      *
-     * @param plik  plik konfiguracyjny 
-     * @param punkty ilosc zdobytych w danej rogrywce punktow
+     * @param wyniki  plik z wynikami
+     *
      */
 	public ListaWynikow(File wyniki)
 	{
 		this.wyniki = wyniki;
-		setTitle("Lista Wyników");
+		setTitle("Lista Wynikï¿½w");
 		setSize(250,250);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -69,7 +69,7 @@ public class ListaWynikow extends JFrame implements ActionListener
 		tWyniki.setFont(new Font("ArialBlack", Font.BOLD,20));
 		
 		
-		bPowrot = new JButton("Powrót");
+		bPowrot = new JButton("Powrï¿½t");
 		add(bPowrot, BorderLayout.PAGE_END);
 		bPowrot.addActionListener(this);
 		

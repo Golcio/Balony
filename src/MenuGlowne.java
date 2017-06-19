@@ -130,7 +130,10 @@ public class MenuGlowne extends JFrame implements ActionListener
 		getContentPane().add(lNazwa);
 		setVisible(true);
 	}
-
+	/**
+	 * obs³uga zdarzen dla glownego okna
+	 * @param e zdarzenie
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{

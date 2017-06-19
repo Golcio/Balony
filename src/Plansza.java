@@ -64,7 +64,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	
 
 	/**
-	 * Create the frame.
+	 * glowne okno gry na ktorym jest rozgrywka
 	 */
 	public Plansza(File plikStartowy, int trudnosc) throws IOException {
 		
@@ -159,12 +159,11 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		/**
 		 * Metoda obsï¿½ugujaca zdarzenie wcisniecia przycisku.
 		 *
-		 * @param e
-		 *            przycisniecie przycisku
+		 * @param e przycisniecie przycisku
 		 */
 		WyjdzButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
+				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjï¿½ï¿½?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
 				{
 				tm.stop();
@@ -179,7 +178,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				else if(x == JOptionPane.CLOSED_OPTION)
 				{
 					
-					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nieï¿½adnie!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -208,7 +207,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		 */
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ?", "Hola hola!", JOptionPane.YES_NO_OPTION);
+				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjï¿½ï¿½?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
 				{
 				tm.stop();
@@ -223,13 +222,17 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				else if(x == JOptionPane.CLOSED_OPTION)
 				{
 					
-					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nieï¿½adnie!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 
 		});
 	}
 
+	/**
+	 * sÅ‚uchacz zdarzeÅ„ od myszy pozwalajacy na zbieranie informacji o
+	 * tym gdzie kliknieto na lansze gry a tym samym sterowanie lotem pocisku
+	 */
 	public void MouseListenerPlansza() {
 		contentPane.addMouseListener(new MouseAdapter() {
 			@Override
@@ -474,7 +477,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			{
 				pociski.firstElement().setAktualnePolozenia(new Polozenie(balonik.getAktualnePolozenia().getWsplX(),
 						balonik.getAktualnePolozenia().getWsplY() + 60));
-						System.out.println("dó³");
+						System.out.println("dï¿½");
 			} 
 			else if (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() >= 20 
 					&& balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() <= 60
@@ -483,7 +486,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			{
 				pociski.firstElement().setAktualnePolozenia(new Polozenie(balonik.getAktualnePolozenia().getWsplX(),
 						balonik.getAktualnePolozenia().getWsplY() - 60));
-						System.out.println("góra");
+						System.out.println("gï¿½ra");
 			} 
 			else if (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() >= - 43
 					&& balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY() <= 43
@@ -505,7 +508,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 			else {
 				{
-					System.out.println("pozosta³e");
+					System.out.println("pozostaï¿½e");
 					System.out.println("Y: " + (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY()));
 					System.out.println("X: " + (balonik.getAktualnePolozenia().getWsplX() - nowePolozenie.getWsplX()));
 					
@@ -527,7 +530,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 			stoper = true;
 			
-			ZnikanieBalonów(pociski.firstElement());
+			ZnikanieBalonow(pociski.firstElement());
 			Bomba();
 			
 			if(trudnosc==1)
@@ -545,7 +548,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				poIluNowyRzad=2;
 				mnoznik=1.5;
 			}
-			System.out.println("Trudnoœæ: " + trudnosc + " po ilu: " + poIluNowyRzad);
+			System.out.println("Trudnoï¿½ï¿½: " + trudnosc + " po ilu: " + poIluNowyRzad);
 			
 			if(ilebalonow==2 || ilebalonow==1)
 			{
@@ -612,6 +615,14 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
 	}
 
+	/**
+	 * Metoda sprawdzajaca czy oblicone nowe polozenie pocisku nie jest zajete
+	 *
+	 * @param nowePolozenie
+	 *            oblicone w modyfikacjaPolozenia()
+	 *             @param balonyNaPlanszy
+	 *            balony znajdujace sie aktualnie na planszy
+	 */
 	private boolean CzyDrogaWolna(Polozenie nowePolozenie, Vector<Balon> balonyNaPlanszy) 
 	{
 		
@@ -638,9 +649,13 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		return true;
 
 	}
-	
-	
-	private void ZnikanieBalonów(Balon balon) 
+
+	/**
+	 * metoda odpowiedzialna za znikanie balonow gdy balon pocisk zatrzyma sie prz yskupisku wiecej niz 3 balonow swojego koloru
+	 *             @param balon
+	 *            balon-pocisk
+	 */
+	private void ZnikanieBalonow(Balon balon)
 	{
 		for (int x = balonyNaPlanszy.size() - 1; x >= 0; x--) 
 		{
@@ -659,7 +674,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 					balon.setCzyIstnieje(false);
 					balonyNaPlanszy.elementAt(x).setCzyIstnieje(false);
 					ilebalonow++;
-					ZnikanieBalonów(balonyNaPlanszy.elementAt(x));
+					ZnikanieBalonow(balonyNaPlanszy.elementAt(x));
 					}
 				}
 				
@@ -670,7 +685,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 					balon.setCzyIstnieje(false);
 					balonyNaPlanszy.elementAt(x).setCzyIstnieje(false);
 					ilebalonow++;
-					ZnikanieBalonów(balonyNaPlanszy.elementAt(x));
+					ZnikanieBalonow(balonyNaPlanszy.elementAt(x));
 					}
 				}
 				
@@ -700,7 +715,11 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		}
 		
 	}
-	
+	/**
+	 * Metoda implemetujaca specjalny balon-bombe ktory niszczy balony w okolicy  gdy sie kolo nich zarzyma
+	 *
+	 *
+	 */
 	private void Bomba()
 	{
 		for (int x = balonyNaPlanszy.size() - 1; x >= 0; x--)
@@ -719,8 +738,10 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 			}
 		}
 	}
-	
 
+	/**
+	 * sprawdzajaca czy balony nie sa juz ponizej dopuszczalnej granicy dolu planszy
+	 */
 	private boolean CzyKoniec()
 	{
 		for(int x = balonyNaPlanszy.size() - 1; x>=0; x--)

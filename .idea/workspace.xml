@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7684bb8b-a786-41ca-9e83-9d10a5679859" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/KoniecGry.java" afterPath="$PROJECT_DIR$/src/KoniecGry.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ListaWynikow.java" afterPath="$PROJECT_DIR$/src/ListaWynikow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MenuGlowne.java" afterPath="$PROJECT_DIR$/src/MenuGlowne.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Plansza.java" afterPath="$PROJECT_DIR$/src/Plansza.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,22 +27,33 @@
       <file leaf-file-name="Polozenie.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Polozenie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
+            <state relative-caret-position="300">
               <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Plansza.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Zasady.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Zasady.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="12" column="60" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Plansza.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Plansza.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
-              <caret line="74" column="29" lean-forward="false" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+            <state relative-caret-position="-902">
+              <caret line="689" column="17" lean-forward="false" selection-start-line="689" selection-start-column="17" selection-end-line="689" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
-                <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+                <element signature="e#6267#7353#0" expanded="true" />
+                <element signature="e#7352#7353#0" expanded="true" />
                 <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
                 <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
@@ -51,7 +64,6 @@
                 <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
                 <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
-                <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
                 <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
                 <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
@@ -62,14 +74,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KoniecGry.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KoniecGry.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/KoniecGry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1246">
+            <state relative-caret-position="-2698">
               <caret line="45" column="63" lean-forward="true" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListaWynikow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ListaWynikow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-844">
+              <caret line="27" column="37" lean-forward="false" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuGlowne.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/MenuGlowne.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2248">
+              <caret line="134" column="25" lean-forward="false" selection-start-line="134" selection-start-column="25" selection-end-line="134" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,11 +197,12 @@
         <option value="$PROJECT_DIR$/plikTestowy.txt" />
         <option value="$PROJECT_DIR$/../src/Pansza555.java" />
         <option value="$PROJECT_DIR$/src/PlanszaGry_model.java" />
-        <option value="$PROJECT_DIR$/src/MenuGlowne.java" />
         <option value="$PROJECT_DIR$/src/Balon.java" />
         <option value="$PROJECT_DIR$/src/Plansza2.java" />
-        <option value="$PROJECT_DIR$/src/Plansza.java" />
         <option value="$PROJECT_DIR$/src/KoniecGry.java" />
+        <option value="$PROJECT_DIR$/src/ListaWynikow.java" />
+        <option value="$PROJECT_DIR$/src/MenuGlowne.java" />
+        <option value="$PROJECT_DIR$/src/Plansza.java" />
       </list>
     </option>
   </component>
@@ -247,7 +280,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="SearchEverywhereHistoryKey" value="javadoc&#9;ACTION&#9;GenerateJavadoc" />
+    <property name="SearchEverywhereHistoryKey" value="javado&#9;ACTION&#9;GenerateJavadoc&#10;javad&#9;ACTION&#9;GenerateJavadoc&#10;generate jav&#9;ACTION&#9;GenerateJavadoc&#10;javadoc&#9;ACTION&#9;GenerateJavadoc" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -727,12 +760,12 @@
       <workItem from="1497190877888" duration="2376000" />
       <workItem from="1497255851557" duration="21137000" />
       <workItem from="1497860868005" duration="129000" />
-      <workItem from="1497863282803" duration="462000" />
+      <workItem from="1497863282803" duration="1796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71407000" />
+    <option name="totallyTimeSpent" value="72741000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -756,7 +789,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13449565" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4234122" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -827,18 +860,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Plansza.java</url>
-          <line>363</line>
+          <line>366</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Plansza.java</url>
-          <line>365</line>
+          <line>368</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Plansza.java</url>
+          <line>236</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -847,13 +886,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/10 Animacje/w10_Animations/Animation3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="44" column="12" lean-forward="true" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/10 Animacje/w10_Animations/Animation4.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2024">
@@ -872,6 +904,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2486">
           <caret line="131" column="9" lean-forward="true" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -890,7 +923,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="e#6267#7353#0" expanded="true" />
+            <element signature="e#7352#7353#0" expanded="true" />
             <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
             <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
@@ -901,7 +935,6 @@
             <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
-            <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
             <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
             <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
@@ -923,6 +956,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2882">
           <caret line="131" column="41" lean-forward="false" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -941,7 +975,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="e#6267#7353#0" expanded="true" />
+            <element signature="e#7352#7353#0" expanded="true" />
             <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
             <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
@@ -952,7 +987,6 @@
             <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
-            <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
             <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
             <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
@@ -974,6 +1008,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1921">
           <caret line="131" column="41" lean-forward="false" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -997,6 +1032,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2125">
           <caret line="143" column="65" lean-forward="false" selection-start-line="143" selection-start-column="65" selection-end-line="143" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1020,6 +1056,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2618">
           <caret line="154" column="53" lean-forward="true" selection-start-line="154" selection-start-column="53" selection-end-line="154" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1042,6 +1079,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,14 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-15576">
           <caret line="3309" column="16" lean-forward="false" selection-start-line="3309" selection-start-column="16" selection-end-line="3309" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Zasady.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="12" column="60" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1138,21 +1168,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PlanszaGry_model.java" />
     <entry file="file://$PROJECT_DIR$/../src/Pansza555.java" />
-    <entry file="file://$PROJECT_DIR$/src/MenuGlowne.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2596">
-          <caret line="144" column="24" lean-forward="false" selection-start-line="144" selection-start-column="24" selection-end-line="144" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Polozenie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Balony.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1168,7 +1183,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="e#6267#7353#0" expanded="true" />
+            <element signature="e#7352#7353#0" expanded="true" />
             <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
             <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
@@ -1179,7 +1195,6 @@
             <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
-            <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
             <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
             <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
@@ -1212,14 +1227,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/KoniecGry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2698">
+          <caret line="45" column="63" lean-forward="true" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ListaWynikow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-844">
+          <caret line="27" column="37" lean-forward="false" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MenuGlowne.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2248">
+          <caret line="134" column="25" lean-forward="false" selection-start-line="134" selection-start-column="25" selection-end-line="134" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Polozenie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Zasady.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="12" column="60" lean-forward="false" selection-start-line="12" selection-start-column="60" selection-end-line="12" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Plansza.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="74" column="29" lean-forward="false" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+        <state relative-caret-position="-902">
+          <caret line="689" column="17" lean-forward="false" selection-start-line="689" selection-start-column="17" selection-end-line="689" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="e#6267#7353#0" expanded="true" />
+            <element signature="e#7352#7353#0" expanded="true" />
             <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
             <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
@@ -1230,22 +1288,11 @@
             <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
-            <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
             <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
             <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
             <element signature="method#paint#0;class#Plansza#0" expanded="false" />
             <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/KoniecGry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1246">
-          <caret line="45" column="63" lean-forward="true" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
