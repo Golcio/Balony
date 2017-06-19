@@ -12,14 +12,22 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
+/**
+ * okno wyswietlajace liste najlepszych wynikow
+ * @filed wyniki plik tekstowy  wynikami
+ */
 public class ListaWynikow extends JFrame implements ActionListener
 {
 	private JTextArea tWyniki;
 	private JButton bPowrot;
 	private Scanner wczytaj;
 	private File wyniki;
-	
+	/**
+     * Konstruktor tworzacy okno na podstawie pliku z wynikami i wypisujacy je w polu tekstowym  .
+     *
+     * @param plik  plik konfiguracyjny 
+     * @param punkty ilosc zdobytych w danej rogrywce punktow
+     */
 	public ListaWynikow(File wyniki)
 	{
 		this.wyniki = wyniki;

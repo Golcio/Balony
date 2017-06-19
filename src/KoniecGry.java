@@ -37,9 +37,9 @@ import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JPanel;
 /**
- *Okno wyskakujace po zakonceniu gry, pregranej lub wygranej .
+ *Okno pojawiajace sie po zakonceniu gry, przegranej lub wygranej .
  *
- * @filed punkty ilosc pktow zdobyta
+ * @field punkty ilosc pktow zdobyta
  *  @filed wyniki wektor zawierajacy najlepsze dotychczasowe wyniki
  *  @filed plik plik konfiguracyjny zawierajacy liste najlepszych wynikow
  */
@@ -97,7 +97,7 @@ public class KoniecGry extends JFrame implements ActionListener
 		getContentPane().add(lWiadomosc);
 		getContentPane().add(bOkej);
 		
-		lPunkty = new JLabel("Twój wynik: " + punkty + " punktów.");// wyswietlanie wyniku 
+		lPunkty = new JLabel("Twï¿½j wynik: " + punkty + " punktï¿½w.");// wyswietlanie wyniku 
 		lPunkty.setBounds(47, 68, 155, 14);
 		getContentPane().add(lPunkty);
 		
@@ -107,7 +107,7 @@ public class KoniecGry extends JFrame implements ActionListener
 		tNick.setColumns(10);
 		tNick.addActionListener(this);
 		
-		lNick = new JLabel("Podaj swój nick");
+		lNick = new JLabel("Podaj swï¿½j nick");
 		lNick.setBounds(74, 128, 100, 14);
 		getContentPane().add(lNick);
 		
@@ -119,7 +119,7 @@ public class KoniecGry extends JFrame implements ActionListener
 
 	}
 	/**
-	 * metoda wczytajaca z pliku konfiguracyjnego listê wynikow 
+	 * metoda wczytajaca z pliku konfiguracyjnego listï¿½ wynikow 
 	 * @param plik konfiguracyjny
 	 */
 	
