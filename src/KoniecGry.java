@@ -36,7 +36,13 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JPanel;
-
+/**
+ *Okno wyskakujace po zakonceniu gry, pregranej lub wygranej .
+ *
+ * @filed punkty ilosc pktow zdobyta
+ *  @filed wyniki wektor zawierajacy najlepsze dotychczasowe wyniki
+ *  @filed plik plik konfiguracyjny zawierajacy liste najlepszych wynikow
+ */
 public class KoniecGry extends JFrame implements ActionListener
 {
 	private JLabel lWiadomosc;
@@ -49,6 +55,12 @@ public class KoniecGry extends JFrame implements ActionListener
 	private String nick;
 	private File plik;
 	
+	/**
+     * Konstruktor tworzacy okno na podstawie pliku konfiguracyjnego i ilosci zdobytych punktow  .
+     *
+     * @param plik  plik konfiguracyjny 
+     * @param punkty ilosc zdobytych w danej rogrywce punktow
+     */
 	public KoniecGry(int punkty, File plik)
 	{
 		this.punkty=punkty;
@@ -85,7 +97,7 @@ public class KoniecGry extends JFrame implements ActionListener
 		getContentPane().add(lWiadomosc);
 		getContentPane().add(bOkej);
 		
-		lPunkty = new JLabel("Twój wynik: " + punkty + " punktów.");
+		lPunkty = new JLabel("Twój wynik: " + punkty + " punktów.");// wyswietlanie wyniku 
 		lPunkty.setBounds(47, 68, 155, 14);
 		getContentPane().add(lPunkty);
 		
@@ -106,7 +118,10 @@ public class KoniecGry extends JFrame implements ActionListener
 		
 
 	}
-	
+	/**
+	 * metoda wczytajaca z pliku konfiguracyjnego listê wynikow 
+	 * @param plik konfiguracyjny
+	 */
 	
 	private void Wczytaj(File plik) throws IOException
 	{
@@ -125,7 +140,10 @@ public class KoniecGry extends JFrame implements ActionListener
 			// TODO: handle exception
 		}
 	}
-	
+	/**
+	 * metoda zapisujaca wyniki(wraz z naszym nowo dodanym jesli jest wystarcajaco dobry) do pliku konfiguracyjnego 
+	 * @param plik konfiguracyjny
+	 */
 	private void Zapis(File plik) throws IOException
 	{
 		PrintWriter out = new PrintWriter(plik);

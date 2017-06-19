@@ -1,8 +1,19 @@
-
+/**
+     * klasa przechuwojaca wynik gracza 
+     * 
+     * @param nick wpisana przez urzytkownika nazwa
+     * @param punkty ilosc pkt. jaka zdobyl
+     */
 public class HighScore {
 	private String nick;
 	private int punkty;
 	
+	/**
+     * Konstruktor tworzacy obiekt wyniku dla podanenej nawy  .
+     *
+     * @param nick nadana nazwa urzytkownika
+     * @param punkty ilsc zdobytych punktow
+     */
 	public HighScore(String nick, int punkty)
 	{
 		this.nick = nick;

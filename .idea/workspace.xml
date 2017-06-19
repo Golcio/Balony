@@ -2,21 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7684bb8b-a786-41ca-9e83-9d10a5679859" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza2$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza2$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza2$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza2$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza2.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Plansza2.java" afterPath="$PROJECT_DIR$/src/Plansza.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/MenuGlowne$2.class" afterPath="$PROJECT_DIR$/bin/MenuGlowne$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/MenuGlowne.class" afterPath="$PROJECT_DIR$/bin/MenuGlowne.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Plansza$1.class" afterPath="$PROJECT_DIR$/bin/Plansza$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Plansza$2.class" afterPath="$PROJECT_DIR$/bin/Plansza$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Plansza$3.class" afterPath="$PROJECT_DIR$/bin/Plansza$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/Plansza.class" afterPath="$PROJECT_DIR$/bin/Plansza.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Balon.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Balony.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Kolor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/KoniecGry$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/KoniecGry.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/ListaWynikow$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/ListaWynikow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/MenuGlowne$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/MenuGlowne.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Plansza.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Polozenie.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Zasady$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/Zasady.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MenuGlowne.java" afterPath="$PROJECT_DIR$/src/MenuGlowne.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,16 +38,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Pansza555.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../src/Pansza555.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="101" column="0" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="101" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Polozenie.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Polozenie.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,7 +48,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Plansza.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Plansza.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Plansza.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
@@ -65,26 +58,32 @@
                 <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
                 <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
-                <element signature="docComment;method#WczytajBalony#0;class#Plansza#0" expanded="false" />
-                <element signature="method#WczytajBalony#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
                 <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+                <element signature="docComment;method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+                <element signature="method#WczytajBalony#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#WczytajPole#0;class#Plansza#0" expanded="false" />
                 <element signature="method#WczytajPole#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
                 <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
-                <element signature="docComment;method#actionPerformed#0;class#Plansza#0" expanded="false" />
-                <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
                 <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
                 <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
-                <element signature="docComment;method#Sleeeep#0;class#Plansza#0" expanded="false" />
-                <element signature="method#Sleeeep#0;class#Plansza#0" expanded="false" />
                 <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
                 <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
                 <element signature="method#paint#0;class#Plansza#0" expanded="false" />
-                <element signature="docComment;method#run#0;class#Plansza#0" expanded="false" />
+                <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KoniecGry.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/KoniecGry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -102,8 +101,8 @@
       <file leaf-file-name="Balon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Balon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="880">
-              <caret line="46" column="7" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="46" selection-end-column="7" />
+            <state relative-caret-position="990">
+              <caret line="46" column="7" lean-forward="false" selection-start-line="42" selection-start-column="3" selection-end-line="46" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -186,8 +185,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="2391" />
     <option name="y" value="-9" />
-    <option name="width" value="1726" />
-    <option name="height" value="928" />
+    <option name="width" value="1618" />
+    <option name="height" value="968" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -204,8 +203,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -235,13 +232,15 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../src/Pansza555.java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="extract.method.default.visibility" value="public" />
     <property name="ignore_missing_gitignore" value="true" />
@@ -726,11 +725,12 @@
       <workItem from="1497190037957" duration="720000" />
       <workItem from="1497190877888" duration="2376000" />
       <workItem from="1497255851557" duration="21137000" />
+      <workItem from="1497860868005" duration="129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70816000" />
+    <option name="totallyTimeSpent" value="70945000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -742,27 +742,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2391" y="-9" width="1726" height="928" extended-state="6" />
-    <editor active="true" />
+    <frame x="2391" y="-9" width="1618" height="968" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1585504" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1494396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13499345" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13499345" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14043583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15220207" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327654" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -775,6 +774,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.327654" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -845,13 +845,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Downloads/10 Animacje/w10_Animations/Animation2.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="57" column="28" lean-forward="true" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Downloads/10 Animacje/w10_Animations/Animation3.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="814">
@@ -893,17 +886,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+            <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+            <element signature="method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#WczytajPole#0;class#Plansza#0" expanded="false" />
+            <element signature="method#WczytajPole#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
+            <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
+            <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
+            <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
+            <element signature="method#paint#0;class#Plansza#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plikTestowy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="10" lean-forward="false" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/plikTestowy.txt" />
     <entry file="file://$PROJECT_DIR$/zasady.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -931,17 +938,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+            <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+            <element signature="method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#WczytajPole#0;class#Plansza#0" expanded="false" />
+            <element signature="method#WczytajPole#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
+            <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
+            <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
+            <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
+            <element signature="method#paint#0;class#Plansza#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plikTestowy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/plikTestowy.txt" />
     <entry file="file://$PROJECT_DIR$/zasady.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -957,13 +978,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plikTestowy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="59" lean-forward="false" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/plikTestowy.txt" />
     <entry file="file://$PROJECT_DIR$/zasady.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -987,13 +1002,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plikTestowy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="59" lean-forward="true" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/plikTestowy.txt" />
     <entry file="file://$PROJECT_DIR$/zasady.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1116,13 +1125,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plikTestowy.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/plikTestowy.txt" />
     <entry file="file://$USER_HOME$/Downloads/10 Animacje/w10_Animations/Animation1.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1134,26 +1137,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="41" column="21" lean-forward="true" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PlanszaGry_model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../src/Pansza555.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="101" column="0" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlanszaGry_model.java" />
+    <entry file="file://$PROJECT_DIR$/../src/Pansza555.java" />
     <entry file="file://$PROJECT_DIR$/src/MenuGlowne.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2596">
@@ -1182,14 +1170,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
           <caret line="41" column="59" lean-forward="false" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+            <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+            <element signature="method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#WczytajPole#0;class#Plansza#0" expanded="false" />
+            <element signature="method#WczytajPole#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
+            <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
+            <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
+            <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
+            <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
+            <element signature="method#paint#0;class#Plansza#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Balon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="46" column="7" lean-forward="true" selection-start-line="42" selection-start-column="3" selection-end-line="46" selection-end-column="7" />
+        <state relative-caret-position="990">
+          <caret line="46" column="7" lean-forward="false" selection-start-line="42" selection-start-column="3" selection-end-line="46" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1205,26 +1213,30 @@
             <element signature="method#MouseListenerPlansza#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#Wczytaj#0;class#Plansza#0" expanded="false" />
             <element signature="method#Wczytaj#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#WczytajBalony#0;class#Plansza#0" expanded="false" />
-            <element signature="method#WczytajBalony#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
             <element signature="method#StworzPustaPlansze#0;class#Plansza#0" expanded="false" />
+            <element signature="docComment;method#WczytajBalony#0;class#Plansza#0" expanded="false" />
+            <element signature="method#WczytajBalony#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#WczytajPole#0;class#Plansza#0" expanded="false" />
             <element signature="method#WczytajPole#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#getKolor#0;class#Plansza#0" expanded="false" />
             <element signature="method#getKolor#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#actionPerformed#0;class#Plansza#0" expanded="false" />
-            <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
             <element signature="method#modyfikacjaPolozenia#0;class#Plansza#0" expanded="false" />
             <element signature="method#CzyDrogaWolna#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#Sleeeep#0;class#Plansza#0" expanded="false" />
-            <element signature="method#Sleeeep#0;class#Plansza#0" expanded="false" />
             <element signature="docComment;method#paintComponent#0;class#Plansza#0" expanded="false" />
             <element signature="method#paintComponent#0;class#Plansza#0" expanded="false" />
             <element signature="method#paint#0;class#Plansza#0" expanded="false" />
-            <element signature="docComment;method#run#0;class#Plansza#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#Plansza#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/KoniecGry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="36" column="10" lean-forward="false" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>

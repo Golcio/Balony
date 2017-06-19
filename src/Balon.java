@@ -2,20 +2,29 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * balon g�owny obiekt w grze
+ * balon glowny obiekt w grze
  */
 public class Balon {
     private Kolor kolor;
     private boolean czyIstnieje;
     private Image obrazekBalonu;
     private Polozenie aktualnePolozenia;
-
+    /**
+     * Konstruktor tworzacy balon  o okreslonym poloeniu na planszy.
+     *
+     * @param aktualnePolozenia polozenie balonu
+     */
     public Balon(Polozenie aktualnePolozenia) {
         this.aktualnePolozenia = aktualnePolozenia;
         this.czyIstnieje = true;
     }
 
-
+    /**
+     * Konstruktor tworzacy balon w okreslonym kolorze i o okreslonym poloeniu na planszy.
+     *
+     * @param kolor kolor balonu
+     * @param aktualnePolozenia polozenie balonu
+     */
     public Balon(Kolor kolor, Polozenie aktualnePolozenia) {
         this.kolor = kolor;
         this.aktualnePolozenia = aktualnePolozenia;
