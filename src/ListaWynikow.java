@@ -14,13 +14,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 /**
  * okno wyswietlajace liste najlepszych wynikow
- * @filed wyniki plik tekstowy  wynikami
  */
 public class ListaWynikow extends JFrame implements ActionListener
 {
 	private JTextArea tWyniki;
 	private JButton bPowrot;
 	private Scanner wczytaj;
+	
+	/**
+	 * plik tekstowy  wynikami
+	 */
 	private File wyniki;
 	/**
      * Konstruktor tworzacy okno na podstawie pliku z wynikami i wypisujacy je w polu tekstowym  .
@@ -31,7 +34,7 @@ public class ListaWynikow extends JFrame implements ActionListener
 	public ListaWynikow(File wyniki)
 	{
 		this.wyniki = wyniki;
-		setTitle("Lista Wynikï¿½w");
+		setTitle("Lista Wyników");
 		setSize(250,250);
 		setVisible(true);
 		setLocationRelativeTo(null);

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,22 +19,31 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 /**
- *Okno pojawiajace sie po zakonceniu gry, przegranej lub wygranej .
+ * Okno pojawiajace sie po zakonceniu gry, przegranej lub wygranej.
  *
- * @field punkty ilosc pktow zdobyta
- *  @filed wyniki wektor zawierajacy najlepsze dotychczasowe wyniki
- *  @filed plik plik konfiguracyjny zawierajacy liste najlepszych wynikow
  */
 public class KoniecGry extends JFrame implements ActionListener
 {
 	private JLabel lWiadomosc;
 	private JButton bOkej;
+	
+	/**
+	 * ilosc pktow zdobyta
+	 */
 	private int punkty;
 	private JLabel lPunkty;
 	private JTextField tNick;
+	
+	/**
+	 * lista zawierajaca najlepsze dotychczasowe wyniki
+	 */
 	private List<HighScore> wyniki = new ArrayList<HighScore>();
 	private JLabel lNick;
 	private String nick;
+	
+	/**
+	 * plik konfiguracyjny zawierajacy liste najlepszych wynikow
+	 */
 	private File plik;
 	
 	/**
@@ -104,6 +112,7 @@ public class KoniecGry extends JFrame implements ActionListener
 	/**
 	 * metoda wczytajaca z pliku konfiguracyjnego listï¿½ wynikow 
 	 * @param plik konfiguracyjny
+	 * @throws java.io.IOException wyj¹tek
 	 */
 	
 	private void Wczytaj(File plik) throws IOException
@@ -131,6 +140,7 @@ public class KoniecGry extends JFrame implements ActionListener
 	/**
 	 * metoda zapisujaca wyniki(wraz z naszym nowo dodanym) do pliku konfiguracyjnego 
 	 * @param plik konfiguracyjny
+	 * @throws java.io.IOException wyj¹tek
 	 */
 	private void Zapis(File plik) throws IOException
 	{

@@ -64,6 +64,9 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
 	/**
 	 * glowne okno gry na ktorym jest rozgrywka
+	 * @param plikStartowy plik z wczytywan¹ map¹
+	 * @param trudnosc poziom trudnoœci mapy
+	 * @throws java.io.IOException wyj¹tek
 	 */
 	public Plansza(File plikStartowy, int trudnosc) throws IOException {
 		
@@ -162,7 +165,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		 */
 		WyjdzButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjï¿½ï¿½?", "Hola hola!", JOptionPane.YES_NO_OPTION);
+				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ½?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
 				{
 				tm.stop();
@@ -177,7 +180,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				else if(x == JOptionPane.CLOSED_OPTION)
 				{
 					
-					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nieï¿½adnie!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
@@ -206,7 +209,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		 */
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjï¿½ï¿½?", "Hola hola!", JOptionPane.YES_NO_OPTION);
+				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjœæ½?", "Hola hola!", JOptionPane.YES_NO_OPTION);
 				if(x == JOptionPane.YES_OPTION)
 				{
 				tm.stop();
@@ -221,7 +224,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 				else if(x == JOptionPane.CLOSED_OPTION)
 				{
 					
-					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nieï¿½adnie!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!","Nie³adnie!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 
@@ -614,6 +617,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	 *            oblicone w modyfikacjaPolozenia()
 	 *             @param balonyNaPlanszy
 	 *            balony znajdujace sie aktualnie na planszy
+	 *            @return zwracana prawda albo fa³sz
 	 */
 	private boolean CzyDrogaWolna(Polozenie nowePolozenie, Vector<Balon> balonyNaPlanszy) 
 	{
@@ -743,6 +747,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 
 	/**
 	 * sprawdzajaca czy balony nie sa juz ponizej dopuszczalnej granicy dolu planszy
+	 * @return zwraca prawdê albo fa³sz
 	 */
 	private boolean CzyKoniec()
 	{

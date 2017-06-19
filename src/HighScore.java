@@ -1,8 +1,6 @@
 /**
      * klasa przechowujaca wynik gracza 
      * 
-     * @param nick wpisana przez uzytkownika nazwa
-     * @param punkty ilosc pkt. jaka zdobyl
      */
 public class HighScore {
 	private String nick;
