@@ -4,8 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -14,74 +12,56 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class Zasady extends JFrame implements ActionListener
-{
+public class Zasady extends JFrame implements ActionListener {
 	private JTextArea tZasady;
 	private JButton bPowrot;
-	private BufferedReader buffReader;
-	
-	public Zasady()
-	{
+
+	public Zasady() {
 		setTitle("Zasady Gry");
-		setSize(400,500);
+		setSize(400, 500);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new WindowAdapter()
-		{
+		this.addWindowListener(new WindowAdapter() {
 
 			@Override
-			public void windowClosing(WindowEvent e) 
-			{
+			public void windowClosing(WindowEvent e) {
 				dispose();
 				MenuGlowne okienko = new MenuGlowne();
 				okienko.setVisible(true);
 			}
-			
+
 		});
 		setLayout(new BorderLayout());
-		
+
 		tZasady = new JTextArea();
 		JScrollPane suwak = new JScrollPane(tZasady);
 		tZasady.setEditable(false);
 		add(suwak, BorderLayout.CENTER);
 
-		try {
-			File file = new File("zasady.txt");
-			FileReader fileReader = new FileReader(file);
-			buffReader = new BufferedReader(fileReader);
-			tZasady.read(buffReader, null);
-		} 
-		catch (FileNotFoundException e1) 
-		{
-			e1.printStackTrace();
+		try (BufferedReader br = new BufferedReader(new FileReader("zasady.txt"))) {
+			tZasady.read(br, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-
-		bPowrot = new JButton("Powrót");
+		bPowrot = new JButton("PowrÃ³t");
 		add(bPowrot, BorderLayout.PAGE_END);
 		bPowrot.addActionListener(this);
-		
+
 	}
-	
-	
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
+	public void actionPerformed(ActionEvent e) {
 		Object zrodlo = e.getSource();
-		if(zrodlo==bPowrot)
-		{
+		if (zrodlo == bPowrot) {
 			dispose();
-			MenuGlowne okienko = new MenuGlowne();
+			new MenuGlowne();
 		}
 	}
 
-	public static void main(String[] args)
-	{
-		
+	public static void main(String[] args) {
+
 	}
 }

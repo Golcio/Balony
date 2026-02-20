@@ -1,5 +1,5 @@
 /**
- * przechowuje wsp�rzedne pola gry
+ * przechowuje wspďż˝rzedne pola gry
  */
 public class Polozenie {
     private int wsplX;

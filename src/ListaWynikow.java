@@ -12,87 +12,71 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 /**
  * okno wyswietlajace liste najlepszych wynikow
  */
-public class ListaWynikow extends JFrame implements ActionListener
-{
+public class ListaWynikow extends JFrame implements ActionListener {
 	private JTextArea tWyniki;
 	private JButton bPowrot;
 	private Scanner wczytaj;
-	
+
 	/**
-	 * plik tekstowy  wynikami
+	 * Konstruktor tworzacy okno na podstawie pliku z wynikami i wypisujacy je w
+	 * polu tekstowym .
+	 *
+	 * @param wyniki plik z wynikami
+	 *
 	 */
-	private File wyniki;
-	/**
-     * Konstruktor tworzacy okno na podstawie pliku z wynikami i wypisujacy je w polu tekstowym  .
-     *
-     * @param wyniki  plik z wynikami
-     *
-     */
-	public ListaWynikow(File wyniki)
-	{
-		this.wyniki = wyniki;
-		setTitle("Lista Wyników");
-		setSize(250,250);
+	public ListaWynikow(File wyniki) {
+		setTitle("Lista WynikÃ³w");
+		setSize(250, 250);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setResizable(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new WindowAdapter()
-		{
+		this.addWindowListener(new WindowAdapter() {
 
 			@Override
-			public void windowClosing(WindowEvent e) 
-			{
+			public void windowClosing(WindowEvent e) {
 				dispose();
 				MenuGlowne okienko = new MenuGlowne();
 				okienko.setVisible(true);
 			}
-			
+
 		});
 		setLayout(new BorderLayout());
-		
+
 		tWyniki = new JTextArea();
 		JScrollPane suwak = new JScrollPane(tWyniki);
 		tWyniki.setEditable(false);
 		add(suwak, BorderLayout.CENTER);
-		
-		try 
-		{
+
+		try {
 			wczytaj = new Scanner(wyniki);
 			while (wczytaj.hasNext())
 				tWyniki.append(wczytaj.nextLine() + "\n");
-		} 
-		catch (FileNotFoundException e1) 
-		{
+		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
-		tWyniki.setFont(new Font("ArialBlack", Font.BOLD,20));
-		
-		
-		bPowrot = new JButton("Powrót");
+		tWyniki.setFont(new Font("ArialBlack", Font.BOLD, 20));
+
+		bPowrot = new JButton("PowrÃ³t");
 		add(bPowrot, BorderLayout.PAGE_END);
 		bPowrot.addActionListener(this);
-		
+
 	}
-	
-	
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
+	public void actionPerformed(ActionEvent e) {
 		Object zrodlo = e.getSource();
-		if(zrodlo==bPowrot)
-		{
+		if (zrodlo == bPowrot) {
 			dispose();
-			MenuGlowne okienko = new MenuGlowne();
+			new MenuGlowne();
 		}
 	}
 
-	public static void main(String[] args)
-	{
-		
+	public static void main(String[] args) {
+
 	}
 }
