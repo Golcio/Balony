@@ -1,0 +1,17 @@
+# Foldery wyjściowe
+/bin/
+/out/
+*.class
+
+# Folder dokumentacji
+/Javadoc/
+
+# Konfiguracje środowisk (Eclipse, IntelliJ IDEA)
+/.idea/
+/.settings/
+.classpath
+.project
+*.iml
+
+# Niektóre buildy (zależnie czy chcemy trzymać binarki w repozytorium na Githubie)
+# *.jar 
