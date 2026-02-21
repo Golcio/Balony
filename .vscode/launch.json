@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - MenuGlowne",
+            "request": "launch",
+            "mainClass": "MenuGlowne",
+            "projectName": "Balony",
+            "classPaths": [
+                "${workspaceFolder}/bin",
+                "${workspaceFolder}/Balony_lib/junit-4.12.jar",
+                "${workspaceFolder}/Balony_lib/hamcrest-core-1.3.jar"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Run JUnit Tests",
+            "request": "launch",
+            "mainClass": "org.junit.runner.JUnitCore",
+            "projectName": "Balony",
+            "args": "BalonTest HighScoreTest",
+            "classPaths": [
+                "${workspaceFolder}/bin",
+                "${workspaceFolder}/Balony_lib/junit-4.12.jar",
+                "${workspaceFolder}/Balony_lib/hamcrest-core-1.3.jar"
+            ]
+        }
+    ]
+}
