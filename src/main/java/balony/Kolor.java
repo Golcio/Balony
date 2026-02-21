@@ -1,6 +1,6 @@
 package balony;
 /**
- * kolory balonów wystepujacych w grze
+ * kolory balonĂłw wystepujacych w grze
  */
 public enum Kolor {ZIELONY,CZERWONY,NIEBIESKI,ZOLTY,CZARNY,TECZOWY,BOMBA,brak
 }

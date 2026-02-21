@@ -37,7 +37,7 @@ public class MenuGlowne extends JFrame implements ActionListener {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjść?", "Hola hola!",
+				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjĹ›Ä‡?", "Hola hola!",
 						JOptionPane.YES_NO_OPTION);
 				if (x == JOptionPane.YES_OPTION) {
 					e.getWindow().dispose();
@@ -45,7 +45,7 @@ public class MenuGlowne extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Dobra decyzja!");
 				} else if (x == JOptionPane.CLOSED_OPTION) {
 
-					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!", "Nieładnie!",
+					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!", "NieĹ‚adnie!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -57,7 +57,7 @@ public class MenuGlowne extends JFrame implements ActionListener {
 		menuGra = new JMenu("Gra");
 		menuZasadyGry = new JMenuItem("Zasady Gry");
 
-		mRozpocznijGre = new JMenu("Rozpocznij Grę");
+		mRozpocznijGre = new JMenu("Rozpocznij GrÄ™");
 		menuGra.add(mRozpocznijGre);
 		bPoziomPierwszy = new JMenuItem("Poziom Pierwszy");
 		mRozpocznijGre.add(bPoziomPierwszy);
@@ -69,10 +69,10 @@ public class MenuGlowne extends JFrame implements ActionListener {
 		bPoziomDrugi.addActionListener(this);
 		bPoziomTrzeci.addActionListener(this);
 
-		mPoziomTrudnosci = new JMenu("Poziom Trudności");
+		mPoziomTrudnosci = new JMenu("Poziom TrudnoĹ›ci");
 		bgPoziom = new ButtonGroup();
-		mLatwy = new JRadioButtonMenuItem("Łatwy");
-		mSredni = new JRadioButtonMenuItem("Średni");
+		mLatwy = new JRadioButtonMenuItem("Ĺatwy");
+		mSredni = new JRadioButtonMenuItem("Ĺšredni");
 		mTrudny = new JRadioButtonMenuItem("Trudny");
 		bgPoziom.add(mLatwy);
 		bgPoziom.add(mSredni);
@@ -85,12 +85,12 @@ public class MenuGlowne extends JFrame implements ActionListener {
 		mTrudny.addActionListener(this);
 		mLatwy.setSelected(true);
 
-		mListaWynikow = new JMenu("Lista Wyników");
+		mListaWynikow = new JMenu("Lista WynikĂłw");
 		bWynik1 = new JMenuItem("Pierwsza Plansza");
 		bWynik2 = new JMenuItem("Druga Plansza");
 		bWynik3 = new JMenuItem("Trzecia Plansza");
 
-		mWyjdz = new JMenuItem("Wyjście");
+		mWyjdz = new JMenuItem("WyjĹ›cie");
 
 		menuGra.add(mPoziomTrudnosci);
 		menuGra.add(mListaWynikow);
@@ -122,7 +122,7 @@ public class MenuGlowne extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * obsługa zdarzen dla glownego okna
+	 * obsĹ‚uga zdarzen dla glownego okna
 	 * 
 	 * @param e zdarzenie
 	 */
@@ -131,14 +131,14 @@ public class MenuGlowne extends JFrame implements ActionListener {
 
 		Object z = e.getSource();
 		if (z == mWyjdz) {
-			int odp = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjść?", "Hola hola!",
+			int odp = JOptionPane.showConfirmDialog(this, "Czy na pewno chcesz wyjĹ›Ä‡?", "Hola hola!",
 					JOptionPane.YES_NO_OPTION);
 			if (odp == JOptionPane.YES_OPTION) {
 				System.exit(0);
 			} else if (odp == JOptionPane.NO_OPTION) {
 				JOptionPane.showMessageDialog(this, "Dobra decyzja!", "Brawo!", JOptionPane.INFORMATION_MESSAGE);
 			} else if (odp == JOptionPane.CLOSED_OPTION) {
-				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!", "Nieładnie!",
+				JOptionPane.showMessageDialog(this, "Panie, co to za iksowanie?!", "NieĹ‚adnie!",
 						JOptionPane.WARNING_MESSAGE);
 			}
 		}
@@ -157,7 +157,7 @@ public class MenuGlowne extends JFrame implements ActionListener {
 				Plansza plansza = new Plansza(plikKofiguracyjny, trudnosc);
 				plansza.setVisible(true);
 			} catch (IOException error) {
-				JOptionPane.showMessageDialog(this, "Nie udało się załadować pliku pierwszego poziomu!", "Błąd",
+				JOptionPane.showMessageDialog(this, "Nie udaĹ‚o siÄ™ zaĹ‚adowaÄ‡ pliku pierwszego poziomu!", "BĹ‚Ä…d",
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -172,7 +172,7 @@ public class MenuGlowne extends JFrame implements ActionListener {
 				Plansza plansza = new Plansza(plikKofiguracyjny, trudnosc);
 				plansza.setVisible(true);
 			} catch (IOException error) {
-				JOptionPane.showMessageDialog(this, "Nie udało się załadować pliku drugiego poziomu!", "Błąd",
+				JOptionPane.showMessageDialog(this, "Nie udaĹ‚o siÄ™ zaĹ‚adowaÄ‡ pliku drugiego poziomu!", "BĹ‚Ä…d",
 						JOptionPane.ERROR_MESSAGE);
 			}
 
@@ -187,7 +187,7 @@ public class MenuGlowne extends JFrame implements ActionListener {
 				Plansza plansza = new Plansza(plikKofiguracyjny, trudnosc);
 				plansza.setVisible(true);
 			} catch (IOException error) {
-				JOptionPane.showMessageDialog(this, "Nie udało się załadować pliku trzeciego poziomu!", "Błąd",
+				JOptionPane.showMessageDialog(this, "Nie udaĹ‚o siÄ™ zaĹ‚adowaÄ‡ pliku trzeciego poziomu!", "BĹ‚Ä…d",
 						JOptionPane.ERROR_MESSAGE);
 			}
 

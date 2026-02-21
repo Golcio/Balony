@@ -30,7 +30,7 @@ public class ListaWynikow extends JFrame implements ActionListener {
 	 *
 	 */
 	public ListaWynikow(File wyniki) {
-		setTitle("Lista Wyników");
+		setTitle("Lista WynikĂłw");
 		setSize(250, 250);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -62,7 +62,7 @@ public class ListaWynikow extends JFrame implements ActionListener {
 		}
 		tWyniki.setFont(new Font("ArialBlack", Font.BOLD, 20));
 
-		bPowrot = new JButton("Powrót");
+		bPowrot = new JButton("PowrĂłt");
 		add(bPowrot, BorderLayout.PAGE_END);
 		bPowrot.addActionListener(this);
 

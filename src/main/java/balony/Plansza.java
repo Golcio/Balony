@@ -70,9 +70,9 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	/**
 	 * glowne okno gry na ktorym jest rozgrywka
 	 * 
-	 * @param plikStartowy plik z wczytywaną mapą
-	 * @param trudnosc     poziom trudności mapy
-	 * @throws java.io.IOException wyjątek
+	 * @param plikStartowy plik z wczytywanÄ… mapÄ…
+	 * @param trudnosc     poziom trudnoĹ›ci mapy
+	 * @throws java.io.IOException wyjÄ…tek
 	 */
 	public Plansza(File plikStartowy, int trudnosc) throws IOException {
 
@@ -151,13 +151,13 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		WyjdzButton = new JButton("Wyjdz");
 
 		/**
-		 * Metoda obsďż˝ugujaca zdarzenie wcisniecia przycisku.
+		 * Metoda obsÄŹĹĽËťugujaca zdarzenie wcisniecia przycisku.
 		 *
 		 * @param e przycisniecie przycisku
 		 */
 		WyjdzButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjść˝?", "Hola hola!",
+				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjĹ›Ä‡Ëť?", "Hola hola!",
 						JOptionPane.YES_NO_OPTION);
 				if (x == JOptionPane.YES_OPTION) {
 					tm.stop();
@@ -168,7 +168,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 					JOptionPane.showMessageDialog(null, "Dobra decyzja!");
 				} else if (x == JOptionPane.CLOSED_OPTION) {
 
-					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!", "Nieładnie!",
+					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!", "NieĹ‚adnie!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -191,14 +191,14 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 		verticalBox.add(lPunktyKarne);
 
 		/**
-		 * Metoda obsďż˝ugujaca zdarzenie wcisniecia przycisku X.
+		 * Metoda obsÄŹĹĽËťugujaca zdarzenie wcisniecia przycisku X.
 		 *
 		 * @param e
 		 *          przycisniecie przycisku
 		 */
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjść˝?", "Hola hola!",
+				int x = JOptionPane.showConfirmDialog(null, "Czy na pewno chcesz wyjĹ›Ä‡Ëť?", "Hola hola!",
 						JOptionPane.YES_NO_OPTION);
 				if (x == JOptionPane.YES_OPTION) {
 					tm.stop();
@@ -209,7 +209,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 					JOptionPane.showMessageDialog(null, "Dobra decyzja!");
 				} else if (x == JOptionPane.CLOSED_OPTION) {
 
-					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!", "Nieładnie!",
+					JOptionPane.showMessageDialog(null, "Panie, co to za iksowanie?!", "NieĹ‚adnie!",
 							JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -218,7 +218,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 
 	/**
-	 * sĹ‚uchacz zdarzeĹ„ od myszy pozwalajacy na zbieranie informacji o
+	 * sÄąâ€šuchacz zdarzeÄąâ€ž od myszy pozwalajacy na zbieranie informacji o
 	 * tym gdzie kliknieto na lansze gry a tym samym sterowanie lotem pocisku
 	 */
 	public void MouseListenerPlansza() {
@@ -252,9 +252,9 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	 * konfiguracyjnego
 	 *
 	 * @param plikStartowy
-	 *                     bieďż˝ďż˝ca linijka
+	 *                     bieÄŹĹĽËťÄŹĹĽËťca linijka
 	 * @throws IOException
-	 *                     jeďż˝eli nie uda siďż˝ otworzyc pliku
+	 *                     jeÄŹĹĽËťeli nie uda siÄŹĹĽËť otworzyc pliku
 	 */
 	private void Wczytaj(File plikStartowy) throws IOException {
 		try (BufferedReader br = new BufferedReader(new FileReader(plikStartowy))) {
@@ -286,9 +286,9 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	 * Metoda tworzy pusta plansze o podanych wymiarach.
 	 *
 	 * @param WYSOKOSC
-	 *                  planszy w ilosci rzedďż˝w balonďż˝w
+	 *                  planszy w ilosci rzedÄŹĹĽËťw balonÄŹĹĽËťw
 	 * @param SZEROKOSC
-	 *                  planszy w ilosci rzedďż˝w balonďż˝w
+	 *                  planszy w ilosci rzedÄŹĹĽËťw balonÄŹĹĽËťw
 	 */
 
 	private void StworzPustaPlansze(int WYSOKOSC, int SZEROKOSC) {
@@ -303,15 +303,15 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 
 	/**
-	 * Metoda wczytuje poďż˝ozenie balonďż˝w z pliku kofiguracyjnego.
+	 * Metoda wczytuje poÄŹĹĽËťozenie balonÄŹĹĽËťw z pliku kofiguracyjnego.
 	 *
 	 * @param line
-	 *             bieďż˝ďż˝ca linijka
+	 *             bieÄŹĹĽËťÄŹĹĽËťca linijka
 	 * @param br
 	 *             bufor czytnika
 	 * @return bierzaca linie
 	 * @throws IOException
-	 *                     jeďż˝eli nie uda siďż˝ odczytaďż˝ kolejnej linijki
+	 *                     jeÄŹĹĽËťeli nie uda siÄŹĹĽËť odczytaÄŹĹĽËť kolejnej linijki
 	 */
 	private String WczytajBalony(BufferedReader br, String line) throws IOException {
 
@@ -326,11 +326,11 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 
 	/**
-	 * Metoda wczytuje z odczytanej lini pliku poďż˝ozenie i kolor balona a
+	 * Metoda wczytuje z odczytanej lini pliku poÄŹĹĽËťozenie i kolor balona a
 	 * obiektu klasy Plansza.
 	 *
 	 * @param line
-	 *             bieďż˝ďż˝ca linijka pliku nad ktora pracuje metoda
+	 *             bieÄŹĹĽËťÄŹĹĽËťca linijka pliku nad ktora pracuje metoda
 	 */
 
 	private void WczytajPole(String line) {
@@ -401,7 +401,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 
 	/**
-	 * modyfikuje poĹ‚ozenie balonu-pocisku
+	 * modyfikuje poÄąâ€šozenie balonu-pocisku
 	 */
 
 	private void modyfikacjaPolozenia() {
@@ -476,7 +476,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 						balonik.getAktualnePolozenia().getWsplY()));
 			} else {
 				{
-					System.out.println("pozostałe");
+					System.out.println("pozostaĹ‚e");
 					System.out.println("Y: " + (balonik.getAktualnePolozenia().getWsplY() - nowePolozenie.getWsplY()));
 					System.out.println("X: " + (balonik.getAktualnePolozenia().getWsplX() - nowePolozenie.getWsplX()));
 
@@ -568,7 +568,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	 *                        oblicone w modyfikacjaPolozenia()
 	 * @param balonyNaPlanszy
 	 *                        balony znajdujace sie aktualnie na planszy
-	 * @return zwracana prawda albo fałsz
+	 * @return zwracana prawda albo faĹ‚sz
 	 */
 	private boolean CzyDrogaWolna(Polozenie nowePolozenie, ArrayList<Balon> balonyNaPlanszy) {
 
@@ -594,7 +594,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 
 	/**
-	 * metoda odpowiedzialna za oznaczenie balonów do usunięcia gdy balon pocisk
+	 * metoda odpowiedzialna za oznaczenie balonĂłw do usuniÄ™cia gdy balon pocisk
 	 * zatrzyma sie przy skupisku wiecej niz 3 balonow swojego koloru
 	 * 
 	 * @param balon
@@ -639,8 +639,8 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	}
 
 	/**
-	 * metoda odpowiedzialna za usuwanie oznaczonych przez funkcję ZnikanieBalonow
-	 * balonów
+	 * metoda odpowiedzialna za usuwanie oznaczonych przez funkcjÄ™ ZnikanieBalonow
+	 * balonĂłw
 	 */
 	private void Usuwanie() {
 		for (int x = balonyNaPlanszy.size() - 1; x >= 0; x--) {
@@ -684,7 +684,7 @@ public class Plansza extends JFrame implements ActionListener/* , Runnable */ {
 	/**
 	 * sprawdzajaca czy balony nie sa juz ponizej dopuszczalnej granicy dolu planszy
 	 * 
-	 * @return zwraca prawdę albo fałsz
+	 * @return zwraca prawdÄ™ albo faĹ‚sz
 	 */
 	private boolean CzyKoniec() {
 		for (int x = balonyNaPlanszy.size() - 1; x >= 0; x--) {
