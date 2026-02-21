@@ -47,7 +47,7 @@ public class Zasady extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 
-		bPowrot = new JButton("PowrĂłt");
+		bPowrot = new JButton("Powrót");
 		add(bPowrot, BorderLayout.PAGE_END);
 		bPowrot.addActionListener(this);
 

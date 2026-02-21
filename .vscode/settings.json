@@ -1,1 +1,6 @@
-{ "java.project.sourcePaths": ["src", "test"], "java.project.referencedLibraries": ["Balony_lib/**/*.jar"] }
+{
+    "java.server.launchMode": "Standard",
+    "java.project.referencedLibraries": [
+        "*.jar"
+    ]
+}

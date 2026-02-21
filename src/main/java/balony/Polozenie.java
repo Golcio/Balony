@@ -1,6 +1,6 @@
 package balony;
 /**
- * przechowuje wspÄŹĹĽËťrzedne pola gry
+ * przechowuje współrzędne pola gry
  */
 public class Polozenie {
     private int wsplX;

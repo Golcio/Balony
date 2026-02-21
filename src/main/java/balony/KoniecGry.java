@@ -80,10 +80,10 @@ public class KoniecGry extends JFrame implements ActionListener {
 		lWiadomosc.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
 		lWiadomosc.setFont(new Font("SanSerif", Font.BOLD, 25));
 
-		lPunkty = new JLabel("TwĂłj wynik: " + punkty + " punktĂłw.");
+		lPunkty = new JLabel("Twój wynik: " + punkty + " punktów.");
 		lPunkty.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
 
-		lNick = new JLabel("Podaj swĂłj nick:");
+		lNick = new JLabel("Podaj swój nick:");
 		lNick.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
 
 		tNick = new JTextField();
@@ -109,10 +109,10 @@ public class KoniecGry extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * metoda wczytajaca z pliku konfiguracyjnego listÄŹĹĽËť wynikow
+	 * metoda wczytajaca z pliku konfiguracyjnego listę wynikow
 	 * 
 	 * @param plik konfiguracyjny
-	 * @throws java.io.IOException wyjÄ…tek
+	 * @throws java.io.IOException wyjątek
 	 */
 
 	private void Wczytaj(File plik) throws IOException {
@@ -130,8 +130,8 @@ public class KoniecGry extends JFrame implements ActionListener {
 				line = br.readLine();
 			}
 		} catch (IOException e) {
-			javax.swing.JOptionPane.showMessageDialog(this, "WystÄ…piĹ‚ bĹ‚Ä…d odczytu punktacji z " + plik.getName(),
-					"BĹ‚Ä…d IOException", javax.swing.JOptionPane.ERROR_MESSAGE);
+			javax.swing.JOptionPane.showMessageDialog(this, "Wystąpił błąd odczytu punktacji z " + plik.getName(),
+					"Błąd IOException", javax.swing.JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -140,7 +140,7 @@ public class KoniecGry extends JFrame implements ActionListener {
 	 * konfiguracyjnego
 	 * 
 	 * @param plik konfiguracyjny
-	 * @throws java.io.IOException wyjÄ…tek
+	 * @throws java.io.IOException wyjątek
 	 */
 	private void Zapis(File plik) throws IOException {
 		PrintWriter out = new PrintWriter(plik);
@@ -167,7 +167,7 @@ public class KoniecGry extends JFrame implements ActionListener {
 			try {
 				Wczytaj(plik);
 			} catch (IOException e1) {
-				javax.swing.JOptionPane.showMessageDialog(this, "BĹ‚Ä…d wczytywania!", "BĹ‚Ä…d",
+				javax.swing.JOptionPane.showMessageDialog(this, "Błąd wczytywania!", "Błąd",
 						javax.swing.JOptionPane.ERROR_MESSAGE);
 			}
 			Collections.sort(wyniki, new Comparator<HighScore>() {
@@ -179,7 +179,7 @@ public class KoniecGry extends JFrame implements ActionListener {
 			try {
 				Zapis(plik);
 			} catch (IOException e1) {
-				javax.swing.JOptionPane.showMessageDialog(this, "Nie udaĹ‚o siÄ™ zapisaÄ‡ wyniku!", "BĹ‚Ä…d",
+				javax.swing.JOptionPane.showMessageDialog(this, "Nie udało się zapisać wyniku!", "Błąd",
 						javax.swing.JOptionPane.ERROR_MESSAGE);
 			}
 
