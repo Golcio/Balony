@@ -1,3 +1,4 @@
+package balony;
 /**
  * kolory balonów wystepujacych w grze
  */

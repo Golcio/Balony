@@ -1,3 +1,4 @@
+package balony;
 /**
  * przechowuje wspďż˝rzedne pola gry
  */

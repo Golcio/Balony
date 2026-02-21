@@ -1,3 +1,4 @@
+package balony;
 import java.awt.Image;
 
 /**

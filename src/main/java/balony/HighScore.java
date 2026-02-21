@@ -1,3 +1,4 @@
+package balony;
 /**
      * klasa przechowujaca wynik gracza 
      * 

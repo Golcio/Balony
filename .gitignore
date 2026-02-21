@@ -1,5 +1,6 @@
 # Foldery wyjściowe
 /bin/
+/target/
 /out/
 *.class
 
