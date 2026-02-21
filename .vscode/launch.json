@@ -1,0 +1,1 @@
+{ "version": "0.2.0", "configurations": [ { "type": "java", "name": "Launch Balony", "request": "launch", "mainClass": "MenuGlowne", "projectName": "balony" } ] }
